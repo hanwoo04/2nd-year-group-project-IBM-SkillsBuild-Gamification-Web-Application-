@@ -1,16 +1,23 @@
 package org.example.ibmskillsbuildapp.model;
 
-/**
- * Represents a course with a name and status.
- */
-public class Course {
+public class CourseView {
 
+    private String pathName;
     private String courseName;
     private String status;
 
-    public Course(String courseName, String status) {
+    public CourseView(String pathName, String courseName, String status) {
+        this.pathName = pathName;
         this.courseName = courseName;
         this.status = status;
+    }
+
+    public String getPathName() {
+        return pathName;
+    }
+
+    public void setPathName(String pathName) {
+        this.pathName = pathName;
     }
 
     public String getCourseName() {

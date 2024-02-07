@@ -1,0 +1,23 @@
+h1 {
+  text-align: center;
+}
+
+.courses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.available-courses, .started-courses, .completed-courses {
+  margin: 0.625rem;
+  padding: 0.625rem;
+  border: 0.0625rem solid #000;
+  border-radius: 0.3125rem;
+  width: 18.75rem;
+  height: 18.75rem;
+  overflow: auto;
+}
+
+.available-courses h3, .started-courses h3, .completed-courses h3 {
+  text-align: center;
+}
