@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>User Streak</title>
-
+    <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-<h1>User Streak</h1>
-<h2>${userStreak.streakCount} day streak</h2>
-
+<div class="container">
+    <h1>User Streak</h1>
+    <h2>${userStreak.streakCount} day streak</h2>
+</div>
 </body>
 </html>
