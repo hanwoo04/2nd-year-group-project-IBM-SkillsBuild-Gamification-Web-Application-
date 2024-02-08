@@ -1,0 +1,32 @@
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leaderboard</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Leaderboard</th>
+    </tr>
+<%--    <tr>--%>
+<%--        <td>Global</td>--%>
+<%--        <td>Friends</td>--%>
+<%--    </tr>--%>
+    <tr>
+        <th>Player</th>
+        <th>Score</th>
+    </tr>
+    <c:forEach items="${players}" var="player">
+        <tr>
+            <td> ${player.getName()}</td>
+            <td> ${player.getScore()}</td>
+        </tr>
+    </c:forEach>
+</table>
+</body>
+</html>
