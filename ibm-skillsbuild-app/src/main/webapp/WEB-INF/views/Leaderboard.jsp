@@ -11,7 +11,7 @@
 <body>
 <table>
     <tr>
-        <th>Leaderboard</th>
+        <th>Leaderboard(Global)</th>
     </tr>
 <%--    <tr>--%>
 <%--        <td>Global</td>--%>
@@ -25,6 +25,25 @@
         <tr>
             <td> ${player.getName()}</td>
             <td> ${player.getScore()}</td>
+        </tr>
+    </c:forEach>
+</table>
+<table>
+    <tr>
+        <th>Leaderboard(Friends)</th>
+    </tr>
+    <%--    <tr>--%>
+    <%--        <td>Global</td>--%>
+    <%--        <td>Friends</td>--%>
+    <%--    </tr>--%>
+    <tr>
+        <th>Player</th>
+        <th>Score</th>
+    </tr>
+    <c:forEach items="${friends}" var="friend">
+        <tr>
+            <td> ${friend.getName()}</td>
+            <td> ${friend.getScore()}</td>
         </tr>
     </c:forEach>
 </table>

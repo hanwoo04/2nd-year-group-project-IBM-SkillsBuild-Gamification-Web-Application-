@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 public class IbmSkillsbuildAppApplication implements CommandLineRunner {
     @Autowired
@@ -18,20 +20,34 @@ public class IbmSkillsbuildAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Player player = new Player();
-        player.setName("Joe");
-        player.setScore(500);
-        player = repo.save(player);
+        Player p1 = new Player();
+        p1.setName("Jack");
+        p1.setScore(200);
+        p1 = repo.save(p1);
 
-        Player player2 = new Player();
-        player2.setName("Jack");
-        player2.setScore(200);
-        player2 = repo.save(player2);
+        Player p2 = new Player();
+        p2.setName("Wil");
+        p2.setScore(1000);
+        p2 = repo.save(p2);
 
-        Player player3 = new Player();
-        player3.setName("Wil");
-        player3.setScore(1000);
-        player3 = repo.save(player3);
+        Player p3 = new Player();
+        p3.setName("Joe");
+        p3.setScore(500);
+
+        p3.setFriends(new ArrayList<>());
+        p1.setFriends(new ArrayList<>());
+        p2.setFriends(new ArrayList<>());
+
+        p3.getFriends().add(p2);
+        p3.getFriends().add(p1);
+
+        p1.getFriends().add(p3);
+        p1 = repo.save(p1);
+        p2.getFriends().add(p3);
+        p2 = repo.save(p2);
+
+
+
 
 
 

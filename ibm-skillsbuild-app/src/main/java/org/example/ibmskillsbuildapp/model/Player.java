@@ -1,8 +1,8 @@
 package org.example.ibmskillsbuildapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Player {
@@ -10,6 +10,17 @@ public class Player {
     private int id;
     private String name;
     private int score;
+
+    public List<Player> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Player> friends) {
+        this.friends = friends;
+    }
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Player> friends;
 
     public int getId() {
         return id;
