@@ -10,7 +10,8 @@ public class Player {
     private int id;
     private String name;
     private int score;
-
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Player> friends;
     public List<Player> getFriends() {
         return friends;
     }
@@ -19,8 +20,7 @@ public class Player {
         this.friends = friends;
     }
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    private List<Player> friends;
+
 
     public int getId() {
         return id;

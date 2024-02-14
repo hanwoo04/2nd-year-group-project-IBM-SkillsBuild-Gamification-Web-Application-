@@ -7,11 +7,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Leaderboard</title>
+    <link rel="stylesheet" href="/Styling.css" type="text/css" >
 </head>
-<body>
-<table>
+<body><div>
+<table id="global" class="leaderBoardHead">
     <tr>
-        <th>Leaderboard(Global)</th>
+        <th colspan="2" class="head">Leaderboard(Global)</th>
     </tr>
 <%--    <tr>--%>
 <%--        <td>Global</td>--%>
@@ -28,9 +29,9 @@
         </tr>
     </c:forEach>
 </table>
-<table>
+<table id="friend" class="leaderBoardHead">
     <tr>
-        <th>Leaderboard(Friends)</th>
+        <th colspan="2" class="head">Leaderboard(Friends)</th>
     </tr>
     <%--    <tr>--%>
     <%--        <td>Global</td>--%>
@@ -47,5 +48,6 @@
         </tr>
     </c:forEach>
 </table>
+</div>
 </body>
 </html>
