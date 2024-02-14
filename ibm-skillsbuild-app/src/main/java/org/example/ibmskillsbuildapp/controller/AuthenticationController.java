@@ -1,0 +1,47 @@
+package org.example.ibmskillsbuildapp.controller;
+import org.example.ibmskillsbuildapp.Model.User;
+import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.security.Principal;
+
+@Controller
+public class AuthenticationController {
+
+    @Autowired
+    private UserRepository repo;
+
+
+    @RequestMapping(value = "/success-login", method = RequestMethod.GET)
+    public String successLogin(Principal principal) {
+        User user = repo.findByUserName(principal.getName());
+        if (user.getRole().isEmpty()) {
+            return "denied";
+        }
+        return "greeting";
+    }
+
+    @GetMapping(value = "/login-form")
+    public String loginForm(Model model) {
+        model.addAttribute("service", "what");
+        return "login";
+    }
+
+    @RequestMapping(value = "/error-login")
+    public String errorLogin() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/access-denied")
+    public String accessDenied() {
+        return "denied";
+    }
+
+}
