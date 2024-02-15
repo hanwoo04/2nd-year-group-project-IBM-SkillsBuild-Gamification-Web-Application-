@@ -22,7 +22,8 @@
             <%-- Iterate over the list of courses and add the available ones --%>
             <c:forEach var="courseView" items="${courseViews}">
                 <c:if test="${courseView.status == 'AVAILABLE'}">
-                    <p>${courseView.pathName} - ${courseView.courseName}</p>
+                    <p><a href="${courseView.url}" target="_blank">${courseView.pathName}
+                        - ${courseView.courseName}</a></p>
                 </c:if>
             </c:forEach>
         </div>
@@ -31,7 +32,8 @@
             <%-- Iterate over the list of courses and add the started ones --%>
             <c:forEach var="courseView" items="${courseViews}">
                 <c:if test="${courseView.status == 'STARTED'}">
-                    <p>${courseView.pathName} - ${courseView.courseName}</p>
+                    <p><a href="${courseView.url}" target="_blank">${courseView.pathName}
+                        - ${courseView.courseName}</a></p>
                 </c:if>
             </c:forEach>
         </div>
@@ -40,7 +42,8 @@
             <%-- Iterate over the list of courses and add the completed ones --%>
             <c:forEach var="courseView" items="${courseViews}">
                 <c:if test="${courseView.status == 'COMPLETED'}">
-                    <p>${courseView.pathName} - ${courseView.courseName}</p>
+                    <p><a href="${courseView.url}" target="_blank">${courseView.pathName}
+                        - ${courseView.courseName}</a></p>
                 </c:if>
             </c:forEach>
         </div>

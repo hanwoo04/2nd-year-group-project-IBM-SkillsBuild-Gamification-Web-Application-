@@ -40,7 +40,7 @@ public class CourseViewService {
             for (Course course : path.getCourses()) {
                 UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
                 CourseView courseView = new CourseView(path.getPathName(), course.getCourseName(),
-                    userCourse.getStatus());
+                    userCourse.getStatus(), course.getUrl());
                 courseViews.add(courseView);
             }
         }

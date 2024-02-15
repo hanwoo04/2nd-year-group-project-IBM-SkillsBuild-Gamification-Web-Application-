@@ -19,6 +19,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String courseName;
+    private String url;
     @ManyToOne
     @JoinColumn(name = "learning_path_id")
     private LearningPath learningPath;
@@ -28,8 +29,9 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseName) {
+    public Course(String courseName, String url) {
         this.courseName = courseName;
+        this.url = url;
     }
 
     public Long getId() {
@@ -46,6 +48,14 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public LearningPath getLearningPath() {
