@@ -16,14 +16,13 @@ public class AuthenticationController {
     @Autowired
     private UserRepository repo;
 
-
-    @RequestMapping(value = "/success-login", method = RequestMethod.GET)
+    @GetMapping(value = "/success-login")
     public String successLogin(Principal principal) {
         User user = repo.findByUserName(principal.getName());
-        if (user.getRole().isEmpty()) {
+        if (user.getUserRoles().isEmpty()) {
             return "denied";
         }
-        return "greeting";
+        return "redirect:/dashboard";
     }
 
     @GetMapping(value = "/login-form")
@@ -41,5 +40,4 @@ public class AuthenticationController {
     public String accessDenied() {
         return "denied";
     }
-
 }

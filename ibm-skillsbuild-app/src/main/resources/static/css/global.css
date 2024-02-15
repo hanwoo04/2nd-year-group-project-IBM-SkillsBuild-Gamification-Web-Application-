@@ -1,3 +1,6 @@
+/* Use the following code in <head> of your JSP to link the CSS file to the page:
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/global.css">
+*/
 * {
   box-sizing: border-box;
 }

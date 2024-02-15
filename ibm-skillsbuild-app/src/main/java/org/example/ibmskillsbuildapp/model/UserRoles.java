@@ -5,16 +5,18 @@ import jakarta.persistence.Id;
 
 @Entity
 public class UserRoles {
+
     @Id
-    private String RoleName;
+    private String roleName;
+
     public UserRoles() {
     }
 
     public String getRoleName() {
-        return RoleName;
+        return roleName;
     }
 
-    public void setRoleName(String RoleName) {
-        this.RoleName = RoleName;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

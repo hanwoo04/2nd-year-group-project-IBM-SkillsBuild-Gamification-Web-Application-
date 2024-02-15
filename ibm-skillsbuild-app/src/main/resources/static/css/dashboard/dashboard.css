@@ -8,16 +8,16 @@ h1 {
   justify-content: center;
 }
 
-.available-courses, .started-courses, .completed-courses {
+.status-courses {
   margin: 0.625rem;
   padding: 0.625rem;
   border: 0.0625rem solid #000;
   border-radius: 0.3125rem;
-  width: 18.75rem;
-  height: 18.75rem;
+  width: 35rem;
+  height: 35rem;
   overflow: auto;
 }
 
-.available-courses h3, .started-courses h3, .completed-courses h3 {
+.status-courses h3 {
   text-align: center;
 }

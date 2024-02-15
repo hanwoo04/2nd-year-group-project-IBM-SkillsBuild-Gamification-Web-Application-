@@ -16,35 +16,34 @@
     </jsp:include>
     <h1>Dashboard</h1>
     <div class="courses">
-        <!-- Set a variable to keep track of the current course status -->
-        <c:set var="currentStatus" value=""/>
-        <!-- Iterate over the list of courses -->
-        <c:forEach var="courseView" items="${courseViews}">
-            <!-- Check if the status of the current course is different from the current status -->
-            <c:if test="${not currentStatus.equals(courseView.status)}">
-                <!-- If it is, update the current status and create a new container for this status -->
-                <c:set var="currentStatus" value="${courseView.status}"/>
-                <!-- Set the class of the container based on the current status -->
-                <div class="<c:choose>
-                <c:when test="${currentStatus == 'AVAILABLE'}">available-courses</c:when>
-                <c:when test="${currentStatus == 'STARTED'}">started-courses</c:when>
-                <c:when test="${currentStatus == 'COMPLETED'}">completed-courses</c:when>
-            </c:choose>">
-                <!-- Add a header for the current status -->
-                <h3><c:choose>
-                    <c:when test="${currentStatus == 'AVAILABLE'}">Available Courses</c:when>
-                    <c:when test="${currentStatus == 'STARTED'}">Started Courses</c:when>
-                    <c:when test="${currentStatus == 'COMPLETED'}">Completed Courses</c:when>
-                </c:choose></h3>
-            </c:if>
-            <!-- Display the course information TODO: Replace with link to courses-->
-            <p>${courseView.pathName} - ${courseView.courseName}</p>
-            <!-- Check if the status of the next course is different from the current status -->
-            <c:if test="${courseViews.indexOf(courseView) + 1 == courseViews.size() or not currentStatus.equals(courseViews[courseViews.indexOf(courseView) + 1].status)}">
-                <!-- If it is, close the current container -->
-                </div>
-            </c:if>
-        </c:forEach>
+        <%-- Create the containers for Available, Started, and Completed courses --%>
+        <div class="status-courses">
+            <h3>Available Courses</h3>
+            <%-- Iterate over the list of courses and add the available ones --%>
+            <c:forEach var="courseView" items="${courseViews}">
+                <c:if test="${courseView.status == 'AVAILABLE'}">
+                    <p>${courseView.pathName} - ${courseView.courseName}</p>
+                </c:if>
+            </c:forEach>
+        </div>
+        <div class="status-courses">
+            <h3>Started Courses</h3>
+            <%-- Iterate over the list of courses and add the started ones --%>
+            <c:forEach var="courseView" items="${courseViews}">
+                <c:if test="${courseView.status == 'STARTED'}">
+                    <p>${courseView.pathName} - ${courseView.courseName}</p>
+                </c:if>
+            </c:forEach>
+        </div>
+        <div class="status-courses">
+            <h3>Completed Courses</h3>
+            <%-- Iterate over the list of courses and add the completed ones --%>
+            <c:forEach var="courseView" items="${courseViews}">
+                <c:if test="${courseView.status == 'COMPLETED'}">
+                    <p>${courseView.pathName} - ${courseView.courseName}</p>
+                </c:if>
+            </c:forEach>
+        </div>
     </div>
 </div>
 </body>
