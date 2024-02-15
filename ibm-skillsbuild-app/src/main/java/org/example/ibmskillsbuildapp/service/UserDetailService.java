@@ -1,7 +1,7 @@
 package org.example.ibmskillsbuildapp.service;
 
-import org.example.ibmskillsbuildapp.Model.User;
-import org.example.ibmskillsbuildapp.Model.UserRoles;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserRoles;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

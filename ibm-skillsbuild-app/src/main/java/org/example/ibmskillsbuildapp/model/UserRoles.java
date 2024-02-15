@@ -1,4 +1,4 @@
-package org.example.ibmskillsbuildapp.Model;
+package org.example.ibmskillsbuildapp.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

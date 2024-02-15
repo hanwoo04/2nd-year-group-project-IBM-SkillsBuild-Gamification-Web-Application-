@@ -1,6 +1,5 @@
-package org.example.ibmskillsbuildapp.Model;
+package org.example.ibmskillsbuildapp.model;
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
 import java.util.List;
