@@ -21,8 +21,9 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'mysql:mysql-connector-java:8.0.28'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.9' 
+    runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.9'
     runtimeOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
+    runtimeOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl-api:3.0.0'
     implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.9.0'
 }
 
