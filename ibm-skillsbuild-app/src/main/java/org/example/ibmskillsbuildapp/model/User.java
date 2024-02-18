@@ -15,6 +15,10 @@ public class User {
 
     private String password;
 
+    private int score;//Leaderboard
+    @ManyToMany
+    private List<User> friends = new ArrayList<>();//Leaderboard
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<UserRoles> userRoles = new ArrayList<>();
 
@@ -71,5 +75,21 @@ public class User {
     public void setUserLearningPaths(
         List<UserLearningPath> userLearningPaths) {
         this.userLearningPaths = userLearningPaths;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
 }
