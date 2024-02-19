@@ -10,9 +10,11 @@
           href="${pageContext.request.contextPath}css/dashboard/dashboard.css">
 </head>
 <body>
+
 <div class="container">
     <jsp:include page="nav.jsp">
         <jsp:param name="activePage" value="jspName"/>
+        <jsp:param name="user" value="${user}"/>
     </jsp:include>
     <h1>Dashboard</h1>
     <div class="courses">

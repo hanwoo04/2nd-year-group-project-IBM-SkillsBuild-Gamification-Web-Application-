@@ -40,6 +40,7 @@ public class DashboardController {
         List<CourseView> courseViews = courseViewService.getAllCourseViews(user);
         courseViews.sort(Comparator.comparing(CourseView::getStatus));
         model.addAttribute("courseViews", courseViews);
+        model.addAttribute("user", user); //for general user info
         return "dashboard";
     }
 }
