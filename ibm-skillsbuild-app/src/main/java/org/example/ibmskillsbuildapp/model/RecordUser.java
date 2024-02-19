@@ -1,12 +1,12 @@
 package org.example.ibmskillsbuildapp.model;
 
-public class User {
+public class RecordUser {
     private Long id;
 
-    public User() {
+    public RecordUser() {
     }
 
-    public User(Long id) {
+    public RecordUser(Long id) {
         this.id = id;
     }
 
