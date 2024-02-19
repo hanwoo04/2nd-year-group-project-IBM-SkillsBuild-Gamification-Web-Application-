@@ -16,14 +16,29 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.okta.spring:okta-spring-boot-starter:3.0.6'
+    implementation 'org.testng:testng:7.9.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
+
+
+    // Data
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Security
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    //testImplementation 'org.springframework.security:spring-security-test'
+
+    // Okta
+    //implementation 'com.okta.spring:okta-spring-boot-starter:3.0.6'
+
+    // JSP
+    runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.9'
+    runtimeOnly 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
 }
 
 tasks.named('test') {
