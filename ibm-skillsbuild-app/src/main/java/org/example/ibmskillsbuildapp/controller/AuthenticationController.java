@@ -1,4 +1,5 @@
 package org.example.ibmskillsbuildapp.controller;
+
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class AuthenticationController {
         if (user.getUserRoles().isEmpty()) {
             return "denied";
         }
-        return "redirect:/dashboard";
+        return "redirect:/viewDashboard";
     }
 
     @GetMapping(value = "/login-form")
