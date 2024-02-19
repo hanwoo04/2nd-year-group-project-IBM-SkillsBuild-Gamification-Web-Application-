@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IbmSkillsbuildAppApplication implements CommandLineRunner {
+public class IbmSkillsBuildAppApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(IbmSkillsbuildAppApplication.class, args);
+        SpringApplication.run(IbmSkillsBuildAppApplication.class, args);
     }
 
     @Override

@@ -32,26 +32,27 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc)
-        throws Exception {
+            throws Exception {
         http.authorizeRequests(auth ->
-                auth.requestMatchers(mvc.pattern("/greeting")).hasRole("USER")
-                    .requestMatchers(mvc.pattern("/greeting")).hasRole("ADMIN")
-                    .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                    .anyRequest().authenticated()
-            )
-            .formLogin(login -> login
-                .loginPage("/login-form")
-                .loginProcessingUrl("/myLogin")
-                .defaultSuccessUrl("/success-login", true)
-                .failureUrl("/error-login")
-                .permitAll()
-            ).logout(logout -> logout.invalidateHttpSession(true)
-                .logoutSuccessUrl("/login-form")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .permitAll()
-            ).exceptionHandling(exceptionHandler ->
-                exceptionHandler.accessDeniedPage("/access-denied")
-            );
+                        auth.requestMatchers(mvc.pattern("/greeting")).hasRole("USER")
+                                .requestMatchers(mvc.pattern("/greeting")).hasRole("ADMIN")
+                                .requestMatchers(mvc.pattern("/register")).permitAll()
+                                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(login -> login
+                        .loginPage("/login-form")
+                        .loginProcessingUrl("/myLogin")
+                        .defaultSuccessUrl("/success-login", true)
+                        .failureUrl("/error-login")
+                        .permitAll()
+                ).logout(logout -> logout.invalidateHttpSession(true)
+                        .logoutSuccessUrl("/login-form")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .permitAll()
+                ).exceptionHandling(exceptionHandler ->
+                        exceptionHandler.accessDeniedPage("/access-denied")
+                );
 
         return http.build();
     }
@@ -64,6 +65,6 @@ public class SecurityConfig {
     @Autowired
     public void config(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder);
+                .passwordEncoder(passwordEncoder);
     }
 }
