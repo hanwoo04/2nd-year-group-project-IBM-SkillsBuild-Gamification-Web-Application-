@@ -17,7 +17,7 @@ the name of the JSP file that you are including it in:
         </div>--%>
     <div class="navbar">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/dashboard"
+            <li><a href="${pageContext.request.contextPath}/viewDashboard"
                    class="${param.activePage == 'dashboard' ? 'active' : ''}">Dashboard</a>
             </li>
             <li><a href="${pageContext.request.contextPath}/leaderboard/${user.getId()}"
