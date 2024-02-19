@@ -20,7 +20,7 @@ the name of the JSP file that you are including it in:
             <li><a href="${pageContext.request.contextPath}/dashboard"
                    class="${param.activePage == 'dashboard' ? 'active' : ''}">Dashboard</a>
             </li>
-            <li><a href="${pageContext.request.contextPath}/Leaderboard/${user.getId()}"
+            <li><a href="${pageContext.request.contextPath}/leaderboard/${user.getId()}"
                    class="${param.activePage == 'leaderboard' ? 'active' : ''}">Leaderboard</a>
             </li>
             <%-- Currently redundant, but checks if the user is logged in. If they aren't,

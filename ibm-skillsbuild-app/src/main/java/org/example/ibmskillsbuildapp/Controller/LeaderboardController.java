@@ -1,4 +1,4 @@
-package org.example.ibmskillsbuildapp.Controller;
+package org.example.ibmskillsbuildapp.controller;
 
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
@@ -13,22 +13,22 @@ import java.util.List;
 
 @Controller
 public class LeaderboardController {
+
     @Autowired
     private UserRepository repo;
 
-    @RequestMapping("/Leaderboard/{userId}")
+    @RequestMapping("/leaderboard/{userId}")
     public String showLeaderboard(Model model, @PathVariable long userId) {
         User user = repo.findById(userId).get(); //Gets user
         List<Long> friendsListId = new ArrayList<>();
         friendsListId.add(user.getId());
-        for (User f : user.getFriends()){
+        for (User f : user.getFriends()) {
             friendsListId.add(f.getId());
         }
         //Loop provides a list of friend ids which we can use to sort the order via CrudRepository
         model.addAttribute("friends", repo.findByIdInOrderByScoreDesc(friendsListId));//Friends Only
         model.addAttribute("players", repo.findAllByOrderByScoreDesc());//Global Leaderboard
-        return "Leaderboard";
+        model.addAttribute("user", user);
+        return "leaderboard";
     }
 }
-
-
