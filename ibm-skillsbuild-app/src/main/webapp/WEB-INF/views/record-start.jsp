@@ -8,6 +8,9 @@
 </head>
 <body>
 <h2>${notification}</h2>
+<p>
+    <a href="${pageContext.request.contextPath}/pause">Pause</a>
+</p>
 </body>
 
 </html>
