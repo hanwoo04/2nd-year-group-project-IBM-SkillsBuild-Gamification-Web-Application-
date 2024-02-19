@@ -6,40 +6,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
-/**
- * Service class for managing user streaks.
- */
 @Service
 public class StreakService {
 
+    private final UserStreakRepository streakRepository;
+
     @Autowired
-    private UserStreakRepository streakRepository;
+    public StreakService(UserStreakRepository streakRepository) {
+        this.streakRepository = streakRepository;
+    }
+
 
     /**
-     * Updates the streak count for the user identified by the given userId.
+     * Updates the streak count for a user.
+     * If the user's last login date is not today, the streak count is reset to 0.
+     * Otherwise, the streak count is incremented by 1.
+     * The last login date is updated to today.
      *
-     * @param userId The ID of the user whose streak is to be updated.
+     * @param userId the ID of the user whose streak is being updated.
      */
     public void updateStreak(Long userId) {
+        // Retrieve the user's streak from the repository, or create a new streak if not found
         UserStreak userStreak = streakRepository.findById(userId).orElse(new UserStreak());
         LocalDate today = LocalDate.now();
 
-        // Check if last login date is null or not equal to yesterday's date
+        // If the last login date is not today, reset the streak count to 0
         if (userStreak.getLastLoginDate() == null || !userStreak.getLastLoginDate().plusDays(1).equals(today)) {
-            userStreak.setStreakCount(0); // Reset streak count if not logged in yesterday
+            userStreak.setStreakCount(0);
         }
 
-        userStreak.setStreakCount(userStreak.getStreakCount() + 1); // Increment streak count
-        userStreak.setLastLoginDate(today); // Update last login date
+        // Increment the streak count and update the last login date
+        userStreak.setStreakCount(userStreak.getStreakCount() + 1);
+        userStreak.setLastLoginDate(today);
 
-        streakRepository.save(userStreak); // Save the updated user streak
+        // Save the updated streak in the repository
+        streakRepository.save(userStreak);
     }
 
     /**
-     * Retrieves the streak information for the user identified by the given userId.
+     * Retrieves the user's streak based on the user ID.
+     * If the streak is not found in the repository, returns a new UserStreak object.
      *
-     * @param userId The ID of the user.
-     * @return The UserStreak object representing the user's streak information.
+     * @param userId the ID of the user whose streak is being retrieved.
+     * @return the user's streak, or a new UserStreak object if not found.
      */
     public UserStreak getUserStreak(Long userId) {
         return streakRepository.findById(userId).orElse(new UserStreak());
