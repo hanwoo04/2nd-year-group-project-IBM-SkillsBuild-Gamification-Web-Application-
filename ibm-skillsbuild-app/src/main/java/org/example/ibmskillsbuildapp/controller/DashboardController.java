@@ -1,0 +1,46 @@
+package org.example.ibmskillsbuildapp.controller;
+
+import java.util.Comparator;
+import java.util.List;
+import org.example.ibmskillsbuildapp.model.CourseView;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.example.ibmskillsbuildapp.service.CourseViewService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+/**
+ * Controller for handling requests related to the dashboard.
+ */
+@Controller
+public class DashboardController {
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private CourseViewService courseViewService;
+
+    /**
+     * Handles GET requests to the /dashboard endpoint. Retrieves all CourseView objects for the
+     * user, sorts them by their status, and adds the sorted list to the model.
+     *
+     * @param model the Model object to which the sorted list of CourseView objects is added
+     * @return the name of the view to be rendered, in this case "dashboard"
+     */
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails) principal).getUsername();
+        User user = userRepository.findByUserName(username);
+
+        List<CourseView> courseViews = courseViewService.getAllCourseViews(user);
+        courseViews.sort(Comparator.comparing(CourseView::getStatus));
+        model.addAttribute("courseViews", courseViews);
+        model.addAttribute("user", user); //for general user info
+        return "dashboard";
+    }
+}
