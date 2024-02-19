@@ -27,9 +27,9 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
 
     // Security
-    // implementation 'org.springframework.boot:spring-boot-starter-security'
-    // implementation 'org.springframework.security:spring-security-config'
-    // testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.security:spring-security-config'
+    testImplementation 'org.springframework.security:spring-security-test'
 
     // JSP
     runtimeOnly 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.9'
