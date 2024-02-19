@@ -1,23 +1,177 @@
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  background-color: rgba(255, 255, 255, 0.96); /* Light background color */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url("https://www.ibm.com/design/language/static/e739d9ae7569ae4b0de0e78e74f0a929/3cbba/2306_68_IDL_gallery.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 600px;
+
+}
+
+
 h1 {
   text-align: center;
+  font-family: "IBM Plex Sans";
+  color: #0f62fe; /* Dark Gray */
+  font-size: xxx-large;
 }
+
+.box {
+  padding: 0 50px 0 10px;
+}
+
+.box h1 {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+
+.box h1::after {
+  content: "";
+  width: 5px;
+  height: 52px;
+  background: #0f62fe;
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}
+
 
 .courses {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  font-size: large;
 }
 
 .available-courses, .started-courses, .completed-courses {
   margin: 0.625rem;
   padding: 0.625rem;
-  border: 0.0625rem solid #000;
-  border-radius: 0.3125rem;
+  border-radius: 0.625rem;
+  /*border: #0f62fe;*/
+  /*border-radius: 8px;*/
+  /*border-width: 2px;*/
+  /*border-color: #536DFE;*/
   width: 18.75rem;
-  height: 18.75rem;
   overflow: auto;
+  /*box-shadow: 0 45px 65px rgba(0,0,0,0.50), 0 35px 22px rgba(0,0,0,0.16);*/
+  /*background-color: #ffffff; !* Light Gray *!*/
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: antiquewhite;
 }
 
 .available-courses h3, .started-courses h3, .completed-courses h3 {
   text-align: center;
+  color: #030b3e;
+  margin: 5px auto;
+  font-size: x-large;
+}
+
+.started-courses {
+  background-color: #FEFF9C; /* Yellow background color */
+}
+
+
+.completed-courses {
+  background-color: #8ef597; /* Green background color */
+}
+p {
+  /*color: #fff;*/
+  font-size: 1.1em;
+  text-decoration: none;
+  /*display: inline-block;*/
+  position: relative;
+  cursor: pointer;
+  /*font-family: 'Dosis', sans-serif;*/
+}
+
+.ligthhover:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  border-bottom: 5px solid;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: scale(0,1);
+  transform: scale(0,1);
+}
+
+.ligthhover:hover:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.button {
+  align-items: center;
+  appearance: none;
+  background-color: #EEF2FF;
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: #536DFE;
+  box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #536DFE;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 56px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 24px;
+  padding-right: 24px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 20px;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(83, 109, 254, 0.4) 0 2px 4px, rgba(83, 109, 254, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button:hover {
+  box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.dashboard-button {
+  position:fixed;
+  top:20px;
+  left:20px;
+}
+
+.leaderboard-button {
+  position:fixed;
+  top:20px;
+  left:210px;
+}
+
+.log-button {
+  position:fixed;
+  top:20px;
+  right:20px;
 }
