@@ -31,7 +31,6 @@
             left: 50px;
         }
 
-
         h2 {
             font-size: 32px; /* Increase font size for emphasis */
             color: #ffffff; /* Neon green color */
