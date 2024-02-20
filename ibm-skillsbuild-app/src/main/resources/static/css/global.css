@@ -1,14 +1,23 @@
 /* Use the following code in <head> of your JSP to link the CSS file to the page:
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/global.css">
 */
+
 * {
   box-sizing: border-box;
 }
 
 html, body {
-  font-family: Arial, sans-serif;
+  font-family: "IBM Plex Sans";
   margin: 0 auto;
   padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  color: #0f62fe;
 }
 
 .navbar {
@@ -16,6 +25,7 @@ html, body {
   border: 0.0625rem solid #8d8d8d;
   margin: 0;
   padding: 0;
+  background-color: #8CA3C9F4;
 }
 
 nav ul {
@@ -38,7 +48,7 @@ nav li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on navbar hover */
+/* Change the link color on navbar hover */
 nav li a:not(.active):hover {
   background-color: rgba(201, 201, 201, 0.5);
 }
