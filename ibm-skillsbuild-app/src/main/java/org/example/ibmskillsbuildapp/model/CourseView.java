@@ -8,12 +8,14 @@ public class CourseView {
 
     private String pathName;
     private String courseName;
+    private String description;
     private LearningStatus status;
     private String url;
 
-    public CourseView(String pathName, String courseName, LearningStatus status, String url) {
+    public CourseView(String pathName, String courseName, String description, LearningStatus status, String url) {
         this.pathName = pathName;
         this.courseName = courseName;
+        this.description = description;
         this.status = status;
         this.url = url;
     }
@@ -28,6 +30,14 @@ public class CourseView {
 
     public String getCourseName() {
         return courseName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setCourseName(String courseName) {

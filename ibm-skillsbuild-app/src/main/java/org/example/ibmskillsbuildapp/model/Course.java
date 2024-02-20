@@ -1,5 +1,6 @@
 package org.example.ibmskillsbuildapp.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String courseName;
+    @Column(length = 1000)
+    private String description;
     private String url;
     @ManyToOne
     @JoinColumn(name = "learning_path_id")
@@ -29,8 +32,9 @@ public class Course {
     public Course() {
     }
 
-    public Course(String courseName, String url) {
+    public Course(String courseName, String description, String url) {
         this.courseName = courseName;
+        this.description = description;
         this.url = url;
     }
 
@@ -48,6 +52,14 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUrl() {
