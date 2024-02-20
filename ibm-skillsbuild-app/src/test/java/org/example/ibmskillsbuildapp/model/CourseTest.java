@@ -56,8 +56,9 @@ class CourseTest {
     @Test
     void testConstructor() {
         String courseName = "Test Course";
+        String description = "This is a test course";
         String url = "http://testcourse.com";
-        Course course = new Course(courseName, url);
+        Course course = new Course(courseName, description, url);
         assertNotNull(course);
         assertEquals(courseName, course.getCourseName());
         assertEquals(url, course.getUrl());

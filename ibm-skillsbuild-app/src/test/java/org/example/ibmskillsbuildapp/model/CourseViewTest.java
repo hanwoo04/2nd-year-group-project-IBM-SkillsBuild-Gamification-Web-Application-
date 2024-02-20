@@ -12,7 +12,7 @@ class CourseViewTest {
 
     @BeforeEach
     public void setup() {
-        courseView = new CourseView("pathName", "courseName", LearningStatus.STARTED, "url");
+        courseView = new CourseView("pathName", "courseName", "description", LearningStatus.STARTED, "url");
     }
 
     @Test
@@ -47,9 +47,10 @@ class CourseViewTest {
     void testConstructor() {
         String pathName = "Test Path";
         String courseName = "Test Course";
+        String description = "This is a test course";
         LearningStatus status = LearningStatus.COMPLETED;
         String url = "http://testcourse.com";
-        CourseView courseView = new CourseView(pathName, courseName, status, url);
+        CourseView courseView = new CourseView(pathName, courseName, description, status, url);
         assertNotNull(courseView);
         assertEquals(pathName, courseView.getPathName());
         assertEquals(courseName, courseView.getCourseName());

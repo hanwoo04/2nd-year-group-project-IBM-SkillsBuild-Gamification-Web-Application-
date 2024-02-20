@@ -58,7 +58,7 @@ class DashboardControllerTest {
         User user = new User();
         user.setUserName("testUser");
 
-        CourseView courseView = new CourseView("pathName", "courseName", LearningStatus.STARTED, "url");
+        CourseView courseView = new CourseView("pathName", "courseName", "description", LearningStatus.STARTED, "url");
 
         when(userRepository.findByUserName(anyString())).thenReturn(user);
         when(courseViewService.getAllCourseViews(user)).thenReturn(List.of(courseView));
