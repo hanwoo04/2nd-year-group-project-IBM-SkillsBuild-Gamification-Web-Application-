@@ -87,6 +87,21 @@
             from { width: 0 }
             to { width: 103% }
         }
+        /* Style the register button */
+        .register-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(0, 63, 166, 0.65);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-button:hover {
+            background-color: rgba(0, 97, 166, 0.73);
+        }
 
     </style>
 </head>
@@ -100,9 +115,11 @@
         Password: <input type="password" name="password" /> <br/>
         <input type="submit" value="Sign In" class="gamification-element" /> <br/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        <a href="/register" class="register-button">Don't Have An Account? </a>
+
     </form>
 </div>
-<p>Don't have an account? <a href="/register">Register</a></p>
+
 </body>
 </html>
 
