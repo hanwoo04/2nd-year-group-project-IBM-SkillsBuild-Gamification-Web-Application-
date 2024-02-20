@@ -2,58 +2,22 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/global.css">
 */
 
-* {
+* { /* DO NOT CHANGE THIS */
   box-sizing: border-box;
 }
 
-html, body {
-  font-family: "IBM Plex Sans";
-  margin: 0 auto;
-  padding: 0;
+html { /* DO NOT CHANGE THIS */
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 16px;  /* 1rem = 16px */
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-  color: #0f62fe;
-}
-
-.navbar {
-  width: 100%;
-  border: 0.0625rem solid #8d8d8d;
+body { /* DO NOT CHANGE THIS */
   margin: 0;
   padding: 0;
-  background-color: #8CA3C9F4;
+  background-color: rgba(255, 255, 255, 0.96);
 }
 
-nav ul {
-  list-style-type: none;
-  margin: 0;
+.container { /* DO NOT CHANGE THIS */
+  margin: 0 auto;
   padding: 0;
-  overflow: hidden;
-}
-
-nav li {
-  float: left;
-}
-
-nav li a {
-  display: block;
-  text-align: center;
-  padding: 14px 16px;
-  color: #111;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-/* Change the link color on navbar hover */
-nav li a:not(.active):hover {
-  background-color: rgba(201, 201, 201, 0.5);
-}
-
-/* Active page on navbar */
-.active {
-  background-color: rgba(0, 63, 166, 0.65);
 }

@@ -1,34 +1,26 @@
 body {
-  font-family: "IBM Plex Sans", sans-serif;
-  background-color: rgba(255, 255, 255, 0.96); /* Light background color */
-  margin: 0;
-  padding: 0;
   height: 100vh;
   background-image: url("https://www.ibm.com/design/language/static/e739d9ae7569ae4b0de0e78e74f0a929/3cbba/2306_68_IDL_gallery.png");
   background-repeat: no-repeat;
-  background-position: left bottom;
-  background-size: 600px;
-
+  background-position: -8rem bottom;
+  background-size: 37.5rem;
+  background-attachment: fixed;
 }
 
+.container {
+  text-align: center;
+}
 
 h1 {
   text-align: center;
-  font-family: "IBM Plex Sans";
-  color: #0f62fe; /* Dark Gray */
-  font-size: xxx-large;
+  color: #1f70c1;
+  font-size: 3rem;
 }
 
-.box {
-  padding: 0 50px 0 10px;
-}
-
-.box h1 {
+.title h1 {
   display: flex;
-  gap: 10px;
   justify-content: center;
 }
-
 
 @keyframes cursor-blink {
   0% {
@@ -36,78 +28,102 @@ h1 {
   }
 }
 
-.box h1::after {
+.title h1::after {
   content: "";
-  width: 5px;
-  height: 52px;
-  background: #0f62fe;
+  width: 0.3125rem;
+  height: 3.25rem;
+  background: #1f70c1;
   display: inline-block;
   animation: cursor-blink 1.5s steps(2) infinite;
+  position: absolute;
+  transform: translateX(16.375rem);
 }
-
 
 .courses {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  font-size: large;
+  font-size: 1.25rem;
+  margin: auto;
+  max-width: 67%; /* For expanded container */
 }
 
 .status-courses {
   margin: 0.625rem;
   padding: 0.625rem;
   border-radius: 0.625rem;
-  /*border: #0f62fe;*/
-  /*border-radius: 8px;*/
-  /*border-width: 2px;*/
-  /*border-color: #536DFE;*/
-  width: 18.75rem;
-  overflow: auto;
-  /*box-shadow: 0 45px 65px rgba(0,0,0,0.50), 0 35px 22px rgba(0,0,0,0.16);*/
-  /*background-color: #ffffff; !* Light Gray *!*/
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  width: 25rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
   background-color: antiquewhite;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.status-courses.expanded {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Expand to 100% of parent container */
+}
+
+.hidden {
+  display: none;
 }
 
 .status-courses h3 {
   text-align: center;
   color: #030b3e;
-  margin: 5px auto;
-  font-size: x-large;
+  font-size: 1.625rem;
+  margin: 0.3125rem auto 1.5rem;
 }
 
-.started-courses {
-  background-color: #FEFF9C; /* Yellow background color */
+.close-button {
+  position: absolute;
+  right: 0;
 }
 
-
-.completed-courses {
-  background-color: #8ef597; /* Green background color */
+.course-button {
+  margin: auto auto 3rem;
 }
-p {
-  /*color: #fff;*/
-  font-size: 1.1em;
+
+.status-courses a {
   text-decoration: none;
-  /*display: inline-block;*/
+  color: #1f70c1;
+  pointer-events: none; /* Disable link until expanded*/
+}
+
+
+#started-courses {
+  background-color: #FEFF9C;
+}
+
+#completed-courses {
+  background-color: #8ef597;
+}
+
+p {
+  font-size: 1.125rem;
+  text-decoration: none;
   position: relative;
   cursor: pointer;
-  /*font-family: 'Dosis', sans-serif;*/
 }
 
-.ligthhover:after {
+.lighthover {
+  color: #1f70c1;
+  pointer-events: none; /* Disable hover effect until expanded */
+}
+
+.lighthover:after {
   content: '';
   display: inline-block;
   width: 100%;
-  border-bottom: 5px solid;
+  border-bottom: 0.3125rem solid;
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
-  -webkit-transform: scale(0,1);
-  transform: scale(0,1);
+  transform: scale(0, 1);
 }
 
-.ligthhover:hover:after {
+.lighthover:hover:after {
   opacity: 1;
-  -webkit-transform: scale(1);
   transform: scale(1);
 }
 
@@ -115,22 +131,21 @@ p {
   align-items: center;
   appearance: none;
   background-color: #EEF2FF;
-  border-radius: 8px;
-  border-width: 2px;
-  border-color: #536DFE;
+  border-radius: 0.5rem;
+  border-width: 0.125rem;
+  border-color: #1f70c1;
   box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #536DFE;
+  color: #1f70c1;
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono", monospace;
-  height: 56px;
+  height: 3.5rem;
   justify-content: center;
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -140,46 +155,45 @@ p {
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .button:focus {
   outline: none;
-  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(83, 109, 254, 0.4) 0 2px 4px, rgba(83, 109, 254, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  box-shadow: #D6D6E7 0 0 0 0.09375rem inset, rgba(83, 109, 254, 0.4) 0 2px 4px, rgba(83, 109, 254, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
 
 .button:hover {
   box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
 }
 
 .button:active {
-  box-shadow: #D6D6E7 0 3px 7px inset;
-  transform: translateY(2px);
+  box-shadow: #D6D6E7 0 0.1875rem 0.4375rem inset;
+  transform: translateY(0.125rem);
 }
 
 .dashboard-button {
-  position:fixed;
-  top:20px;
-  left:20px;
+  position: fixed;
+  top: 1.25rem;
+  left: 1.25rem;
 }
 
 .leaderboard-button {
-  position:fixed;
-  top:20px;
-  left:210px;
+  position: fixed;
+  top: 1.25rem;
+  left: 13.125rem;
 }
 
 .log-button {
-  position:fixed;
-  top:20px;
-  right:20px;
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
 }
 
 .streak {
   position: absolute;
-  top: 50px;
-  right: 10px;
+  top: 3.125rem;
+  right: 0.625rem;
   font-weight: bold;
 }
-
