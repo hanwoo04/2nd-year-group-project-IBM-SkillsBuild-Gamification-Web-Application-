@@ -7,20 +7,22 @@ the name of the JSP file that you are including it in:
 --%>
 
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
 <nav>
-    <%--    <div>
-            <a href="${pageContext.request.contextPath}/">
-                <!-- TODO: Add Images? -->
-                <div id="logo"><img src="image.png" alt="Home"/></div>
-                <div id="headtag"><img src="image.png" alt="Home"/></div>
-            </a>
-        </div>--%>
-    <div class="navbar">
+    <div>
+        <a href="${pageContext.request.contextPath}/">
+            <div id="logo"><img
+                    src="https://b585204.smushcdn.com/585204/wp-content/uploads/2020/09/ibm-logo-2-1-300x131.png?lossy=0&strip=1&webp=0"
+                    alt="Home"/></div>
+        </a>
+    </div>
+    <div id="navbar">
         <ul>
             <li><a href="${pageContext.request.contextPath}/viewDashboard"
                    class="${param.activePage == 'dashboard' ? 'active' : ''}">Dashboard</a>
             </li>
-            <li><a href="${pageContext.request.contextPath}/leaderboard/${user.getId()}"
+            <li><a href="${pageContext.request.contextPath}/viewLeaderboard/${user.getId()}"
                    class="${param.activePage == 'leaderboard' ? 'active' : ''}">Leaderboard</a>
             </li>
             <%-- Currently redundant, but checks if the user is logged in. If they aren't,
