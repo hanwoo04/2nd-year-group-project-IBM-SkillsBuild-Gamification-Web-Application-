@@ -15,9 +15,13 @@ It features a secure login system, a dashboard to view your progress, and a lead
 
 For more information on IBM SkillsBuild, please visit [IBM SkillsBuild](https://skillsbuild.org/).
 
+The website is not suitable for mobile viewing.
+
 ## Installation and Running
 
 These instructions will get the web application running on your local machine for use and development.
+
+For more detailed instructions on how to use the application, please see the user manual.
 
 ### Prerequisites
 
