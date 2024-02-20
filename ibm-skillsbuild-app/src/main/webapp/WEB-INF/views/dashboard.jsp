@@ -44,7 +44,7 @@
                                              target="_blank">${courseView.pathName}
                         - ${courseView.courseName}</a></p>
                     <p class="course-description hidden">${courseView.description}</p>
-                    <button class="course-button hidden">Enroll</button>
+                    <a href="${pageContext.request.contextPath}/record-start"> <button class="course-button hidden">Enroll</button></a>
                 </c:if>
             </c:forEach>
         </div>
