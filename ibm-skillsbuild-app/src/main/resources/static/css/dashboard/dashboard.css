@@ -53,7 +53,7 @@ h1 {
   font-size: large;
 }
 
-.available-courses, .started-courses, .completed-courses {
+.status-courses {
   margin: 0.625rem;
   padding: 0.625rem;
   border-radius: 0.625rem;
@@ -69,7 +69,7 @@ h1 {
   background-color: antiquewhite;
 }
 
-.available-courses h3, .started-courses h3, .completed-courses h3 {
+.status-courses h3 {
   text-align: center;
   color: #030b3e;
   margin: 5px auto;
@@ -175,3 +175,11 @@ p {
   top:20px;
   right:20px;
 }
+
+.streak {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  font-weight: bold;
+}
+

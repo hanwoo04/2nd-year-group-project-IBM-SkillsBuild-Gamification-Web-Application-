@@ -1,52 +1,39 @@
 package org.example.ibmskillsbuildapp.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.example.ibmskillsbuildapp.model.Course;
-import org.example.ibmskillsbuildapp.model.CourseView;
 import org.example.ibmskillsbuildapp.model.LearningPath;
+import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Service for managing learning paths. This class provides the service to manage learning paths.
- * Note: Can be replaced by a repository once the application is connected to a database?
+ * Service class for managing {@link LearningPath} entities. This service provides methods for
+ * common operations such as checking if the repository is empty and creating learning paths.
  */
 @Service
 public class LearningPathService {
 
-    private List<LearningPath> learningPaths;
-
-    public LearningPathService() {
-        learningPaths = new ArrayList<>();
-        LearningPath path1 = new LearningPath("Path1");
-        path1.addCourse("Course1", "AVAILABLE");
-        path1.addCourse("Course2", "STARTED");
-        path1.addCourse("Course3", "COMPLETED");
-
-        LearningPath path2 = new LearningPath("Path2");
-        path2.addCourse("Course4", "AVAILABLE");
-        path2.addCourse("Course5", "AVAILABLE");
-        path2.addCourse("Course6", "STARTED");
-
-        learningPaths.add(path1);
-        learningPaths.add(path2);
-    }
-
+    @Autowired
+    private LearningPathRepository learningPathRepository;
 
     /**
-     * Retrieves all courses from all learning paths and wraps them into CourseView objects.
+     * Checks if the learning path repository is empty.
      *
-     * @return a list of CourseView objects representing all courses from all learning paths
+     * @return true if the learning path repository is empty, false otherwise.
      */
-    public List<CourseView> getAllCourseViews() {
-        List<CourseView> courseViews = new ArrayList<>();
-        for (LearningPath path : learningPaths) {
-            for (Course course : path.getCourses()) {
-                CourseView courseView = new CourseView(path.getPathName(), course.getCourseName(),
-                    course.getStatus());
-                courseViews.add(courseView);
-            }
-        }
-        return courseViews;
+    public boolean isEmpty() {
+        return learningPathRepository.count() == 0;
+    }
+
+    /**
+     * Creates and saves new learning paths in the learning path repository.
+     */
+    public void createLearningPaths() {
+        LearningPath path1 = new LearningPath("Artificial Intelligence");
+        LearningPath path2 = new LearningPath("Cloud Computing");
+        LearningPath path3 = new LearningPath("Design Thinking");
+
+        learningPathRepository.save(path1);
+        learningPathRepository.save(path2);
+        learningPathRepository.save(path3);
     }
 }

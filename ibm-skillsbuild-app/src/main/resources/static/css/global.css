@@ -1,24 +1,15 @@
-/*body {*/
-/*  font-family: Arial, sans-serif;*/
-/*  background-color: #d2d2d2;*/
-/*  margin: 0;*/
-/*  padding: 0;*/
-/*}*/
+/* Use the following code in <head> of your JSP to link the CSS file to the page:
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/global.css">
+*/
 
-/*.container {*/
-/*  max-width: 85%;*/
-/*  margin: 0 auto;*/
-/*  padding: 1.25rem;*/
-/*  background-color: #fff;*/
-/*  border-radius: 0.3125rem;*/
-/*  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);*/
-/*}*/
+* {
+  box-sizing: border-box;
+}
 
-body {
+html, body {
   font-family: "IBM Plex Sans";
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  background-color: #8CA3C9F4;
 }
 
 .container {
@@ -29,4 +20,40 @@ body {
   color: #0f62fe;
 }
 
+.navbar {
+  width: 100%;
+  border: 0.0625rem solid #8d8d8d;
+  margin: 0;
+  padding: 0;
+  background-color: #8CA3C9F4;
+}
 
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  color: #111;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Change the link color on navbar hover */
+nav li a:not(.active):hover {
+  background-color: rgba(201, 201, 201, 0.5);
+}
+
+/* Active page on navbar */
+.active {
+  background-color: rgba(0, 63, 166, 0.65);
+}
