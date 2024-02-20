@@ -1,5 +1,6 @@
 package org.example.ibmskillsbuildapp.service;
 
+import java.util.ArrayList;
 import java.util.stream.StreamSupport;
 import org.example.ibmskillsbuildapp.model.*;
 import org.example.ibmskillsbuildapp.repo.*;
@@ -44,11 +45,17 @@ public class UserService {
 
         role.setRoleName("USER");
         user1.getUserRoles().add(role);
+        user1.setScore(300);
+        user1.setFriends(new ArrayList<>());
         role2.setRoleName("ADMIN");
         user2.getUserRoles().add(role2);
+        user2.setScore(400);
+        user2.setFriends(new ArrayList<>());
 
-        userRepository.save(user1);
-        userRepository.save(user2);
+        user1=userRepository.save(user1);
+        user2=userRepository.save(user2);
+        user1.getFriends().add(user2);//USER friends with ADMIN but not other way around
+
 
         Iterable<LearningPath> iterable = learningPathRepository.findAll();
         List<LearningPath> learningPaths = StreamSupport.stream(iterable.spliterator(), false)

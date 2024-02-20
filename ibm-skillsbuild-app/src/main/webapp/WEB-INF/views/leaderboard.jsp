@@ -22,10 +22,6 @@
         <tr>
             <th colspan="2" class="head">Leaderboard(Global)</th>
         </tr>
-        <%--    <tr>--%>
-        <%--        <td>Global</td>--%>
-        <%--        <td>Friends</td>--%>
-        <%--    </tr>--%>
         <tr>
             <th>Player</th>
             <th>Score</th>

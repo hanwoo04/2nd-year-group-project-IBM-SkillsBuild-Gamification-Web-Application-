@@ -3,6 +3,8 @@ package org.example.ibmskillsbuildapp.controller;
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,11 @@ public class LeaderboardController {
     @Autowired
     private UserRepository repo;
 
-    @GetMapping("/viewLeaderboard/{userId}")
-    public String showLeaderboard(Model model, @PathVariable long userId) {
-        User user = repo.findById(userId).get(); //Gets user
+    @GetMapping("/viewLeaderboard")
+    public String showLeaderboard(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = ((UserDetails) principal).getUsername();
+        User user = repo.findByUserName(username);//Gets user
         List<Long> friendsListId = new ArrayList<>();
         friendsListId.add(user.getId());
         for (User f : user.getFriends()) {
