@@ -21,3 +21,10 @@ h1 {
 .status-courses h3 {
   text-align: center;
 }
+
+.streak {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  font-weight: bold;
+}

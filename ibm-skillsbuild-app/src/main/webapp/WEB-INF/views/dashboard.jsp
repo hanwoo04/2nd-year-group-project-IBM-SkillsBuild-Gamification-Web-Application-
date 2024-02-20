@@ -17,6 +17,17 @@
         <jsp:param name="user" value="${user}"/>
     </jsp:include>
     <h1>Dashboard</h1>
+    <p class="streak">
+        <%-- Display streak count or "0 day streak" if streak count is null --%>
+        <c:choose>
+            <c:when test="${empty userStreak}">
+                0 day streak
+            </c:when>
+            <c:otherwise>
+                ${userStreak.streakCount} day streak
+            </c:otherwise>
+        </c:choose>
+    </p>
     <div class="courses">
         <%-- Create the containers for Available, Started, and Completed courses --%>
         <div class="status-courses">
