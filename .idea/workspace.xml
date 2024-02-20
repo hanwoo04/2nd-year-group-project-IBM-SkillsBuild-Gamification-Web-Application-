@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba126452-c403-4f97-a9bf-dc73aa395bf7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ibm-skillsbuild-app/src/main/java/org/example/ibmskillsbuildapp/IbmSkillsbuildAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ibm-skillsbuild-app/src/main/java/org/example/ibmskillsbuildapp/IbmSkillsbuildAppApplication.java" afterDir="false" />
+    <list default="true" id="ba126452-c403-4f97-a9bf-dc73aa395bf7" name="Changes" comment="Added and improved css styles for login.jsp and register.jsp.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ibm-skillsbuild-app/src/main/webapp/WEB-INF/views/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/ibm-skillsbuild-app/src/main/webapp/WEB-INF/views/register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,45 +54,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Gradle.Build ibm-skillsbuild-app.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Users/kevin/Downloads/group-01/ibm-skillsbuild-app/build.gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Users/kevin/Downloads/group-01/ibm-skillsbuild-app/settings.gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ibm-skillsbuild-app.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.IbmSkillsBuildAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.IbmSkillsbuildAppApplication.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kevin/Downloads/hw2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Gradle.Build ibm-skillsbuild-app.executor": "Run",
+    "Gradle.C:/Users/kevin/Downloads/group-01/ibm-skillsbuild-app/build.gradle.executor": "Run",
+    "Gradle.C:/Users/kevin/Downloads/group-01/ibm-skillsbuild-app/settings.gradle.executor": "Run",
+    "Gradle.ibm-skillsbuild-app.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.IbmSkillsBuildAppApplication.executor": "Run",
+    "Spring Boot.IbmSkillsbuildAppApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "development",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/arioz/group-01",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kevin\Downloads\group-01\ibm-skillsbuild-app\src\main\webapp\WEB-INF\views" />
@@ -99,7 +100,14 @@
       <recent name="C:\Users\kevin\Downloads\group-01\ibm-skillsbuild-app\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.C:/Users/kevin/Downloads/group-01/ibm-skillsbuild-app/build.gradle">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.IbmSkillsbuildAppApplication">
     <configuration name="C:/Users/kevin/Downloads/group-01/ibm-skillsbuild-app/build.gradle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -199,11 +207,25 @@
       <workItem from="1708212838948" duration="165000" />
       <workItem from="1708295650551" duration="1966000" />
       <workItem from="1708338345497" duration="46000" />
+      <workItem from="1708437598317" duration="960000" />
     </task>
+    <task id="LOCAL-00001" summary="Added and improved css styles for login.jsp and register.jsp.">
+      <option name="closed" value="true" />
+      <created>1708437800797</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708437800797</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added and improved css styles for login.jsp and register.jsp." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added and improved css styles for login.jsp and register.jsp." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
