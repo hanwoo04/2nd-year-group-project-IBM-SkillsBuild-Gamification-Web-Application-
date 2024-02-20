@@ -116,6 +116,7 @@
         <input type="submit" value="Sign In" class="gamification-element" /> <br/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <a href="/register" class="register-button">Don't Have An Account? </a>
+
     </form>
 </div>
 
