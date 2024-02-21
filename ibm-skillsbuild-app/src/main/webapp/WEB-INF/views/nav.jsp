@@ -51,4 +51,3 @@ the name of the JSP file that you are including it in:
         </ul>
     </div>
 </nav>
-<script src="${pageContext.request.contextPath}/js/nav.js"></script>

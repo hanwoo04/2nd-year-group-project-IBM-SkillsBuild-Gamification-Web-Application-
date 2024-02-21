@@ -58,7 +58,7 @@ class DashboardControllerTest {
         User user = new User();
         user.setUserName("testUser");
 
-        CourseView courseView = new CourseView("pathName", "courseName", "description", LearningStatus.STARTED, "url");
+        CourseView courseView = new CourseView(1L, "pathName", "courseName", "description", LearningStatus.STARTED, "url");
 
         when(userRepository.findByUserName(anyString())).thenReturn(user);
         when(courseViewService.getAllCourseViews(user)).thenReturn(List.of(courseView));
@@ -68,4 +68,6 @@ class DashboardControllerTest {
             .andExpect(model().attributeExists("courseViews"))
             .andExpect(model().attributeExists("user"));
     }
+
+    // TODO: Test new methods in DashboardController
 }

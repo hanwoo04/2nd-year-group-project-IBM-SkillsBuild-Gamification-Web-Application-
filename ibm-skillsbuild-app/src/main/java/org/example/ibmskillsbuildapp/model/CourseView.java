@@ -6,18 +6,28 @@ package org.example.ibmskillsbuildapp.model;
  */
 public class CourseView {
 
+    private Long courseId;
     private String pathName;
     private String courseName;
     private String description;
     private LearningStatus status;
     private String url;
 
-    public CourseView(String pathName, String courseName, String description, LearningStatus status, String url) {
+    public CourseView(Long courseId, String pathName, String courseName, String description, LearningStatus status, String url) {
+        this.courseId = courseId;
         this.pathName = pathName;
         this.courseName = courseName;
         this.description = description;
         this.status = status;
         this.url = url;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 
     public String getPathName() {

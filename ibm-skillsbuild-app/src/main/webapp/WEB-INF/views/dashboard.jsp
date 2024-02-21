@@ -35,7 +35,8 @@
     <div class="courses">
         <%-- Create the containers for Available, Started, and Completed courses --%>
         <div id="available-courses" class="status-courses">
-            <button class="close-button hidden">X</button>
+            <button class="close-button hidden"><img
+                    src="${pageContext.request.contextPath}/img/x_icon.png" alt="Close"></button>
             <h3>Available Courses</h3>
             <%-- Iterate over the list of courses and add the available ones --%>
             <c:forEach var="courseView" items="${courseViews}">
@@ -44,12 +45,20 @@
                                              target="_blank">${courseView.pathName}
                         - ${courseView.courseName}</a></p>
                     <p class="course-description hidden">${courseView.description}</p>
-                    <a href="${pageContext.request.contextPath}/record-start"> <button class="course-button hidden">Enroll</button></a>
+                    <form action="${pageContext.request.contextPath}/enroll" method="post">
+                        <input type="hidden" name="userId" value="${user.id}"/>
+                        <input type="hidden" name="courseId" value="${courseView.courseId}"/>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <button class="course-button hidden"><img
+                                src="${pageContext.request.contextPath}/img/enroll_icon.png"
+                                alt="Enroll"></button>
+                    </form>
                 </c:if>
             </c:forEach>
         </div>
         <div id="started-courses" class="status-courses">
-            <button class="close-button hidden">X</button>
+            <button class="close-button hidden"><img
+                    src="${pageContext.request.contextPath}/img/x_icon.png" alt="Close"></button>
             <h3>Started Courses</h3>
             <%-- Iterate over the list of courses and add the started ones --%>
             <c:forEach var="courseView" items="${courseViews}">
@@ -58,12 +67,20 @@
                                              target="_blank">${courseView.pathName}
                         - ${courseView.courseName}</a></p>
                     <p class="course-description hidden">${courseView.description}</p>
-                    <button class="course-button hidden">Completed</button>
+                    <form action="${pageContext.request.contextPath}/complete" method="post">
+                        <input type="hidden" name="userId" value="${user.id}"/>
+                        <input type="hidden" name="courseId" value="${courseView.courseId}"/>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <button class="course-button hidden"><img
+                                src="${pageContext.request.contextPath}/img/check_icon.png"
+                                alt="Complete Course"></button>
+                    </form>
                 </c:if>
             </c:forEach>
         </div>
         <div id="completed-courses" class="status-courses">
-            <button class="close-button hidden">X</button>
+            <button class="close-button hidden"><img
+                    src="${pageContext.request.contextPath}/img/x_icon.png" alt="Close"></button>
             <h3>Completed Courses</h3>
             <%-- Iterate over the list of courses and add the completed ones --%>
             <c:forEach var="courseView" items="${courseViews}">
@@ -77,6 +94,7 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/scrollbar.js"></script>
 <script src="${pageContext.request.contextPath}/js/dashboard/dashboard.js"></script>
 </body>
 </html>
