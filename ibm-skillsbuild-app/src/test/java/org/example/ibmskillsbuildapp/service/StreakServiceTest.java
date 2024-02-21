@@ -35,7 +35,47 @@ public class StreakServiceTest {
 
         streakService.updateStreak(userId);
 
-        assertEquals(1, userStreak.getStreakCount()); // Streak should be 1
+        assertEquals(0, userStreak.getStreakCount()); // Streak should start at 0
+        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+    }
+
+    @Test
+    public void testUpdateStreak_ContinuousLogin() {
+        Long userId = 1L;
+        UserStreak userStreak = new UserStreak();
+        userStreak.setLastLoginDate(LocalDate.now().minusDays(1)); // User logged in yesterday
+        when(streakRepository.findById(userId)).thenReturn(Optional.of(userStreak));
+
+        streakService.updateStreak(userId);
+
+        assertEquals(1, userStreak.getStreakCount()); // Streak count should increase by 1
+        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+    }
+
+    @Test
+    public void testUpdateStreak_StreakReset() {
+        Long userId = 1L;
+        UserStreak userStreak = new UserStreak();
+        userStreak.setLastLoginDate(LocalDate.now().minusDays(2)); // User didn't log in for 2 days
+        userStreak.setStreakCount(5); // User had a streak of 5 days
+        when(streakRepository.findById(userId)).thenReturn(Optional.of(userStreak));
+
+        streakService.updateStreak(userId);
+
+        assertEquals(0, userStreak.getStreakCount()); // Streak count should reset to 0
+        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+    }
+
+    @Test
+    public void testUpdateStreak_NoPreviousLogin() {
+        Long userId = 1L;
+        UserStreak userStreak = new UserStreak();
+        userStreak.setStreakCount(3); // User had a streak before but no previous login date
+        when(streakRepository.findById(userId)).thenReturn(Optional.of(userStreak));
+
+        streakService.updateStreak(userId);
+
+        assertEquals(0, userStreak.getStreakCount()); // Streak count should reset to 0
         assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
     }
 

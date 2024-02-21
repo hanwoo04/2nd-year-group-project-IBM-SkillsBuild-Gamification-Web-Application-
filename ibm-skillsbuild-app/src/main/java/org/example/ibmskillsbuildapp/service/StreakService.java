@@ -20,7 +20,7 @@ public class StreakService {
     /**
      * Updates the streak count for a user.
      * If the user's last login date is not today, the streak count is reset to 0.
-     * Otherwise, the streak count is incremented by 1.
+     * Otherwise, the streak count is incremented by 1 if the user logged in continuously.
      * The last login date is updated to today.
      *
      * @param userId the ID of the user whose streak is being updated.
@@ -33,15 +33,20 @@ public class StreakService {
         // If the last login date is not today, reset the streak count to 0
         if (userStreak.getLastLoginDate() == null || !userStreak.getLastLoginDate().plusDays(1).equals(today)) {
             userStreak.setStreakCount(0);
+        } else {
+            // Check if the user logged in continuously
+            if (userStreak.getLastLoginDate().plusDays(1).equals(today)) {
+                userStreak.setStreakCount(userStreak.getStreakCount() + 1);
+            }
         }
 
-        // Increment the streak count and update the last login date
-        userStreak.setStreakCount(userStreak.getStreakCount() + 1);
+        // Update the last login date
         userStreak.setLastLoginDate(today);
 
         // Save the updated streak in the repository
         streakRepository.save(userStreak);
     }
+
 
     /**
      * Retrieves the user's streak based on the user ID.

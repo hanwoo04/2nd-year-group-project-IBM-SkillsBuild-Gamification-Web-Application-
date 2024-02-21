@@ -21,7 +21,7 @@
     <div class="title">
         <h1>SkillsBuild Dashboard</h1>
     </div>
-    <p class="streak">
+    <a href="http://localhost:8080/streaks/4" class="streak">
         <%-- Display streak count or "0 day streak" if streak count is null --%>
         <c:choose>
             <c:when test="${empty userStreak}">
@@ -31,7 +31,7 @@
                 ${userStreak.streakCount} day streak
             </c:otherwise>
         </c:choose>
-    </p>
+    </a>
     <div class="courses">
         <%-- Create the containers for Available, Started, and Completed courses --%>
         <div id="available-courses" class="status-courses">
