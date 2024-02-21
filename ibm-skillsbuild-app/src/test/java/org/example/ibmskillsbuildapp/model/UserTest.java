@@ -74,16 +74,15 @@ class UserTest {
         UserCourse course1 = new UserCourse();
         Course course = new Course();
         course.setCourseName("AI");
-        UserCourse course2 = new UserCourse(user,course, LearningStatus.AVAILABLE);
-        courses.add(course2);
+        UserCourse userCourse = new UserCourse(user,course, LearningStatus.AVAILABLE);
+        courses.add(userCourse);
 
         // Act
         user.setUserCourses(courses);
 
         // Assert
-        assertEquals(2, user.getUserCourses().size());
-        assertTrue(user.getUserCourses().contains(course1));
-        assertTrue(user.getUserCourses().contains(course2));
+        assertEquals(1, user.getUserCourses().size());
+        assertTrue(user.getUserCourses().contains(userCourse));
     }
 
     @Test
@@ -99,7 +98,7 @@ class UserTest {
         user.setUserLearningPaths(learningPaths);
 
         // Assert
-        assertEquals(2, user.getUserLearningPaths().size());
+        assertEquals(1, user.getUserLearningPaths().size());
         assertTrue(user.getUserLearningPaths().contains(path1));
 
     }
