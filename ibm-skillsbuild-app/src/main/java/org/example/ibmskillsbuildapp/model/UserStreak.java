@@ -32,8 +32,8 @@ public class UserStreak {
     /**
      * Parameterized constructor for the UserStreak class.
      *
-     * @param streakCount    The streak count for the user.
-     * @param lastLoginDate  The date of the user's last login.
+     * @param streakCount   The streak count for the user.
+     * @param lastLoginDate The date of the user's last login.
      */
     public UserStreak(int streakCount, LocalDate lastLoginDate) {
         this.streakCount = streakCount;

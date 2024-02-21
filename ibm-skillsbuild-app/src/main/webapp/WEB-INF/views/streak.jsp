@@ -6,9 +6,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Streak</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/streaks/streaks.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/css/streaks/streaks.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
 </head>
 <body>
@@ -26,7 +28,8 @@
     </header>
     <div class="calendar">
         <ul class="weeks">
-            <li>Sun</li>    <%-- Weekday abbreviations --%>
+            <li>Sun</li>
+            <%-- Weekday abbreviations --%>
             <li>Mon</li>
             <li>Tue</li>
             <li>Wed</li>
@@ -34,7 +37,8 @@
             <li>Fri</li>
             <li>Sat</li>
         </ul>
-        <ul class="days"></ul>      <%-- Container for calendar days --%>
+        <ul class="days"></ul>
+        <%-- Container for calendar days --%>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/streak/streak.js"></script>

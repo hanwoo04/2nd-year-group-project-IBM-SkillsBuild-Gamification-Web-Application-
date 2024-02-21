@@ -1,5 +1,11 @@
 package org.example.ibmskillsbuildapp.controller;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.util.List;
 import org.example.ibmskillsbuildapp.model.CourseView;
 import org.example.ibmskillsbuildapp.model.LearningStatus;
@@ -18,12 +24,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class DashboardControllerTest {
 
@@ -44,11 +44,13 @@ class DashboardControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(dashboardController).build();
 
         // Create a UserDetails object using Spring Security's User class
-        UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername("testUser").password("password").roles("USER").build();
+        UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(
+            "testUser").password("password").roles("USER").build();
 
         // Set up the SecurityContext with UserDetails as the principal
         SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-        securityContext.setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, "password"));
+        securityContext.setAuthentication(
+            new UsernamePasswordAuthenticationToken(userDetails, "password"));
         SecurityContextHolder.setContext(securityContext);
     }
 
@@ -58,7 +60,8 @@ class DashboardControllerTest {
         User user = new User();
         user.setUserName("testUser");
 
-        CourseView courseView = new CourseView(1L, "pathName", "courseName", "description", LearningStatus.STARTED, "url");
+        CourseView courseView = new CourseView(1L, "pathName", "courseName", "description",
+            LearningStatus.STARTED, "url");
 
         when(userRepository.findByUserName(anyString())).thenReturn(user);
         when(courseViewService.getAllCourseViews(user)).thenReturn(List.of(courseView));

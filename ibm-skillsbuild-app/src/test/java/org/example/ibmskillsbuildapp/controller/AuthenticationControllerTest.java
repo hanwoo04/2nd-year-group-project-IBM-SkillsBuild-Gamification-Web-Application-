@@ -1,5 +1,14 @@
 package org.example.ibmskillsbuildapp.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.security.Principal;
+import java.util.Collections;
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.model.UserRoles;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
@@ -10,12 +19,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
-
-import java.security.Principal;
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class AuthenticationControllerTest {
 
@@ -52,7 +55,6 @@ class AuthenticationControllerTest {
     void testLoginForm() {
 
         Model model = mock(Model.class);
-
 
         String result = authenticationController.loginForm(model);
 

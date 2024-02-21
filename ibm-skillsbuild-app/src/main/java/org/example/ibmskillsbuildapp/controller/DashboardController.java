@@ -10,10 +10,7 @@ import org.example.ibmskillsbuildapp.repo.CourseRepository;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.example.ibmskillsbuildapp.service.CourseViewService;
 import org.example.ibmskillsbuildapp.service.UserCourseService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -74,6 +71,17 @@ public class DashboardController {
         Course course = courseRepository.findById(courseId)
             .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + courseId));
         userCourseService.enroll(user, course);
+        return "redirect:/viewDashboard";
+    }
+
+    @PostMapping("/complete")
+    public String complete(@RequestParam("userId") Long userId,
+        @RequestParam("courseId") Long courseId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
+        Course course = courseRepository.findById(courseId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + courseId));
+        userCourseService.complete(user, course);
         return "redirect:/viewDashboard";
     }
 }

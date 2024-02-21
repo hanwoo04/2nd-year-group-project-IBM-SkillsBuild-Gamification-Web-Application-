@@ -1,5 +1,14 @@
 package org.example.ibmskillsbuildapp.controller;
-import org.example.ibmskillsbuildapp.model.*;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.stream.StreamSupport;
+import org.example.ibmskillsbuildapp.model.Course;
+import org.example.ibmskillsbuildapp.model.LearningPath;
+import org.example.ibmskillsbuildapp.model.LearningStatus;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserCourse;
+import org.example.ibmskillsbuildapp.model.UserRoles;
 import org.example.ibmskillsbuildapp.repo.CourseRepository;
 import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
 import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
@@ -13,10 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.security.Principal;
-import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class AuthenticationController {
@@ -62,13 +67,13 @@ public class AuthenticationController {
     }
 
     @GetMapping("/register")
-    public String registerForm(Model model){
+    public String registerForm(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, BindingResult result,Model model) {
+    public String register(@ModelAttribute User user, BindingResult result, Model model) {
 
         if (repo.findByUserName(user.getUserName()) != null) {
             result.rejectValue("userName", "error.user", "Username is already taken");
@@ -84,13 +89,13 @@ public class AuthenticationController {
 
         Iterable<LearningPath> iterable = learningPathRepository.findAll();
         List<LearningPath> learningPaths = StreamSupport.stream(iterable.spliterator(), false)
-                .toList();
+            .toList();
 
         for (LearningPath learningPath : learningPaths) {
             List<Course> courses = courseRepository.findByLearningPath(learningPath);
             for (Course course : courses) {
                 UserCourse userCourse1 = new UserCourse(user, course,
-                        LearningStatus.AVAILABLE);
+                    LearningStatus.AVAILABLE);
                 userCourseRepository.save(userCourse1);
 
             }

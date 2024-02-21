@@ -1,17 +1,21 @@
 package org.example.ibmskillsbuildapp.controller;
 
-import org.springframework.ui.Model;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.contains;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.example.ibmskillsbuildapp.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.springframework.ui.Model;
 
 
 class RecordStartControllerTest {
@@ -52,11 +56,12 @@ class RecordStartControllerTest {
         User user = new User();
         //When resume is paused, the notification should contain "resumed"
         when(model.addAttribute(eq("notification"), any(String.class)))
-                .thenAnswer(invocation -> {
-                    String actualNotification = invocation.getArgument(1);
-                    assertTrue(actualNotification.contains("resumed") || actualNotification.contains("not paused"));
-                    return null;
-                });
+            .thenAnswer(invocation -> {
+                String actualNotification = invocation.getArgument(1);
+                assertTrue(actualNotification.contains("resumed") || actualNotification.contains(
+                    "not paused"));
+                return null;
+            });
 
         String result = controller.resume(user, model);
         //verification
@@ -69,11 +74,11 @@ class RecordStartControllerTest {
         User user = new User();
         //When resume is not paused, the notification should contain "not paused"
         when(model.addAttribute(eq("notification"), any(String.class)))
-                .thenAnswer(invocation -> {
-                    String actualNotification = invocation.getArgument(1);
-                    assertTrue(actualNotification.contains("not paused"));
-                    return null;
-                });
+            .thenAnswer(invocation -> {
+                String actualNotification = invocation.getArgument(1);
+                assertTrue(actualNotification.contains("not paused"));
+                return null;
+            });
 
         controller.resume(user, model);
 

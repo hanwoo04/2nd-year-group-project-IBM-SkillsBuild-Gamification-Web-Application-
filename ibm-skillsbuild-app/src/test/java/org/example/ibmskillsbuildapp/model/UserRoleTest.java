@@ -1,11 +1,11 @@
 package org.example.ibmskillsbuildapp.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserRoleTest {
 
@@ -22,9 +22,7 @@ class UserRoleTest {
 
         userRoles.setRoleName("ADMIN");
 
-
         String roleName = userRoles.getRoleName();
-
 
         assertEquals("ADMIN", roleName);
     }
@@ -34,9 +32,7 @@ class UserRoleTest {
 
         userRoles.setRoleName("USER");
 
-
         String roleName = userRoles.getRoleName();
-
 
         assertEquals("USER", roleName);
     }

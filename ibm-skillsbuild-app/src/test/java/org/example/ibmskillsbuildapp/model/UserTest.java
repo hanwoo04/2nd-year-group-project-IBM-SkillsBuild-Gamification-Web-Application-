@@ -1,5 +1,11 @@
 package org.example.ibmskillsbuildapp.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.example.ibmskillsbuildapp.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,13 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class UserTest {
 
@@ -74,7 +73,7 @@ class UserTest {
         UserCourse course1 = new UserCourse();
         Course course = new Course();
         course.setCourseName("AI");
-        UserCourse userCourse = new UserCourse(user,course, LearningStatus.AVAILABLE);
+        UserCourse userCourse = new UserCourse(user, course, LearningStatus.AVAILABLE);
         courses.add(userCourse);
 
         // Act
@@ -91,7 +90,7 @@ class UserTest {
         User user = new User();
         List<UserLearningPath> learningPaths = new ArrayList<>();
         LearningPath learningPath = new LearningPath("Software Engineering");
-        UserLearningPath path1 = new UserLearningPath(user,learningPath,LearningStatus.AVAILABLE);
+        UserLearningPath path1 = new UserLearningPath(user, learningPath, LearningStatus.AVAILABLE);
         learningPaths.add(path1);
 
         // Act

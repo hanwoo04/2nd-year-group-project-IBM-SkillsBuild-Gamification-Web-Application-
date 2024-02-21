@@ -1,12 +1,13 @@
 package org.example.ibmskillsbuildapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.example.ibmskillsbuildapp.model.UserCourse;
-import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.model.Course;
 import org.example.ibmskillsbuildapp.model.LearningStatus;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserCourse;
 import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
+import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Service class for managing {@link UserCourse} entities. This service provides methods for common
@@ -15,6 +16,8 @@ import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
 @Service
 public class UserCourseService {
 
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private UserCourseRepository userCourseRepository;
 
@@ -30,5 +33,17 @@ public class UserCourseService {
         UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
         userCourse.setStatus(LearningStatus.STARTED);
         userCourseRepository.save(userCourse);
+    }
+
+    public void complete(User user, Course course) {
+        UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
+        userCourse.setStatus(LearningStatus.COMPLETED);
+        userCourseRepository.save(userCourse);
+
+        // Update the user's score
+        // TODO: Implement different scores for courses based on length of course?
+        user.setScore(user.getScore() + 100);
+        userRepository.save(user);
+
     }
 }

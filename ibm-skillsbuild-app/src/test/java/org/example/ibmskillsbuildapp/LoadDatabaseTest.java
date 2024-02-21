@@ -14,7 +14,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.CommandLineRunner;
 
 
-
 class LoadDatabaseTest {
 
     @InjectMocks

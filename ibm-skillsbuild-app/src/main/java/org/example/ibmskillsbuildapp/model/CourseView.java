@@ -1,8 +1,8 @@
 package org.example.ibmskillsbuildapp.model;
 
 /**
- * Represents a view of a course. This view includes the path name, course name, learning
- * status, and URL.
+ * Represents a view of a course. This view includes the path name, course name, learning status,
+ * and URL.
  */
 public class CourseView {
 
@@ -13,7 +13,8 @@ public class CourseView {
     private LearningStatus status;
     private String url;
 
-    public CourseView(Long courseId, String pathName, String courseName, String description, LearningStatus status, String url) {
+    public CourseView(Long courseId, String pathName, String courseName, String description,
+        LearningStatus status, String url) {
         this.courseId = courseId;
         this.pathName = pathName;
         this.courseName = courseName;
@@ -42,16 +43,16 @@ public class CourseView {
         return courseName;
     }
 
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     public LearningStatus getStatus() {
