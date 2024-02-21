@@ -1,0 +1,25 @@
+#global {
+  margin: auto;
+}
+
+#friend {
+  margin: auto;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.leaderBoardHead {
+  border-collapse: collapse;
+  width: 40%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+th.head {
+  background-color: #2db4dd;
+}

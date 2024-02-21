@@ -12,26 +12,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class StreakController {
 
-    @Autowired
-    private StreakService streakService;
+    private final StreakService streakService;
 
-    // Endpoint for updating the streak count for a user
-    @PostMapping("/streaks/{userId}")
-    public String updateStreak(@PathVariable Long userId) {
-        // Call the streak service to update the streak count for the user
-        streakService.updateStreak(userId);
-        // Redirect to the streak page for the user after updating the streak count
-        return "redirect:/streaks/" + userId;
+    // Constructor injection of StreakService
+    @Autowired
+    public StreakController(StreakService streakService) {
+        this.streakService = streakService;
     }
 
-    // Endpoint for retrieving the streak count for a user
+    // Handle POST request to update streak
+    @PostMapping("/streaks/{userId}")
+    public String updateStreak(@PathVariable Long userId) {
+        streakService.updateStreak(userId);
+        return "redirect:/streaks/" + userId; // Redirect to GET endpoint after updating streak
+    }
+
+    // Handle GET request to retrieve user streak
     @GetMapping("/streaks/{userId}")
     public String getUserStreak(@PathVariable Long userId, Model model) {
-        // Retrieve the user streak information using the streak service
+        // Retrieve user streak from service layer
         UserStreak userStreak = streakService.getUserStreak(userId);
-        // Add the user streak information to the model to be displayed in the view
+        // Add user streak attribute to model for view rendering
         model.addAttribute("userStreak", userStreak);
-        // Return the view for displaying the user streak information
+        // Return view name for displaying user streak
         return "streak";
     }
 }
