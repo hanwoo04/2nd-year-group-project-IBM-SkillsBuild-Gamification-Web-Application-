@@ -183,8 +183,8 @@ p {
 
 .streak {
   position: absolute;
-  top: 4.375rem;
-  right: 1.25rem;
+  top: 0.5rem;
+  right: 9rem;
   font-weight: bold;
   font-family: "IBM Plex Sans", sans-serif;
   color: #000000;
@@ -193,3 +193,4 @@ p {
   border: 2px solid #FF0000;
   border-radius: 20px;
 }
+
