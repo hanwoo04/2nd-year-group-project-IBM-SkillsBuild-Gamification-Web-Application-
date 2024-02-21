@@ -35,6 +35,15 @@ public class UserCourseService {
         userCourseRepository.save(userCourse);
     }
 
+    /**
+     * Marks a course as completed for a user. This method finds the UserCourse object that
+     * corresponds to the given user and course, sets the status of the UserCourse object to
+     * COMPLETED, and saves the updated UserCourse object in the repository. It also increments the
+     * user's score by 100.
+     *
+     * @param user   the User object representing the user who is completing the course
+     * @param course the Course object representing the course the user is completing
+     */
     public void complete(User user, Course course) {
         UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
         userCourse.setStatus(LearningStatus.COMPLETED);
