@@ -1,7 +1,7 @@
 package org.example.ibmskillsbuildapp.model;
 
 public class CompletionRecord {
-
+//completion record
 
     private String taskName;
     private String completionDate;
