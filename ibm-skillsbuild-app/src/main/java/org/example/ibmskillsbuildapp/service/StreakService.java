@@ -1,10 +1,10 @@
 package org.example.ibmskillsbuildapp.service;
 
+import java.time.LocalDate;
 import org.example.ibmskillsbuildapp.model.UserStreak;
 import org.example.ibmskillsbuildapp.repo.UserStreakRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
 
 @Service
 public class StreakService {
@@ -18,10 +18,9 @@ public class StreakService {
 
 
     /**
-     * Updates the streak count for a user.
-     * If the user's last login date is not today, the streak count is reset to 0.
-     * Otherwise, the streak count is incremented by 1 if the user logged in continuously.
-     * The last login date is updated to today.
+     * Updates the streak count for a user. If the user's last login date is not today, the streak
+     * count is reset to 0. Otherwise, the streak count is incremented by 1 if the user logged in
+     * continuously. The last login date is updated to today.
      *
      * @param userId the ID of the user whose streak is being updated.
      */
@@ -31,7 +30,8 @@ public class StreakService {
         LocalDate today = LocalDate.now();
 
         // If the last login date is not today, reset the streak count to 0
-        if (userStreak.getLastLoginDate() == null || !userStreak.getLastLoginDate().plusDays(1).equals(today)) {
+        if (userStreak.getLastLoginDate() == null || !userStreak.getLastLoginDate().plusDays(1)
+            .equals(today)) {
             userStreak.setStreakCount(0);
         } else {
             // Check if the user logged in continuously
@@ -49,8 +49,8 @@ public class StreakService {
 
 
     /**
-     * Retrieves the user's streak based on the user ID.
-     * If the streak is not found in the repository, returns a new UserStreak object.
+     * Retrieves the user's streak based on the user ID. If the streak is not found in the
+     * repository, returns a new UserStreak object.
      *
      * @param userId the ID of the user whose streak is being retrieved.
      * @return the user's streak, or a new UserStreak object if not found.

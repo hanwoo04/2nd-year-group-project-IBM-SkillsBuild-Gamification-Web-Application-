@@ -1,10 +1,10 @@
 package org.example.ibmskillsbuildapp.model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class CourseViewTest {
 
@@ -12,7 +12,8 @@ class CourseViewTest {
 
     @BeforeEach
     public void setup() {
-        courseView = new CourseView(1L,"pathName", "courseName", "description", LearningStatus.STARTED, "url");
+        courseView = new CourseView(1L, "pathName", "courseName", "description",
+            LearningStatus.STARTED, "url");
     }
 
     @Test
@@ -51,7 +52,8 @@ class CourseViewTest {
         String description = "This is a test course";
         LearningStatus status = LearningStatus.COMPLETED;
         String url = "http://testcourse.com";
-        CourseView courseView = new CourseView(courseId, pathName, courseName, description, status, url);
+        CourseView courseView = new CourseView(courseId, pathName, courseName, description, status,
+            url);
         assertNotNull(courseView);
         assertEquals(pathName, courseView.getPathName());
         assertEquals(courseName, courseView.getCourseName());

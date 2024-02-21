@@ -1,12 +1,12 @@
 package org.example.ibmskillsbuildapp.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.EnumType;
 
 /**
  * Represents a user's progress in a learning path in the application. This includes the user, the

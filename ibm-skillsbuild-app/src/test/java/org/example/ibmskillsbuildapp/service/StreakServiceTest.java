@@ -1,5 +1,10 @@
 package org.example.ibmskillsbuildapp.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.Optional;
 import org.example.ibmskillsbuildapp.model.UserStreak;
 import org.example.ibmskillsbuildapp.repo.UserStreakRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,12 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.time.LocalDate;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class StreakServiceTest {
 
@@ -36,7 +35,8 @@ public class StreakServiceTest {
         streakService.updateStreak(userId);
 
         assertEquals(0, userStreak.getStreakCount()); // Streak should start at 0
-        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+        assertEquals(LocalDate.now(),
+            userStreak.getLastLoginDate()); // Last login date should be today
     }
 
     @Test
@@ -49,7 +49,8 @@ public class StreakServiceTest {
         streakService.updateStreak(userId);
 
         assertEquals(1, userStreak.getStreakCount()); // Streak count should increase by 1
-        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+        assertEquals(LocalDate.now(),
+            userStreak.getLastLoginDate()); // Last login date should be today
     }
 
     @Test
@@ -63,7 +64,8 @@ public class StreakServiceTest {
         streakService.updateStreak(userId);
 
         assertEquals(0, userStreak.getStreakCount()); // Streak count should reset to 0
-        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+        assertEquals(LocalDate.now(),
+            userStreak.getLastLoginDate()); // Last login date should be today
     }
 
     @Test
@@ -76,7 +78,8 @@ public class StreakServiceTest {
         streakService.updateStreak(userId);
 
         assertEquals(0, userStreak.getStreakCount()); // Streak count should reset to 0
-        assertEquals(LocalDate.now(), userStreak.getLastLoginDate()); // Last login date should be today
+        assertEquals(LocalDate.now(),
+            userStreak.getLastLoginDate()); // Last login date should be today
     }
 
     // Add more test cases as needed

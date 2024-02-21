@@ -2,8 +2,11 @@ package org.example.ibmskillsbuildapp.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.example.ibmskillsbuildapp.model.*;
+import org.example.ibmskillsbuildapp.model.Course;
+import org.example.ibmskillsbuildapp.model.CourseView;
+import org.example.ibmskillsbuildapp.model.LearningPath;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserCourse;
 import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
 import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,8 @@ public class CourseViewService {
         for (LearningPath path : learningPaths) {
             for (Course course : path.getCourses()) {
                 UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
-                CourseView courseView = new CourseView(course.getId(), path.getPathName(), course.getCourseName(),
+                CourseView courseView = new CourseView(course.getId(), path.getPathName(),
+                    course.getCourseName(),
                     course.getDescription(), userCourse.getStatus(), course.getUrl());
                 courseViews.add(courseView);
             }

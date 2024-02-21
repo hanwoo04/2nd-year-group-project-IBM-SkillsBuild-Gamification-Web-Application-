@@ -10,10 +10,7 @@ import org.example.ibmskillsbuildapp.repo.CourseRepository;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.example.ibmskillsbuildapp.service.CourseViewService;
 import org.example.ibmskillsbuildapp.service.UserCourseService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -74,6 +71,27 @@ public class DashboardController {
         Course course = courseRepository.findById(courseId)
             .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + courseId));
         userCourseService.enroll(user, course);
+        return "redirect:/viewDashboard";
+    }
+
+    /**
+     * Handles POST requests to the /complete endpoint. This method marks a course as completed for
+     * a user. It retrieves the User and Course objects corresponding to the given user ID and
+     * course ID, and then calls the UserCourseService's complete method to mark the course as
+     * completed for the user. It also increments the user's score by 100.
+     *
+     * @param userId   the ID of the user who is completing the course
+     * @param courseId the ID of the course the user is completing
+     * @return a redirect to the dashboard view
+     */
+    @PostMapping("/complete")
+    public String complete(@RequestParam("userId") Long userId,
+        @RequestParam("courseId") Long courseId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
+        Course course = courseRepository.findById(courseId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + courseId));
+        userCourseService.complete(user, course);
         return "redirect:/viewDashboard";
     }
 }

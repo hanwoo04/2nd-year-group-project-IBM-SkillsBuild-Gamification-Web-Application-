@@ -1,14 +1,21 @@
 package org.example.ibmskillsbuildapp.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.StreamSupport;
-import org.example.ibmskillsbuildapp.model.*;
-import org.example.ibmskillsbuildapp.repo.*;
+import org.example.ibmskillsbuildapp.model.Course;
+import org.example.ibmskillsbuildapp.model.LearningPath;
+import org.example.ibmskillsbuildapp.model.LearningStatus;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserCourse;
+import org.example.ibmskillsbuildapp.model.UserRoles;
+import org.example.ibmskillsbuildapp.repo.CourseRepository;
+import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
+import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
+import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -52,10 +59,9 @@ public class UserService {
         user2.setScore(400);
         user2.setFriends(new ArrayList<>());
 
-        user1=userRepository.save(user1);
-        user2=userRepository.save(user2);
+        user1 = userRepository.save(user1);
+        user2 = userRepository.save(user2);
         user1.getFriends().add(user2);//USER friends with ADMIN but not other way around
-
 
         Iterable<LearningPath> iterable = learningPathRepository.findAll();
         List<LearningPath> learningPaths = StreamSupport.stream(iterable.spliterator(), false)

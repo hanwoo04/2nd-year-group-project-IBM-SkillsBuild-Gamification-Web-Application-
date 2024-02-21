@@ -1,18 +1,22 @@
 package org.example.ibmskillsbuildapp.service;
 
-import org.example.ibmskillsbuildapp.model.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import org.example.ibmskillsbuildapp.model.Course;
+import org.example.ibmskillsbuildapp.model.CourseView;
+import org.example.ibmskillsbuildapp.model.LearningPath;
+import org.example.ibmskillsbuildapp.model.LearningStatus;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserCourse;
 import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
 import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
-import java.util.List;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 class CourseViewServiceTest {
 
