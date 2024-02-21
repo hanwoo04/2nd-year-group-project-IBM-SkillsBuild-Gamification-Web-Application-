@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Controller for handling requests related to the login/register page.
+ */
 @Controller
 public class AuthenticationController {
 
@@ -41,6 +44,12 @@ public class AuthenticationController {
     @Autowired
     private LearningPathRepository learningPathRepository;
 
+    /**
+     * Handles GET requests to the /success-login endpoint. Retrieves user by username and if assigned a role.
+     * it will redirect them to the dashboard.
+     * @return the name of the view to be rendered, in this case "viewDashboard"
+     */
+
     @GetMapping(value = "/success-login")
     public String successLogin(Principal principal) {
         User user = repo.findByUserName(principal.getName());
@@ -49,6 +58,11 @@ public class AuthenticationController {
         }
         return "redirect:/viewDashboard";
     }
+
+    /**
+     * Handles GET requests to the /login-form endpoint. Retrieves user request to log-in.
+     * @return the name of the view to be rendered, in this case "login"
+     */
 
     @GetMapping(value = "/login-form")
     public String loginForm(Model model) {
@@ -66,14 +80,25 @@ public class AuthenticationController {
         return "denied";
     }
 
+    /**
+     * Handles GET requests to the /register endpoint. Retrieves user request to signup to the website.
+     * it will redirect them to register form.
+     * @return the name of the view to be rendered, in this case "register"
+     */
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
+    /**
+     * Handles GET requests to the /register endpoint. Retrieves user username and password, assigns it a role, encrypts
+     * password sets their learning path and sets their courses. This then creates the new user.
+     * it will redirect them to login.
+     * @return the name of the view to be rendered, in this case "register"/"login"
+     */
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, BindingResult result, Model model) {
+    public String register(@ModelAttribute User user, BindingResult result) {
 
         if (repo.findByUserName(user.getUserName()) != null) {
             result.rejectValue("userName", "error.user", "Username is already taken");

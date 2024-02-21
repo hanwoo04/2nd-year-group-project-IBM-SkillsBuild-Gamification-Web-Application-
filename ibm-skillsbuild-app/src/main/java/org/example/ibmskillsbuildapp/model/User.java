@@ -11,6 +11,10 @@ import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model to represent Users. has relationships with other model classes to allow other features to be implemented.
+ */
+
 @Entity
 public class User {
 
