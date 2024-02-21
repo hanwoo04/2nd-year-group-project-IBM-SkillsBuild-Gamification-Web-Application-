@@ -115,6 +115,7 @@
     <form action="/register" method="POST" modelAttribute="user">
         User Name: <input type="text" name="userName" /> <br/>
         Password: <input type="password" name="password" /> <br/>
+        <span style="color: #ffffff;">${error.user}</span>
         <input type="submit" value="Sign Up" class="gamification-element" /> <br/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <a href="/login-form" class="login-button">Already Have An Account?</a>
