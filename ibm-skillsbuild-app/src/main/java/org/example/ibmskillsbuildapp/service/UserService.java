@@ -62,6 +62,7 @@ public class UserService {
         user1 = userRepository.save(user1);
         user2 = userRepository.save(user2);
         user1.getFriends().add(user2);//USER friends with ADMIN but not other way around
+        userRepository.save(user1);
 
         Iterable<LearningPath> iterable = learningPathRepository.findAll();
         List<LearningPath> learningPaths = StreamSupport.stream(iterable.spliterator(), false)
