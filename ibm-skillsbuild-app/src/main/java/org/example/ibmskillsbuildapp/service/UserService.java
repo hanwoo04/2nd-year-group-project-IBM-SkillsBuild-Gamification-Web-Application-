@@ -17,6 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for managing {@link UserService} entities. This service provides methods for common
+ * operations such as creating users, setting roles, friends, learning paths and courses and adds them to the repository
+ * /database.
+ */
+
 @Service
 public class UserService {
 
@@ -35,11 +41,21 @@ public class UserService {
     @Autowired
     private LearningPathRepository learningPathRepository;
 
+    /**
+    * Checks if the user repository is empty.
+    *
+    * @return `true` if the repository is empty, otherwise `false`.
+    */
     public boolean isEmpty() {
         return userRepository.count() == 0;
     }
 
+    /**
+     * Creates sample users, roles, and relationships.
+     */
     public void createUsers() {
+        // Create user1 and user2
+        // Create roles
         User user1 = new User();
         User user2 = new User();
         UserRoles role = new UserRoles();
@@ -50,6 +66,7 @@ public class UserService {
         user2.setUserName("ADMIN");
         user2.setPassword(passwordEncoder.encode("ADMIN123"));
 
+        // Create friendship (USER friends with ADMIN)
         role.setRoleName("USER");
         user1.getUserRoles().add(role);
         user1.setScore(300);
@@ -59,15 +76,18 @@ public class UserService {
         user2.setScore(400);
         user2.setFriends(new ArrayList<>());
 
+        // Save users
         user1 = userRepository.save(user1);
         user2 = userRepository.save(user2);
         user1.getFriends().add(user2);//USER friends with ADMIN but not other way around
         userRepository.save(user1);
 
+        // Fetch learning paths
         Iterable<LearningPath> iterable = learningPathRepository.findAll();
         List<LearningPath> learningPaths = StreamSupport.stream(iterable.spliterator(), false)
             .toList();
 
+        // Create user-course relationships
         for (LearningPath learningPath : learningPaths) {
             List<Course> courses = courseRepository.findByLearningPath(learningPath);
             for (Course course : courses) {
