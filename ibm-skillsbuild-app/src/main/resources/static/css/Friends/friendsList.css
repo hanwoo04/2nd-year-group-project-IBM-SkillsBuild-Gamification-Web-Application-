@@ -1,0 +1,19 @@
+div.all,div.friends,div.results {
+    width: 50%;
+    text-align: center;
+    border-style: groove;
+    border-radius: 10px;
+    margin: 10px;
+}
+div.results {
+    margin: auto;
+}
+.container {
+    display: flex;
+}
+div.searchBar {
+    text-align: center;
+}
+a.addFriend {
+    border-style: dashed;
+}
