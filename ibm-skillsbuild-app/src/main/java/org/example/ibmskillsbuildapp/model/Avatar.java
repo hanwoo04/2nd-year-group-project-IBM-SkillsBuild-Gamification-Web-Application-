@@ -21,14 +21,34 @@ public class Avatar {
     @Column(columnDefinition = "TEXT")
     private String eyeColor;
 
+    @Column(columnDefinition = "TEXT")
+    private String hairType;
+
+    @Column(columnDefinition = "TEXT")
+    private String hairColor;
+
+    @Column(columnDefinition = "TEXT")
+    private String noseSize;
+
+    @Column(columnDefinition = "TEXT")
+    private String mouthSize;
+
+    @Column(columnDefinition = "BOOLEAN")
+    private boolean glasses;
+
     // Constructors
     public Avatar() {
     }
 
-    public Avatar(String avatarDataURL, String skinColor, String eyeColor) {
+    public Avatar(String avatarDataURL, String skinColor, String eyeColor, String hairType, String hairColor, String noseSize, String mouthSize, boolean glasses) {
         this.avatarDataURL = avatarDataURL;
         this.skinColor = skinColor;
         this.eyeColor = eyeColor;
+        this.hairType = hairType;
+        this.hairColor = hairColor;
+        this.noseSize = noseSize;
+        this.mouthSize = mouthSize;
+        this.glasses = glasses; // Assign glasses in constructor
     }
 
     // Getters and setters
@@ -64,6 +84,46 @@ public class Avatar {
         this.eyeColor = eyeColor;
     }
 
+    public String getHairType() {
+        return hairType;
+    }
+
+    public void setHairType(String hairType) {
+        this.hairType = hairType;
+    }
+
+    public String getHairColor() {
+        return hairColor;
+    }
+
+    public void setHairColor(String hairColor) {
+        this.hairColor = hairColor;
+    }
+
+    public String getNoseSize() {
+        return noseSize;
+    }
+
+    public void setNoseSize(String noseSize) {
+        this.noseSize = noseSize;
+    }
+
+    public String getMouthSize() {
+        return mouthSize;
+    }
+
+    public void setMouthSize(String mouthSize) {
+        this.mouthSize = mouthSize;
+    }
+
+    public boolean isGlasses() {
+        return glasses;
+    }
+
+    public void setGlasses(boolean glasses) {
+        this.glasses = glasses;
+    }
+
     // toString method for debugging/logging
     @Override
     public String toString() {
@@ -72,6 +132,11 @@ public class Avatar {
                 ", avatarDataURL='" + avatarDataURL + '\'' +
                 ", skinColor='" + skinColor + '\'' +
                 ", eyeColor='" + eyeColor + '\'' +
+                ", hairType='" + hairType + '\'' +
+                ", hairColor='" + hairColor + '\'' +
+                ", noseSize='" + noseSize + '\'' +
+                ", mouthSize='" + mouthSize + '\'' +
+                ", glasses=" + glasses +
                 '}';
     }
 }

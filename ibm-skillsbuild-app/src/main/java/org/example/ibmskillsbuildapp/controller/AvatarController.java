@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class AvatarController {
@@ -33,9 +32,14 @@ public class AvatarController {
     @ResponseBody
     public ResponseEntity<String> saveAvatar(@RequestParam("avatar") MultipartFile avatarFile,
                                              @RequestParam("skinColor") String skinColor,
-                                             @RequestParam("eyeColor") String eyeColor) {
+                                             @RequestParam("eyeColor") String eyeColor,
+                                             @RequestParam("hairType") String hairType,
+                                             @RequestParam("hairColor") String hairColor,
+                                             @RequestParam("noseSize") String noseSize,
+                                             @RequestParam("mouthSize") String mouthSize,
+                                             @RequestParam(value = "glasses", required = false, defaultValue = "false") boolean glasses) {
         try {
-            if (avatarFile == null || skinColor == null || eyeColor == null) {
+            if (avatarFile == null || skinColor == null || eyeColor == null || hairType == null || hairColor == null || noseSize == null || mouthSize == null) {
                 return ResponseEntity.badRequest().body("Missing avatar data in the request");
             }
 
@@ -47,6 +51,11 @@ public class AvatarController {
             avatar.setAvatarDataURL(Base64.getEncoder().encodeToString(avatarData));
             avatar.setSkinColor(skinColor);
             avatar.setEyeColor(eyeColor);
+            avatar.setHairType(hairType); // Set the hair type
+            avatar.setHairColor(hairColor); // Set the hair color
+            avatar.setNoseSize(noseSize); // Set the nose size
+            avatar.setMouthSize(mouthSize); // Set the mouth size
+            avatar.setGlasses(glasses); // Set the glasses
 
             avatarService.saveAvatar(avatar);
 
@@ -59,7 +68,6 @@ public class AvatarController {
                     .body(errorMessage);
         }
     }
-
 
 
     @RequestMapping("/profile")
@@ -81,7 +89,5 @@ public class AvatarController {
 
         return "profile"; // Assuming your profile page JSP file is named profile.jsp
     }
-
-
 
 }

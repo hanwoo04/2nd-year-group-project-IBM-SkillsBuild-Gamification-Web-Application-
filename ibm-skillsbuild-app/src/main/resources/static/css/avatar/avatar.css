@@ -14,20 +14,49 @@ body {
 #avatarCanvas {
     flex: 0 0 45%;
     margin-right: 20px;
+    border: 2px solid #ddd; /* Add a border for better visual separation */
+    border-radius: 5px; /* Add border radius for a softer look */
 }
 
 .options {
     flex: 1 1 auto;
-    max-width: 30%;
+    max-width: 40%;
 }
 
-/* Style your options as needed */
+.options label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Make labels bold for emphasis */
+}
+
 .options select, .options button {
     width: 100%;
     margin-bottom: 10px;
+    padding: 8px; /* Add padding for better spacing */
+    border: 1px solid #ccc; /* Add a border for better visual separation */
+    border-radius: 4px; /* Add border radius for a softer look */
 }
 
-/* Ensure select elements are displayed vertically */
-.options select {
-    display: block;
+/* Style the checkbox for glasses */
+.options input[type="checkbox"] {
+    margin-top: 5px; /* Add margin to separate checkbox from previous element */
+}
+
+/* Style the save button */
+.options button {
+    background-color: #4CAF50; /* Green background color */
+    color: white;
+    padding: 10px 20px; /* Larger padding for a bigger button */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px; /* Add border radius for a softer look */
+    transition-duration: 0.4s; /* Add smooth transition on hover */
+}
+
+.options button:hover {
+    background-color: #45a049; /* Darker green background color on hover */
 }
