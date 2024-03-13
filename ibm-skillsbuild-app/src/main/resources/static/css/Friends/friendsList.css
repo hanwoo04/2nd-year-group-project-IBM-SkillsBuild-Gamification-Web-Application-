@@ -15,5 +15,13 @@ div.searchBar {
     text-align: center;
 }
 a.addFriend {
-    border-style: dashed;
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    padding: 3px;
 }
