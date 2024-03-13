@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#avatarCanvas {
+    flex: 0 0 45%;
+    margin-right: 20px;
+}
+
+.options {
+    flex: 1 1 auto;
+    max-width: 30%;
+}
+
+/* Style your options as needed */
+.options select, .options button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Ensure select elements are displayed vertically */
+.options select {
+    display: block;
+}
