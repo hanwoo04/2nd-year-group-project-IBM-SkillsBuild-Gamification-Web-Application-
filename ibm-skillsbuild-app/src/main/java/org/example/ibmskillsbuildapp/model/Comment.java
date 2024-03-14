@@ -4,7 +4,6 @@ public class Comment {
     private String text;
 
     public Comment() {
-        this.text = text;
     }
 
     public String getText() {
