@@ -1,9 +1,9 @@
-package org.example.demo.controller;
+package org.example.ibmskillsbuildapp.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.example.demo.model.Comment;
-import org.example.demo.model.Rating;
+import org.example.ibmskillsbuildapp.model.Comment;
+import org.example.ibmskillsbuildapp.model.Rating;
 import org.springframework.validation.BindingResult;
 
 @Controller
