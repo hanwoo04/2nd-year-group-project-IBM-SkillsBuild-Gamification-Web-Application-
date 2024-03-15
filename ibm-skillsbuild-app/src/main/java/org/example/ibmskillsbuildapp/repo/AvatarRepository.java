@@ -1,11 +1,10 @@
-package com.example.avatarcreation.repo;
+package org.example.ibmskillsbuildapp.repo;
 
-import com.example.avatarcreation.model.Avatar;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.example.ibmskillsbuildapp.model.Avatar;
 
 @Repository
-public interface AvatarRepository extends JpaRepository<Avatar, Long> {
+public interface AvatarRepository extends CrudRepository<Avatar, Long> {
     // Add custom query methods if needed
 }
-

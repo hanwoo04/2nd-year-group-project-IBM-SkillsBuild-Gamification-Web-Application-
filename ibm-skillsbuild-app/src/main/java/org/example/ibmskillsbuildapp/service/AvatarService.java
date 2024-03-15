@@ -1,11 +1,12 @@
-package com.example.avatarcreation.service;
+package org.example.ibmskillsbuildapp.service;
 
-import com.example.avatarcreation.model.Avatar;
-import com.example.avatarcreation.repo.AvatarRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.example.ibmskillsbuildapp.model.Avatar;
+import org.example.ibmskillsbuildapp.repo.AvatarRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,12 +41,12 @@ public class AvatarService {
     }
 
     public List<Avatar> getAllAvatars() {
-        return avatarRepository.findAll();
+        return (List<Avatar>) avatarRepository.findAll();
     }
 
     public Avatar getMostRecentAvatar() {
         // Retrieve the most recent avatar from the database
-        List<Avatar> avatars = avatarRepository.findAll();
+        List<Avatar> avatars = (List<Avatar>) avatarRepository.findAll();
         if (!avatars.isEmpty()) {
             // Sort the avatars by ID in descending order to get the most recent one
             avatars.sort((a1, a2) -> a2.getId().compareTo(a1.getId()));

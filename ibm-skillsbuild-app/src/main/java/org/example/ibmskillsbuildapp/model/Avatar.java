@@ -1,4 +1,4 @@
-package com.example.avatarcreation.model;
+package org.example.ibmskillsbuildapp.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,62 +1,77 @@
+/* Use IBM Plex Sans as the font */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "IBM Plex Sans", Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
+/* Adjust container layout */
 .container {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 20px;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    padding: 100px 20px; /* Add more top padding to move everything down */
 }
 
+/* Style the avatar container */
 #avatarCanvas {
-    flex: 0 0 45%;
+    flex: 0 0 35%;
     margin-right: 20px;
-    border: 2px solid #ddd; /* Add a border for better visual separation */
-    border-radius: 5px; /* Add border radius for a softer look */
+    border: 2px solid #ddd;
+    border-radius: 10px; /* Increase border radius for smoother edges */
 }
 
+/* Style the options section */
 .options {
     flex: 1 1 auto;
     max-width: 40%;
 }
 
+/* Style the labels */
 .options label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold; /* Make labels bold for emphasis */
+    margin-bottom: 12px; /* Adjust margin for better spacing */
+    font-weight: bold;
+    color: #333; /* Darken the color */
 }
 
+/* Style the select inputs and buttons */
 .options select, .options button {
     width: 100%;
-    margin-bottom: 10px;
-    padding: 8px; /* Add padding for better spacing */
-    border: 1px solid #ccc; /* Add a border for better visual separation */
-    border-radius: 4px; /* Add border radius for a softer look */
+    margin-bottom: 16px; /* Adjust margin for better spacing */
+    padding: 14px; /* Increase padding for better visual appeal */
+    border: 2px solid #ddd; /* Adjust border color */
+    border-radius: 5px;
+    font-size: 16px; /* Increase font size for better readability */
+    transition: border-color 0.3s; /* Add transition effect on border color change */
+}
+
+/* Style the select inputs and buttons on focus */
+.options select:focus, .options button:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #1f70c1; /* Change border color on focus */
 }
 
 /* Style the checkbox for glasses */
 .options input[type="checkbox"] {
-    margin-top: 5px; /* Add margin to separate checkbox from previous element */
+    margin-top: 12px; /* Adjust margin for better spacing */
 }
 
 /* Style the save button */
 .options button {
-    background-color: #4CAF50; /* Green background color */
+    background-color: #1f70c1; /* IBM theme blue */
     color: white;
-    padding: 10px 20px; /* Larger padding for a bigger button */
+    padding: 14px 24px; /* Adjust padding for larger button */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px; /* Increase font size for better visual appeal */
     cursor: pointer;
     border: none;
-    border-radius: 4px; /* Add border radius for a softer look */
-    transition-duration: 0.4s; /* Add smooth transition on hover */
+    border-radius: 5px;
+    transition-duration: 0.4s;
 }
 
 .options button:hover {
-    background-color: #45a049; /* Darker green background color on hover */
+    background-color: #045cc7; /* Darker blue on hover */
 }

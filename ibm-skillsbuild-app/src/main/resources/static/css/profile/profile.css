@@ -1,0 +1,174 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset default styles and set global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Use Poppins font for all elements */
+}
+
+/* Styles for the body */
+body {
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+    align-items: center; /* Center items horizontally */
+    justify-content: center;
+    min-height: 100vh;
+    background: #f3f3f3; /* IBM theme background color */
+}
+
+/* Wrapper for the main content */
+.wrapper {
+    width: 400px; /* Set width of the wrapper */
+    background: #fff; /* Set background color */
+    border-radius: 10px; /* Add border radius */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); /* Add box shadow */
+    padding: 20px; /* Add padding */
+    display: flex; /* Add display flex */
+    justify-content: space-between; /* Space items evenly */
+}
+
+/* Styles for the header */
+.wrapper header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1f70c1; /* IBM theme header background color */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 15px 20px; /* Set padding */
+}
+
+/* Move the streaks to the far right */
+.user-streak {
+    order: 1;
+}
+
+/* Styles for the streak element */
+.user-streak {
+    font-size: 1.2rem; /* Set font size */
+    font-weight: 500; /* Set font weight */
+    color: #1f70c1; /* IBM theme streak color */
+    padding: 10px; /* IBM theme streak padding */
+    background-color: #ffc107; /* IBM theme streak background color */
+    border: 2px solid #ff0000; /* IBM theme streak border */
+    border-radius: 20px; /* IBM theme streak border radius */
+    margin: 10px; /* IBM theme streak margin */
+}
+
+/* Add CSS class for highlighting past streak days */
+.streak {
+    background-color: #ffc107; /* Change color as desired */
+    color: #000; /* Change color as desired */
+}
+
+/* Styles for the calendar */
+.calendar {
+    padding: 10px; /* Set padding */
+    margin-top: 15px; /* Adjust margin top */
+    align-self: flex-end; /* Move calendar to the far right */
+}
+
+.calendar ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+
+/* Styles for the days of the week */
+.calendar .days {
+    margin-bottom: 10px; /* Set margin */
+}
+
+.calendar li {
+    color: #333; /* Set color */
+    width: calc(100% / 7); /* Calculate width based on number of days */
+    font-size: 0.9rem; /* Set font size */
+    padding: 5px; /* Add padding */
+    border-radius: 50%; /* Add border radius */
+    background-color: #ffffff; /* Set background color */
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.calendar .weeks li {
+    font-weight: 500; /* Set font weight */
+    cursor: default; /* Set cursor */
+}
+
+.calendar .days li {
+    z-index: 1;
+    cursor: pointer; /* Set cursor */
+    position: relative;
+    margin-top: 10px; /* Set margin */
+}
+
+.days li.inactive {
+    color: #aaa; /* Set color for inactive days */
+}
+
+.days li.active {
+    color: #fff; /* Set color for active days */
+    background-color: #1f70c1; /* Set background color for active days */
+}
+
+.days li::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 30px;
+    width: 30px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Center the pseudo-element */
+}
+
+.days li.active::before {
+    background: #1f70c1; /* IBM theme active day background color */
+}
+
+.days li:not(.active):hover::before {
+    background: #f2f2f2; /* Change background color on hover for inactive days */
+}
+
+.streak-message {
+    text-align: center;
+    margin-bottom: 15px; /* Adjust margin bottom as needed */
+}
+
+.streak-message h2 {
+    font-size: 1.4rem; /* Adjust font size as needed */
+    font-weight: 600; /* Adjust font weight as needed */
+    color: #333; /* Adjust color as needed */
+}
+
+/* Styles for the avatar */
+.avatar {
+    margin-top: 20px; /* Move avatar down */
+    align-self: center; /* Align avatar to the center horizontally */
+}
+
+.avatar img {
+    width: 200px; /* Set width of the avatar */
+    height: 200px; /* Set height of the avatar */
+    border-radius: 50%; /* Make the avatar round */
+    border: 5px solid #1f70c1; /* Add border to the avatar */
+}
+
+/* Styles for the edit avatar button */
+.edit-avatar a {
+    display: inline-block;
+    padding: 10px 20px; /* Add padding */
+    background-color: #1f70c1; /* Set background color */
+    color: #fff; /* Set text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Add border radius */
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+.edit-avatar a:hover {
+    background-color: #255ba3; /* Change background color on hover */
+}

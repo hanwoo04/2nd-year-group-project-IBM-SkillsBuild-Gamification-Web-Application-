@@ -17,7 +17,7 @@ the name of the JSP file that you are including it in:
                     alt="Home"/></div>
         </a>
         <div class="dropdown">
-            <a href="javascript:void(0)">Your Account</a>
+            <a href="${pageContext.request.contextPath}/profile">Your Account</a>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/viewFriends">Friends</a>
                 <a href="${pageContext.request.contextPath}/viewAccountDetails">Your Details</a>

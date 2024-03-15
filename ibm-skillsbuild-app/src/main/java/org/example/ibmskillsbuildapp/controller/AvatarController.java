@@ -1,7 +1,7 @@
-package com.example.avatarcreation.controller;
+package org.example.ibmskillsbuildapp.controller;
 
-import com.example.avatarcreation.model.Avatar;
-import com.example.avatarcreation.service.AvatarService;
+import org.example.ibmskillsbuildapp.model.Avatar;
+import org.example.ibmskillsbuildapp.service.AvatarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 
@@ -24,12 +25,35 @@ public class AvatarController {
     }
 
     @RequestMapping("/avatar")
-    public String avatarPage() {
-        return "avatar"; // Assuming your JSP file is named avatar.jsp
+    public String avatarPage(Model model) {
+        // Retrieve the latest avatar data or set default values if no avatars are found
+        List<Avatar> avatars = avatarService.getAllAvatars();
+        Avatar latestAvatar = avatars.isEmpty() ? null : avatars.get(avatars.size() - 1);
+
+        // Pass the latest avatar data to the avatar customization page
+        if (latestAvatar != null) {
+            model.addAttribute("skinColor", latestAvatar.getSkinColor());
+            model.addAttribute("eyeColor", latestAvatar.getEyeColor());
+            model.addAttribute("hairType", latestAvatar.getHairType());
+            model.addAttribute("hairColor", latestAvatar.getHairColor());
+            model.addAttribute("noseSize", latestAvatar.getNoseSize());
+            model.addAttribute("mouthSize", latestAvatar.getMouthSize());
+            model.addAttribute("glasses", latestAvatar.isGlasses());
+        } else {
+            // Set default values if no avatars are found
+            model.addAttribute("skinColor", "#ffddb3"); // Default to light skin color
+            model.addAttribute("eyeColor", "#66533d"); // Default to brown eye color
+            model.addAttribute("hairType", "curly"); // Default to curly hair type
+            model.addAttribute("hairColor", "black"); // Default to black hair color
+            model.addAttribute("noseSize", "medium"); // Default to medium nose size
+            model.addAttribute("mouthSize", "medium"); // Default to medium mouth size
+            model.addAttribute("glasses", false); // Default to no glasses
+        }
+
+        return "avatar";
     }
 
     @PostMapping("/saveAvatar")
-    @ResponseBody
     public ResponseEntity<String> saveAvatar(@RequestParam("avatar") MultipartFile avatarFile,
                                              @RequestParam("skinColor") String skinColor,
                                              @RequestParam("eyeColor") String eyeColor,
@@ -39,55 +63,50 @@ public class AvatarController {
                                              @RequestParam("mouthSize") String mouthSize,
                                              @RequestParam(value = "glasses", required = false, defaultValue = "false") boolean glasses) {
         try {
-            if (avatarFile == null || skinColor == null || eyeColor == null || hairType == null || hairColor == null || noseSize == null || mouthSize == null) {
+            if (avatarFile.isEmpty() || skinColor.isEmpty() || eyeColor.isEmpty() || hairType.isEmpty() ||
+                    hairColor.isEmpty() || noseSize.isEmpty() || mouthSize.isEmpty()) {
                 return ResponseEntity.badRequest().body("Missing avatar data in the request");
             }
 
-            // Process the avatarFile (MultipartFile) here
-            byte[] avatarData = avatarFile.getBytes(); // Get the byte array from MultipartFile
+            // Process the avatarFile (MultipartFile)
+            byte[] avatarData = avatarFile.getBytes();
+            String avatarDataURL = "data:" + avatarFile.getContentType() + ";base64," + Base64.getEncoder().encodeToString(avatarData);
 
-            // Save avatarData to the database using avatarService.saveAvatar
+            // Save the avatar to the database
             Avatar avatar = new Avatar();
-            avatar.setAvatarDataURL(Base64.getEncoder().encodeToString(avatarData));
+            avatar.setAvatarDataURL(avatarDataURL);
             avatar.setSkinColor(skinColor);
             avatar.setEyeColor(eyeColor);
-            avatar.setHairType(hairType); // Set the hair type
-            avatar.setHairColor(hairColor); // Set the hair color
-            avatar.setNoseSize(noseSize); // Set the nose size
-            avatar.setMouthSize(mouthSize); // Set the mouth size
-            avatar.setGlasses(glasses); // Set the glasses
+            avatar.setHairType(hairType);
+            avatar.setHairColor(hairColor);
+            avatar.setNoseSize(noseSize);
+            avatar.setMouthSize(mouthSize);
+            avatar.setGlasses(glasses);
 
             avatarService.saveAvatar(avatar);
 
             return ResponseEntity.ok("Avatar saved successfully!");
-        } catch (Exception e) {
-            String errorMessage = "Failed to save avatar. Please try again later.";
-            // Log the error for debugging purposes
+        } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(errorMessage);
+                    .body("Failed to save avatar. Please try again later.");
         }
     }
-
 
     @RequestMapping("/profile")
     public String profilePage(Model model) {
-        // Get the most recent avatar from the database
-        Avatar mostRecentAvatar = avatarService.getMostRecentAvatar();
-
-        if (mostRecentAvatar != null) {
-            // Pass the data URL of the most recent avatar to the view
-            model.addAttribute("avatarDataURL", mostRecentAvatar.getAvatarDataURL());
-        } else {
-            // If no avatars are found, set a default avatar image URL or handle it as needed
-            model.addAttribute("avatarDataURL", "path/to/default/avatar/image.jpg");
-        }
-
-        // Pass the list of all avatars to the profile page (optional, depending on your requirements)
         List<Avatar> avatars = avatarService.getAllAvatars();
-        model.addAttribute("avatars", avatars);
+        if (!avatars.isEmpty()) {
+            // Pass the latest avatar data to the profile page
+            Avatar latestAvatar = avatars.get(avatars.size() - 1);
+            model.addAttribute("avatarDataURL", latestAvatar.getAvatarDataURL());
+        } else {
+            // No avatars found, set default data or handle as needed
+            model.addAttribute("avatarDataURL", "/img/Null_Profile_Image.png");
+
+        }
+        model.addAttribute("avatars", avatars); // Pass all avatars to the profile page
 
         return "profile"; // Assuming your profile page JSP file is named profile.jsp
     }
-
 }

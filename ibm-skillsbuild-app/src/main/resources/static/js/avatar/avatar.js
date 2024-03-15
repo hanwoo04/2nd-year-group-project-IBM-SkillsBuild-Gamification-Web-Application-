@@ -5,7 +5,7 @@ const ctx = canvas.getContext('2d');
 // Retrieve previous skin color, eye color, hair type, hair color, and nose size from sessionStorage
 let skinColor = sessionStorage.getItem('skinColor') || "#ffddb3"; // Default to light
 let eyeColor = sessionStorage.getItem('eyeColor') || "#66533d"; // Default to brown
-let hairType = sessionStorage.getItem('hairType') || "bald"; // Default to bald
+let hairType = sessionStorage.getItem('hairType') || "curly"; // Default to curly
 let hairColor = sessionStorage.getItem('hairColor') || "black"; // Default to black
 let noseSize = sessionStorage.getItem('noseSize') || "medium"; // Default to medium
 let mouthSize = sessionStorage.getItem('mouthSize') || "medium"; // Default to medium
@@ -298,7 +298,6 @@ function changeGlasses() {
 }
 
 
-
 // Function to save the avatar
 function saveAvatar() {
     const dataURL = canvas.toDataURL();
@@ -306,7 +305,7 @@ function saveAvatar() {
     // Convert data URL to Blob
     const blob = dataURItoBlob(dataURL);
 
-// Create FormData object
+    // Create FormData object
     const formData = new FormData();
     formData.append('avatar', blob); // Append the avatar image
     formData.append('skinColor', skinColor); // Append the selected skin color
@@ -317,7 +316,11 @@ function saveAvatar() {
     formData.append('mouthSize', mouthSize); // Append the selected nose size
     formData.append('glasses', glasses); // Append the glasses information
 
+    // Obtain the CSRF token from the page's meta tag
+    const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
 
+    // Include CSRF token in FormData
+    formData.append('_csrf', csrfToken);
 
     // Send FormData using fetch
     fetch('/saveAvatar', {
