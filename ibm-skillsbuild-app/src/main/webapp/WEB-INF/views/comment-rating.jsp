@@ -1,23 +1,50 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment and Rating</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/comment-rating/Comment-Rating.css">
 </head>
 <body>
 <h2>Comment</h2>
+<div class="comments">
+    <ul id="commentList">
+        <li>Existing Comment 1</li>
+    </ul>
+</div>
 
-<form action="${pageContext.request.contextPath}/comment-rating/comment" method="post">
-    <label>
-        <textarea name="text" rows="3" cols="50" placeholder="Add a comment"></textarea>
-    </label>
-    <br>
-    <input type="submit" value="Add Comment">
-</form>
+<h2 class="comment-container">
+    <img src="${pageContext.request.contextPath}/img/textbox.png" alt="Textbox Image" class="textbox-image">
+    <textarea id="commentBox" class="comment-box" placeholder="Add a comment here!"></textarea>
+</h2>
+<br>
+<button id="addCommentButton" class="addcomment">Add Comment</button>
+
+<script>
+    function addCommentButtonClick() {
+        const commentText = document.getElementById('commentBox').value.trim();
+
+        if (commentText !== '') {
+            const newCommentItem = document.createElement('li');
+            newCommentItem.textContent = commentText;
+
+            const existingCommentsList = document.getElementById('commentList');
+            existingCommentsList.appendChild(newCommentItem);
+
+        } else {
+            alert('Please enter a comment before adding.');
+        }
+    }
+    document.getElementById('addCommentButton').addEventListener('click', addCommentButtonClick);
+</script>
+<br>
 
 <h2>Rating</h2>
 
 <form action="${pageContext.request.contextPath}/comment-rating/rating" method="post">
-    <label for="rating">Add a rating:</label>
+    <label for="rating" class="h22">Add a rating:</label>
     <select name="value" id="rating">
         <option value="1">1 star</option>
         <option value="2">2 stars</option>
@@ -26,7 +53,7 @@
         <option value="5">5 stars</option>
     </select>
     <br>
-    <input type="submit" value="Add Rating">
+    <button id="" class="addrating">Add Rating</button>
 </form>
 </body>
 </html>
