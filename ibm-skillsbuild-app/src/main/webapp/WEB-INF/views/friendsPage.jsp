@@ -27,8 +27,14 @@
 <div class="results">
     <c:forEach items="${searchResults}" var="result">
 
-        <p>${result.getUserName()},<a class="addFriend" href="addFriend?friendId=${result.id}&userId=${user.id}">Add Friend</a>
-
+        <p>${result.getUserName()},
+            <form action="addFriend" method="post">
+        <input type="hidden" name="friendId" value="${result.id}">
+        <input type="hidden" name="userId" value="${user.id}">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="hidden" name="search" value="${search}">
+        <input type="submit" value="Add Friend" class="addFriend">
+    </form>
         </p>
     </c:forEach>
 </div>
@@ -40,12 +46,12 @@
         <p>${friend.getUserName()}</p>
     </c:forEach>
     </div>
-   <!-- <div class="all">
-        <p>${allUsers.size()} Friends</p>
-        <c:forEach items="${allUsers}" var="user">
-            <p>${user.getUserName()}</p>
+    <div class="all">
+        <p>${followers.size()} Followers </p>
+        <c:forEach items="${followers}" var="follower">
+            <p>${follower.getUserName()}</p>
         </c:forEach>
-    </div>-->
+    </div>
 </div>
 </body>
 </html>

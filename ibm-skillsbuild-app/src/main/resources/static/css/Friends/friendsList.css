@@ -14,7 +14,7 @@ div.results {
 div.searchBar {
     text-align: center;
 }
-a.addFriend {
+.addFriend {
     background-color: #04AA6D;
     border: none;
     color: white;
@@ -24,4 +24,8 @@ a.addFriend {
     font-size: 16px;
     border-radius: 2px;
     padding: 3px;
+}
+
+.addFriend:hover{
+    cursor: pointer;
 }
