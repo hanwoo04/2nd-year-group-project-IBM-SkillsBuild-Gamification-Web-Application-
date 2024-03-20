@@ -1,9 +1,6 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comment and Rating</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/comment-rating/Comment-Rating.css">
 </head>
@@ -11,7 +8,7 @@
 <h2>Comment</h2>
 <div class="comments">
     <ul id="commentList">
-        <li>Existing Comment 1</li>
+        <li>I loved this course!</li>
     </ul>
 </div>
 
@@ -41,9 +38,15 @@
 </script>
 <br>
 
-<h2>Rating</h2>
+<h2 class="rating-star">
+    Rating <img src="${pageContext.request.contextPath}/img/star.png" alt="Rating Image" class="rating-image">
+</h2>
 
-<form action="${pageContext.request.contextPath}/comment-rating/rating" method="post">
+<ul id="ratingList" class="rating">
+    <li>5 star/stars</li>
+</ul>
+
+<form id="ratingForm">
     <label for="rating" class="h22">Add a rating:</label>
     <select name="value" id="rating">
         <option value="1">1 star</option>
@@ -53,7 +56,28 @@
         <option value="5">5 stars</option>
     </select>
     <br>
-    <button id="" class="addrating">Add Rating</button>
+    <br>
+    <button id="addRatingBtn" class="addrating">Add Rating</button>
 </form>
+
+
+<script>
+    function addRatingButtonClick(event) {
+        event.preventDefault();
+
+        const ratingValue = document.getElementById('rating').value;
+
+        if (ratingValue !== '') {
+
+            const newRatingItem = document.createElement('li');
+            newRatingItem.textContent =ratingValue + " star/stars";
+
+            const existingRatingsList = document.getElementById('ratingList');
+            existingRatingsList.appendChild(newRatingItem);
+        }
+    }
+
+    document.getElementById('addRatingBtn').addEventListener('click', addRatingButtonClick);
+</script>
 </body>
 </html>

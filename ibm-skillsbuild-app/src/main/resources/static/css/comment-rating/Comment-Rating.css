@@ -14,13 +14,24 @@
     border: none;
     resize: none;
     font-family: Arial, sans-serif;
-    color: skyblue;
+    color: gold;
     background-color: transparent;
     z-index: 1;
 }
 
 .comment-box::placeholder {
-    color: skyblue;
+    color: gold;
+}
+
+.rating-star {
+}
+
+.rating-image {
+    position: static;
+    width: 100px;
+    height: 100px;
+    border: none;
+    resize: none;
 }
 
 .textbox-image {
@@ -34,26 +45,30 @@
 
 .comments {
     margin-bottom: 20px;
-    color:skyblue;
+    color:gold;
 }
 .addcomment {
     border-radius: 12px;
 }
 .addcomment:hover {
-    border-color: skyblue;
+    border-color: gold;
     border-radius: 12px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.rating{
+    color:gold;
 }
 
 .addrating {
     border-radius: 12px;
 }
 .addrating:hover {
-    border-color: skyblue;
+    border-color: gold;
     border-radius: 12px;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .h22{
-    color:skyblue;
+    color:gold;
 }
