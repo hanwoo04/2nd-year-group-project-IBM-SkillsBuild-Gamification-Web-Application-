@@ -1,48 +1,21 @@
-// Dummy data
-const data = [
-  {
-    name: 'Course 1',
-    started: 100,
-    completed: 80,
-    rated: 75,
-    enrollmentLast30Days: 5
-  },
-  {
-    name: 'Course 2',
-    started: 200,
-    completed: 150,
-    rated: 140,
-    enrollmentLast30Days: 25
-  },
-  {
-    name: 'Course 3',
-    started: 150,
-    completed: 100,
-    rated: 95,
-    enrollmentLast30Days: 10
-  },
-  {
-    name: 'Course 4',
-    started: 300,
-    completed: 200,
-    rated: 180,
-    enrollmentLast30Days: 50
-  },
-  {
-    name: 'Course 5',
-    started: 250,
-    completed: 180,
-    rated: 160,
-    enrollmentLast30Days: 75
-  },
-];
-
 let chart;
+
+// Function to fetch data from the server
+async function fetchData() {
+  const response = await fetch('/analyticsData');
+  const data = await response.json();
+  createChart(data, '');
+  return data;
+}
 
 // Function to create the chart
 function createChart(data, filter) {
   // Prepare the data
-  const courses = data.map(item => item.name);
+  const courses = data.map(item => {
+    // Truncate the course name to 30 characters and append "..." if it's longer
+    return item.name.length > 30 ? item.name.substring(0, 30) + '...'
+        : item.name;
+  });
   const startedData = data.map(item => item.started);
   const completedData = data.map(item => item.completed);
   const ratedData = data.map(item => item.rated);
@@ -95,7 +68,8 @@ function createChart(data, filter) {
       datasets = [
         {
           label: 'Completion Rate',
-          data: data.map(item => (item.completed / item.started) * 100),
+          data: data.map(
+              item => (item.completed / (item.started + item.completed)) * 100),
           backgroundColor: 'green'
         }
       ];
@@ -178,7 +152,7 @@ function createChart(data, filter) {
 }
 
 // Function to sort the data based on the selected filter
-function sortData(filter) {
+function sortData(data, filter) {
   // Create a copy of the data array
   const dataCopy = [...data];
 
@@ -199,7 +173,8 @@ function sortData(filter) {
 }
 
 // Function to search for a course
-function searchCourse() {
+async function searchCourse() {
+  const data = await fetchData();
   // Get the search query
   const query = document.getElementById('search').value.toLowerCase();
 
@@ -215,14 +190,15 @@ function searchCourse() {
 }
 
 // Event listener for the filter selection
-document.getElementById('filter').addEventListener('change', function () {
+document.getElementById('filter').addEventListener('change', async function () {
+  const data = await fetchData();
   // Check if the selected filter is 'All'
   if (this.value === 'all') {
     // Create a new chart with the original, unsorted data
     createChart(data, '');
   } else {
     // Sort the data based on the selected filter
-    const sortedData = sortData(this.value);
+    const sortedData = sortData(data, this.value);
     // Create a new chart with the sorted data and the selected filter
     createChart(sortedData, this.value);
   }
@@ -246,5 +222,5 @@ function displayCourseInfo(course) {
   infoContainer.innerHTML = html;
 }
 
-// Create the initial chart with the unsorted data and no filter
-createChart(data, '');
+// Fetch data when the page loads
+fetchData().catch(error => console.error('Error fetching data:', error));

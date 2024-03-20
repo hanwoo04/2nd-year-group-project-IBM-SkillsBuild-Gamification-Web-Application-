@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -128,5 +129,105 @@ public class UserCourseService {
                 .after(thirtyDaysAgo));
         return last30DaysEnrollmentStream.collect(
             Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
+    }
+
+    /**
+     * Gathers, formats, and groups analytics data for each course.
+     *
+     * @return a List of Maps where each Map represents a course with its name and counts for each property
+     */
+    public List<Map<String, Object>> getAnalyticsData() {
+        Map<String, Map<Course, Long>> analyticsData = gatherAnalyticsData();
+
+        List<Map<String, Object>> dataArray = convertDataToArray(analyticsData);
+
+        Map<String, Map<String, Object>> groupedData = groupDataByCourseName(dataArray);
+
+        return convertGroupedData(groupedData);
+    }
+
+    /**
+     * Gathers analytics data for each course.
+     *
+     * @return a Map where the keys are the property names (started, completed, rated,
+     * enrollmentLast30Days) and the values are Maps with Course objects as keys and counts as
+     * values
+     */
+    private Map<String, Map<Course, Long>> gatherAnalyticsData() {
+        Map<String, Map<Course, Long>> analyticsData = new HashMap<>();
+        analyticsData.put("started", getStartedCoursesCount());
+        analyticsData.put("completed", getCompletedCoursesCount());
+        analyticsData.put("rated", getRatedCoursesCount());
+        analyticsData.put("enrollmentLast30Days", getEnrollmentsLast30DaysCount());
+        return analyticsData;
+    }
+
+    /**
+     * Converts the gathered analytics data to an array format.
+     *
+     * @param analyticsData the Map of analytics data gathered from the gatherAnalyticsData()
+     *                      method
+     * @return a List of Maps where each Map represents a course with its name, property, and count
+     */
+    private List<Map<String, Object>> convertDataToArray(
+        Map<String, Map<Course, Long>> analyticsData) {
+        return analyticsData.entrySet().stream().flatMap(entry -> {
+            String propertyName = entry.getKey();
+            Map<Course, Long> courseCounts = entry.getValue();
+            return courseCounts.entrySet().stream().map(courseCountEntry -> {
+                Map<String, Object> item = new HashMap<>();
+                item.put("name", courseCountEntry.getKey().getCourseName());
+                item.put("property", propertyName);
+                item.put("count", courseCountEntry.getValue());
+                return item;
+            });
+        }).toList();
+    }
+
+    /**
+     * Groups the converted data by course name.
+     *
+     * @param dataArray the List of Maps returned from the convertDataToArray() method
+     * @return a Map where the keys are the course names and the values are Maps with property names
+     * as keys and counts as values
+     */
+    private Map<String, Map<String, Object>> groupDataByCourseName(
+        List<Map<String, Object>> dataArray) {
+        Map<String, Map<String, Object>> groupedData = new HashMap<>();
+        for (Map<String, Object> item : dataArray) {
+            String courseName = (String) item.get("name");
+            Map<String, Object> courseData = groupedData.computeIfAbsent(courseName,
+                k -> createNewCourseData(courseName));
+            courseData.put((String) item.get("property"), item.get("count"));
+        }
+        return groupedData;
+    }
+
+    /**
+     * Creates a new course data Map with default values.
+     *
+     * @param courseName the name of the course for which the data Map is to be created
+     * @return a Map with property names as keys and default values (0) as values
+     */
+    private Map<String, Object> createNewCourseData(String courseName) {
+        Map<String, Object> newCourseData = new HashMap<>();
+        newCourseData.put("name", courseName);
+        newCourseData.put("started", 0);
+        newCourseData.put("completed", 0);
+        newCourseData.put("rated", 0);
+        newCourseData.put("enrollmentLast30Days", 0);
+        return newCourseData;
+    }
+
+    /**
+     * Converts the grouped data to a format suitable for the front-end.
+     *
+     * @param groupedData the Map of grouped data returned from the groupDataByCourseName() method
+     * @return a List of Maps where each Map represents a course with its name and counts for each
+     * property
+     */
+    private List<Map<String, Object>> convertGroupedData(
+        Map<String, Map<String, Object>> groupedData) {
+        return new ArrayList<>(groupedData.values());
     }
 }
