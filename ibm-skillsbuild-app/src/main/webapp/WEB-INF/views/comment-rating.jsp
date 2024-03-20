@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/comment-rating/Comment-Rating.css">
 </head>
 <body>
+<jsp:include page="nav.jsp">
+    <jsp:param name="activePage" value="comment-rating"/>
+</jsp:include>
 <h2>Comment</h2>
 <div class="comments">
     <ul id="commentList">
