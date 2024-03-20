@@ -8,7 +8,7 @@
 <h2>Comment</h2>
 <div class="comments">
     <ul id="commentList">
-        <li>I loved this course!</li>
+        <li>I loved studying this course!</li>
     </ul>
 </div>
 
