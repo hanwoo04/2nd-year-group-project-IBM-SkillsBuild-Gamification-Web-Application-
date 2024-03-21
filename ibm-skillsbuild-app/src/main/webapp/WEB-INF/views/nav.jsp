@@ -1,12 +1,14 @@
-<%--
-To use this file, include it in your JSP file using the following code, replacing "jspName" with
-the name of the JSP file that you are including it in:
-<jsp:include page="nav.jsp">
-    <jsp:param name="activePage" value="jspName"/>
-</jsp:include>
---%>
-
+<%@ page import="org.example.ibmskillsbuildapp.model.Avatar" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<%
+    String avatarDataURL = (String) session.getAttribute("avatarDataURL");
+    if (avatarDataURL == null || avatarDataURL.isEmpty()) {
+        avatarDataURL = session.getServletContext().getContextPath() + "/img/Null_Profile_Image.png";
+    }
+%>
+
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
 <nav>
@@ -17,12 +19,17 @@ the name of the JSP file that you are including it in:
                     alt="Home"/></div>
         </a>
         <div class="dropdown">
-            <a href="${pageContext.request.contextPath}/profile">Your Account</a>
+            <a href="${pageContext.request.contextPath}/profile">
+                <div class="avatar nav-avatar">
+                    <img src="<%= avatarDataURL %>" alt="Avatar" width="50" height="50">
+                </div>
+
+            </a>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/viewFriends">Friends</a>
                 <a href="${pageContext.request.contextPath}/viewAccountDetails">Your Details</a>
             </div>
-        </div>
+        </div> <!-- Close the div for the dropdown -->
     </div>
     <div id="navbar">
         <ul>

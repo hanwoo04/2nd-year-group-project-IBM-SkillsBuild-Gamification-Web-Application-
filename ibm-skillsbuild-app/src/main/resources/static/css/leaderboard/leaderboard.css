@@ -8,7 +8,7 @@
 
 th, td {
   border: 1px solid #ddd;
-  padding: 5px;
+  padding: 10px; /* Increased padding for better spacing */
 }
 
 .leaderBoardHead {
@@ -22,4 +22,12 @@ tr:nth-child(even) {
 
 th.head {
   background-color: #2db4dd;
+}
+
+/* Adjust profile picture size */
+.friend img {
+  width: 40px; /* Increased image width */
+  height: 40px; /* Increased image height */
+  border-radius: 50%; /* Make the image round */
+  margin-right: 15px; /* Increased spacing between the picture and the username */
 }

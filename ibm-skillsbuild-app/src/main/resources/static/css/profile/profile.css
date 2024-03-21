@@ -6,69 +6,53 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Use Poppins font for all elements */
 }
 
-/* Styles for the body */
+/* Body styles */
 body {
+    font-family: 'Poppins', sans-serif; /* Use Poppins font for all elements */
+    background: #f3f3f3; /* Set background color */
+}
+
+/* Container styles */
+.container {
     display: flex;
-    flex-direction: column; /* Change to column layout */
-    align-items: center; /* Center items horizontally */
-    justify-content: center;
-    min-height: 100vh;
-    background: #f3f3f3; /* IBM theme background color */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px; /* Adjust max-width as needed */
 }
 
-/* Wrapper for the main content */
-.wrapper {
-    width: 400px; /* Set width of the wrapper */
-    background: #fff; /* Set background color */
-    border-radius: 10px; /* Add border radius */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); /* Add box shadow */
-    padding: 20px; /* Add padding */
-    display: flex; /* Add display flex */
-    justify-content: space-between; /* Space items evenly */
-}
-
-/* Styles for the header */
+/* Header styles */
 .wrapper header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: #1f70c1; /* IBM theme header background color */
+    background-color: #1f70c1; /* Set header background color */
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 15px 20px; /* Set padding */
+    width: 100%;
+    margin-bottom: 20px; /* Add margin bottom */
 }
 
-/* Move the streaks to the far right */
-.user-streak {
-    order: 1;
-}
-
-/* Styles for the streak element */
+/* Streak styles */
 .user-streak {
     font-size: 1.2rem; /* Set font size */
     font-weight: 500; /* Set font weight */
-    color: #1f70c1; /* IBM theme streak color */
-    padding: 10px; /* IBM theme streak padding */
-    background-color: #ffc107; /* IBM theme streak background color */
-    border: 2px solid #ff0000; /* IBM theme streak border */
-    border-radius: 20px; /* IBM theme streak border radius */
-    margin: 10px; /* IBM theme streak margin */
+    color: #fff; /* Set streak text color */
+    padding: 10px; /* Set streak padding */
+    background-color: #4CAF50; /* Set streak background color */
+    border: 2px solid #388E3C; /* Set streak border */
+    border-radius: 20px; /* Set streak border radius */
+    margin-left: auto; /* Move streaks to the right */
+    margin-right: 10px; /* Add some spacing */
 }
 
-/* Add CSS class for highlighting past streak days */
-.streak {
-    background-color: #ffc107; /* Change color as desired */
-    color: #000; /* Change color as desired */
-}
 
-/* Styles for the calendar */
+/* Calendar styles */
 .calendar {
-    padding: 10px; /* Set padding */
-    margin-top: 15px; /* Adjust margin top */
-    align-self: flex-end; /* Move calendar to the far right */
+    width: 100%; /* Set calendar width */
 }
 
 .calendar ul {
@@ -78,7 +62,6 @@ body {
     text-align: center;
 }
 
-/* Styles for the days of the week */
 .calendar .days {
     margin-bottom: 10px; /* Set margin */
 }
@@ -87,8 +70,8 @@ body {
     color: #333; /* Set color */
     width: calc(100% / 7); /* Calculate width based on number of days */
     font-size: 0.9rem; /* Set font size */
-    padding: 5px; /* Add padding */
-    border-radius: 50%; /* Add border radius */
+    padding: 5px; /* Set padding */
+    border-radius: 50%; /* Set border radius */
     background-color: #ffffff; /* Set background color */
     transition: background-color 0.3s ease; /* Add transition for hover effect */
 }
@@ -127,45 +110,46 @@ body {
 }
 
 .days li.active::before {
-    background: #1f70c1; /* IBM theme active day background color */
+    background: #1f70c1; /* Set active day background color */
 }
 
 .days li:not(.active):hover::before {
-    background: #f2f2f2; /* Change background color on hover for inactive days */
+    background: #f2f2f2; /* Set background color on hover for inactive days */
 }
 
+/* Streak message styles */
 .streak-message {
     text-align: center;
-    margin-bottom: 15px; /* Adjust margin bottom as needed */
+    margin-bottom: 15px; /* Adjust margin bottom */
 }
 
 .streak-message h2 {
-    font-size: 1.4rem; /* Adjust font size as needed */
-    font-weight: 600; /* Adjust font weight as needed */
-    color: #333; /* Adjust color as needed */
+    font-size: 1.4rem; /* Set font size */
+    font-weight: 600; /* Set font weight */
+    color: #333; /* Set color */
 }
 
-/* Styles for the avatar */
+/* Avatar styles */
 .avatar {
-    margin-top: 20px; /* Move avatar down */
+    margin-top: 50px; /* Set margin top */
     align-self: center; /* Align avatar to the center horizontally */
 }
 
 .avatar img {
-    width: 200px; /* Set width of the avatar */
-    height: 200px; /* Set height of the avatar */
+    width: 200px; /* Set width */
+    height: 200px; /* Set height */
     border-radius: 50%; /* Make the avatar round */
-    border: 5px solid #1f70c1; /* Add border to the avatar */
+    border: 5px solid #1f70c1; /* Set border */
 }
 
-/* Styles for the edit avatar button */
+/* Edit avatar button styles */
 .edit-avatar a {
     display: inline-block;
-    padding: 10px 20px; /* Add padding */
+    padding: 10px 20px; /* Set padding */
     background-color: #1f70c1; /* Set background color */
     color: #fff; /* Set text color */
     text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Add border radius */
+    border-radius: 5px; /* Set border radius */
     transition: background-color 0.3s ease; /* Add transition for hover effect */
 }
 

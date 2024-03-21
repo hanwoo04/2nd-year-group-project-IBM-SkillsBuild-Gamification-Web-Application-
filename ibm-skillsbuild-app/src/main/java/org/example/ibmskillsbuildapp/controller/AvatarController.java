@@ -1,5 +1,6 @@
 package org.example.ibmskillsbuildapp.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.service.AvatarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,19 +95,24 @@ public class AvatarController {
     }
 
     @RequestMapping("/profile")
-    public String profilePage(Model model) {
+    public String profilePage(Model model, HttpSession session) {
         List<Avatar> avatars = avatarService.getAllAvatars();
         if (!avatars.isEmpty()) {
             // Pass the latest avatar data to the profile page
             Avatar latestAvatar = avatars.get(avatars.size() - 1);
-            model.addAttribute("avatarDataURL", latestAvatar.getAvatarDataURL());
+            session.setAttribute("avatarDataURL", latestAvatar.getAvatarDataURL());
         } else {
             // No avatars found, set default data or handle as needed
-            model.addAttribute("avatarDataURL", "/img/Null_Profile_Image.png");
-
+            session.setAttribute("avatarDataURL", "/img/Null_Profile_Image.png");
         }
         model.addAttribute("avatars", avatars); // Pass all avatars to the profile page
 
+        // Also add the avatarDataURL to the model for use in the nav bar
+        model.addAttribute("avatarDataURL", session.getAttribute("avatarDataURL"));
+
         return "profile"; // Assuming your profile page JSP file is named profile.jsp
     }
+
+
+
 }
