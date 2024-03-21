@@ -39,14 +39,7 @@ nav a {
   transition: background-color 0.3s ease;
 }
 
-.dropdown > a {
-  padding: 0.5rem 0.5rem;
-  display: block;
-  text-align: center;
-  font-weight: bold;
-  border: 0.0625rem solid #8d8d8d;
-  border-radius: 0.25rem;
-}
+
 
 .dropdown:hover > a {
   border-bottom: none;
@@ -143,3 +136,16 @@ nav a {
   background-color: #1f70c1;
   color: white;
 }
+
+.nav-avatar img {
+  width: 70px; /* Adjust the width as needed */
+  height: 70px; /* Adjust the height as needed */
+  border-radius: 50%; /* Make it round */
+  border: none; /* Remove the border */
+  transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+.nav-avatar img:hover {
+  transform: scale(1.1); /* Scale up the image on hover */
+}
+
