@@ -24,8 +24,9 @@
 <div class="container-fluid">
     <div class="form-group">
         <label for="search">Search:</label>
-        <input type="text" class="form-control" id="search">
-        <button class="btn btn-primary" onclick="searchCourse()">Search</button>
+        <input type="text" class="form-control" id="search" list="searchDropdown">
+        <datalist id="searchDropdown"></datalist>
+        <button class="btn btn-primary" id="searchButton">Search</button>
     </div>
     <div class="form-group">
         <label for="filter">Filter by:</label>
@@ -40,6 +41,7 @@
     <div class="container" id="chartContainer"></div>
     <div id="infoContainer"></div>
 </div>
-<script src="${pageContext.request.contextPath}/js/analytics/analytics.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/analytics/main.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/analytics/eventListeners.js"></script>
 </body>
 </html>

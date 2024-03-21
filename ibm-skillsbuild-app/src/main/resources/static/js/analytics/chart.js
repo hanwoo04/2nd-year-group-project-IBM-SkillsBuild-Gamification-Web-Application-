@@ -1,12 +1,4 @@
-let chart;
-
-// Function to fetch data from the server
-async function fetchData() {
-  const response = await fetch('/analyticsData');
-  const data = await response.json();
-  createChart(data, '');
-  return data;
-}
+import displayCourseInfo from "./displayCourseInfo.js";
 
 // Function to create the chart
 function createChart(data, filter) {
@@ -95,7 +87,7 @@ function createChart(data, filter) {
       ];
   }
 
-  chart = new Chart(ctx, {
+  let chart = new Chart(ctx, {
     type: type,
     data: {
       labels: courses,
@@ -151,76 +143,4 @@ function createChart(data, filter) {
   }
 }
 
-// Function to sort the data based on the selected filter
-function sortData(data, filter) {
-  // Create a copy of the data array
-  const dataCopy = [...data];
-
-  switch (filter) {
-    case 'enrollment':
-      return dataCopy.sort(
-          (a, b) => (b.started + b.completed) - (a.started + a.completed));
-    case 'highestCompletionRate':
-      return dataCopy.sort(
-          (a, b) => (b.completed / b.started) - (a.completed / a.started));
-    case 'lowestCompletionRate':
-      return dataCopy.sort(
-          (a, b) => (a.completed / a.started) - (b.completed / b.started));
-    case 'trending':
-      return dataCopy.sort(
-          (a, b) => b.enrollmentLast30Days - a.enrollmentLast30Days);
-  }
-}
-
-// Function to search for a course
-async function searchCourse() {
-  const data = await fetchData();
-  // Get the search query
-  const query = document.getElementById('search').value.toLowerCase();
-
-  // Find the course that matches the query
-  const course = data.find(item => item.name.toLowerCase() === query);
-
-  // If a matching course is found, display its graph
-  if (course) {
-    createChart([course], '');
-  } else {
-    alert('No course found with that name');
-  }
-}
-
-// Event listener for the filter selection
-document.getElementById('filter').addEventListener('change', async function () {
-  const data = await fetchData();
-  // Check if the selected filter is 'All'
-  if (this.value === 'all') {
-    // Create a new chart with the original, unsorted data
-    createChart(data, '');
-  } else {
-    // Sort the data based on the selected filter
-    const sortedData = sortData(data, this.value);
-    // Create a new chart with the sorted data and the selected filter
-    createChart(sortedData, this.value);
-  }
-});
-
-// Function to display course information
-function displayCourseInfo(course) {
-  // Get the element where the course information will be displayed
-  const infoContainer = document.getElementById('infoContainer');
-
-  // Create the HTML for the course information
-  const html = `
-    <h3>${course.name}</h3>
-    <p>Started: ${course.started}</p>
-    <p>Completed: ${course.completed}</p>
-    <p>Rated: ${course.rated}</p>
-    <p>Enrollment Last 30 Days: ${course.enrollmentLast30Days}</p>
-  `;
-
-  // Set the HTML of the infoContainer to the created HTML
-  infoContainer.innerHTML = html;
-}
-
-// Fetch data when the page loads
-fetchData().catch(error => console.error('Error fetching data:', error));
+export default createChart;
