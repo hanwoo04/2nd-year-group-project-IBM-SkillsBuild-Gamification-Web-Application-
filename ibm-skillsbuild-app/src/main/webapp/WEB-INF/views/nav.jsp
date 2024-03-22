@@ -36,6 +36,10 @@ the name of the JSP file that you are including it in:
             <li><a href="${pageContext.request.contextPath}/comment-rating"
                    class="${param.activePage == 'comment-rating' ? 'active' : ''}">Comment and rating</a>
             </li>
+
+            <li><a href="${pageContext.request.contextPath}/viewProgress"
+                   class="${param.activePage == 'ProgressBar' ? 'active' : ''}">Course Progress</a>
+            </li>
             <%-- Currently redundant, but checks if the user is logged in. If they aren't,
             it will display Login and Sign up buttons, otherwise it will display a Logout button.
             If in the future Spring Security is configured to allow navigation to a page with nav
