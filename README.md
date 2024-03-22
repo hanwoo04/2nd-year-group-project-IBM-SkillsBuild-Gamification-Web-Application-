@@ -54,7 +54,11 @@ You will need:
 
 4. **Set up MySQL connection**
 
-   Edit `application.properties`, replacing the placeholder values to include your MySQL connection and user.
+To setup a MySQL connection, you will need a MySQL server installed and running on your machine, and some way to create a schema and user. For this manual, we will be using the MySQL Windows Installer (8.0.36) for the MySQL server and MySQL Workbench, available at [SQL Installer](https://dev.mysql.com/downloads/installer/).
+
+After installing your MySQL server and MySQL Workbench:
+  -Open Workbench and create a new connection.
+  ![Alt text](image.png "SQL workbench")
 
 ### Running the Program
 
