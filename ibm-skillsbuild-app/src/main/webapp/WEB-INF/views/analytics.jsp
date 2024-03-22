@@ -27,6 +27,7 @@
         <input type="text" class="form-control" id="search" list="searchDropdown">
         <datalist id="searchDropdown"></datalist>
         <button class="btn btn-primary" id="searchButton">Search</button>
+        <button class="btn btn-secondary" id="clearButton">Clear</button>
     </div>
     <div class="form-group">
         <label for="filter">Filter by:</label>

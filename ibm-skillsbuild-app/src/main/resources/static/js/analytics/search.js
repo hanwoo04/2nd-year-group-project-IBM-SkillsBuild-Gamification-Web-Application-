@@ -1,12 +1,14 @@
 import fetchData from './fetchData.js';
 import createChart from "./chart.js";
+import displayCourseInfo from "./displayCourseInfo.js";
 
 // Function to search for a course
-async function searchCourse() {
-  const data = await fetchData();
+async function searchCourse(event) {
   // Get the search query
-  const query = document.getElementById('search').value.toLowerCase();
+  const query = event?.target?.value.toLowerCase() || document.getElementById(
+      'search').value.toLowerCase();
 
+  const data = await fetchData();
   // Find the courses that match the query
   const matchingCourses = data.filter(
       item => item.name.toLowerCase().includes(query));
@@ -14,6 +16,11 @@ async function searchCourse() {
   // If matching courses are found, display their graph
   if (matchingCourses.length > 0) {
     createChart(matchingCourses, '');
+
+    // If only one course matches the query, display its data
+    if (matchingCourses.length === 1) {
+      displayCourseInfo(matchingCourses[0]);
+    }
   } else {
     alert('No course found with that name');
   }
@@ -35,6 +42,8 @@ function displayMatchingCourses(query, data) {
   matchingCourses.forEach(course => {
     const option = document.createElement('option');
     option.value = course.name;
+    // Add 'click' event listener to each option to search for the course
+    option.addEventListener('click', searchCourse);
     dropdown.appendChild(option);
   });
 }

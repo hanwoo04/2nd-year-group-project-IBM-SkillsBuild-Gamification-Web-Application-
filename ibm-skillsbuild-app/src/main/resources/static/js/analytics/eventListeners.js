@@ -5,24 +5,55 @@ import {searchCourse, displayMatchingCourses} from './search.js';
 
 // Ensure the DOM is fully loaded before adding event listeners
 document.addEventListener('DOMContentLoaded', (event) => {
+  let shouldDisplayDropdown = true;
+
   // Event listener for the search button
   document.getElementById('searchButton').addEventListener('click',
       searchCourse);
 
-  // Event listener for the search bar
+  // Event listener for the clear button
+  document.getElementById('clearButton').addEventListener('click', function () {
+    // Clear the search bar and the dropdown
+    document.getElementById('search').value = '';
+    document.getElementById('searchDropdown').innerHTML = '';
+  });
+
+  // Event listener for the search bar to update the dropdown
   document.getElementById('search').addEventListener('input',
       async function () {
-        const data = await fetchData();
-        displayMatchingCourses(this.value.toLowerCase(), data);
+        if (shouldDisplayDropdown) {
+          const data = await fetchData(false);
+          displayMatchingCourses(this.value.toLowerCase(), data);
+        }
+        // Check if the input's value matches one of the options in the datalist
+        const optionFound = Array.from(
+            document.getElementById('searchDropdown').options).some(
+            option => option.value === this.value);
+        if (optionFound) {
+          // If it does, call the searchCourse function
+          await searchCourse({target: {value: this.value}});
+          shouldDisplayDropdown = false;
+          // Clear the dropdown
+          document.getElementById('searchDropdown').innerHTML = '';
+        } else {
+          shouldDisplayDropdown = true;
+        }
       });
 
-  // Event listener for the search bar when a course is selected from the dropdown
-  document.getElementById('search').addEventListener('change', searchCourse);
+  // Event listener for the search bar to refresh the graphs
+  document.getElementById('search').addEventListener('keydown',
+      async function (event) {
+        // Only call searchCourse when the Enter key is pressed
+        if (event.key === 'Enter') {
+          event.preventDefault(); // prevent form submission
+          await searchCourse();
+        }
+      });
 
   // Event listener for the filter selection
   document.getElementById('filter').addEventListener('change',
       async function () {
-        const data = await fetchData();
+        const data = await fetchData(true);
         // Check if the selected filter is 'All'
         if (this.value === 'all') {
           // Create a new chart with the original, unsorted data
