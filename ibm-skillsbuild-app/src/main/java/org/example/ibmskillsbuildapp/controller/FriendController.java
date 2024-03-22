@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ public class FriendController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails) principal).getUsername();
         User user = repo.findByUserName(username);//Gets user
+        model.addAttribute("user",user);
         model.addAttribute("friends",user.getFriends());
         model.addAttribute("followers", returnFollowers(user));//Return anyone who followers user
         return "friendsPage";
@@ -47,14 +49,35 @@ public class FriendController {
     }
 
     @RequestMapping("viewFriends/addFriend")
-    public String addFriend(Model model,@RequestParam("userId") Long userId, @RequestParam("friendId") Long friendId,@RequestParam("search") String search){
+    public String addFriend(Model model,@RequestParam("userId") Long userId, @RequestParam("friendId") Long friendId){
         User user = repo.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
         User friend = repo.findById(friendId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + friendId));
         user.getFriends().add(friend);
-        user= repo.save(user);
-        return "redirect:/viewFriends/search?usernameSearch="+search;
+        user=repo.save(user);
+        return "redirect:/viewFriends";
+    }
+    @RequestMapping("viewFriends/deleteFriend")
+    public String deleteFriend(Model model,@RequestParam("userId") Long userId, @RequestParam("friendId") Long friendId){
+        User user = repo.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
+        User friend = repo.findById(friendId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + friendId));
+        user.getFriends().remove(friend);
+        user=repo.save(user);
+        return "redirect:/viewFriends";
+    }
+
+    @RequestMapping("deleteFriend")
+    public String deleteFriendV2(Model model,@RequestParam("userId") Long userId, @RequestParam("friendId") Long friendId) {
+        User user = repo.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
+        User friend = repo.findById(friendId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + friendId));
+        user.getFriends().remove(friend);
+        user = repo.save(user);
+        return "redirect:/viewFriends";
     }
     public List<User> returnFollowers(User user) {
         List<User> followers = new ArrayList<>();

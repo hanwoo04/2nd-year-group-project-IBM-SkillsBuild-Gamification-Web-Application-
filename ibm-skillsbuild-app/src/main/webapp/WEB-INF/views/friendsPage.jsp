@@ -43,7 +43,14 @@
     <div class="friends">
     <p>${friends.size()} Friends</p>
     <c:forEach items="${friends}" var="friend">
-        <p>${friend.getUserName()}</p>
+        <p>${friend.getUserName()},
+        <form action="deleteFriend" method="post">
+            <input type="hidden" name="friendId" value="${friend.id}">
+            <input type="hidden" name="userId" value="${user.id}">
+            <input type="hidden" name="_csrf" value="${_csrf.token}">
+            <input type="submit" value="Remove" class="addFriend">
+        </form>
+        </p>
     </c:forEach>
     </div>
     <div class="all">
