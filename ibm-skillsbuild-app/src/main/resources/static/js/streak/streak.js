@@ -15,22 +15,35 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
 const fetchStreakInfo = async () => {
   try {
     // Simulate fetching streak information
-    const streakCount = 4; // Set streak count to 4 days
+    const streakCount = await getStreakCount(); // Get streak count dynamically
     const streakStartDate = new Date(); // Initialize streak start date
 
-    // Set streak start date to 4 days ago from the current date
-    streakStartDate.setDate(streakStartDate.getDate() - 4);
+    // Set streak start date to 'streakCount' days ago from the current date
+    streakStartDate.setDate(streakStartDate.getDate() - streakCount);
 
-    return {streakCount, streakStartDate};
+    return { streakCount: streakCount, streakStartDate };
   } catch (error) {
     console.error('Error fetching streak information:', error);
-    return {streakCount: 0, streakStartDate: null}; // Default values if there's an error
+    return { streakCount: 0, streakStartDate: null }; // Default values if there's an error
+  }
+};
+
+// Function to get streak count dynamically
+const getStreakCount = async () => {
+  try {
+    // Simulate fetching streak count from the server
+    const response = await fetch('yourApiEndpoint');
+    const data = await response.json();
+    return data.streakCount || 0; // Return streak count or 0 if undefined
+  } catch (error) {
+    console.error('Error fetching streak count:', error);
+    return 0; // Default to 0 if there's an error
   }
 };
 
 // Function to render the calendar view
 const renderCalendar = async () => {
-  const {streakCount, streakStartDate} = await fetchStreakInfo(); // Fetch streak information
+  const { streakCount, streakStartDate } = await fetchStreakInfo(); // Fetch streak information
   const firstDayofMonth = new Date(currYear, currMonth, 1).getDay(); // Get the day of the week for the first day of the month
   const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // Get the last date of the month
   let liTag = ""; // Variable to store HTML list items
