@@ -37,7 +37,7 @@ public class FriendController {
         String username = ((UserDetails) principal).getUsername();
         User user = repo.findByUserName(username);//Gets user
 
-        model.addAttribute("user",user);
+        model.addAttribute("user",user);//User
         model.addAttribute("friends",user.getFriends());
         model.addAttribute("followers", returnFollowers(user));
         List<User> users = repo.findByUserNameStartingWith(usernameSearch);
@@ -48,7 +48,7 @@ public class FriendController {
         return "friendsPage";
     }
 
-    @RequestMapping("viewFriends/addFriend")
+    @RequestMapping("viewFriends/addFriend")//Adds "friend" to users friend list
     public String addFriend(Model model,@RequestParam("userId") Long userId, @RequestParam("friendId") Long friendId){
         User user = repo.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
@@ -68,7 +68,8 @@ public class FriendController {
         user=repo.save(user);
         return "redirect:/viewFriends";
     }
-
+        //Here I have used two different mappings for the same method as depending on whether the user attempt to deleteFriend from /viewFriends
+        // or /viewFriends/search it will try open different mappings. So to ensure that there is no errors both mappings are included.
     @RequestMapping("deleteFriend")
     public String deleteFriendV2(Model model,@RequestParam("userId") Long userId, @RequestParam("friendId") Long friendId) {
         User user = repo.findById(userId)
@@ -87,5 +88,7 @@ public class FriendController {
             }
         }
         return followers;
+        //Method finds all the instances of where the user is in someone's friend list and creates a new list from it
+        // to show followers
     }
 }
