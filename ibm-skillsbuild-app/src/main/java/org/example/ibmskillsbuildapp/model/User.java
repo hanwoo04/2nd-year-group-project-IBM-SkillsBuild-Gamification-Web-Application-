@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,3 +110,4 @@ public class User {
         this.userLearningPaths = userLearningPaths;
     }
 }
+

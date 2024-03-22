@@ -1,0 +1,47 @@
+div.title {
+    text-align: center;
+    color: #1f70c1;
+    font-size: x-large;
+}
+div.followers,div.friends,div.results {
+    width: 50%;
+    text-align: center;
+    border-style: groove;
+    border-radius: 10px;
+    margin: 10px;
+}
+div.results {
+    margin: auto;
+}
+.container {
+    display: flex;
+}
+div.searchBar {
+    text-align: center;
+}
+.addFriend {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    padding: 3px;
+}
+.removeFriend {
+    background-color: #fa1c1c;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    padding: 3px;
+}
+
+.addFriend:hover,.removeFriend:hover{
+    cursor: pointer;
+}
