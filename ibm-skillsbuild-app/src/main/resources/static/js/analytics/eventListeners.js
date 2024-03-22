@@ -53,7 +53,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // Event listener for the filter selection
   document.getElementById('filter').addEventListener('change',
       async function () {
+        // Clear the infoContainer element
+        document.getElementById('infoContainer').innerHTML = '';
+
         const data = await fetchData(true);
+
         // Check if the selected filter is 'All'
         if (this.value === 'all') {
           // Create a new chart with the original, unsorted data
