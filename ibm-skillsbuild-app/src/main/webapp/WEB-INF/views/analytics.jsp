@@ -35,6 +35,7 @@
             <option value="all">All</option>
             <option value="enrollment">Enrollment</option>
             <option value="trending">Trending Courses</option>
+            <option value="averageRating">Average Rating</option>
             <option value="highestCompletionRate">Highest Completion Rate</option>
             <option value="lowestCompletionRate">Lowest Completion Rate</option>
         </select>

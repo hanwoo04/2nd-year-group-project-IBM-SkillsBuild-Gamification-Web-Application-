@@ -1,24 +1,38 @@
+/**
+ * @module eventListeners
+ * This module adds event listeners to the DOM elements.
+ */
+
 import fetchData from './fetchData.js';
 import createChart from './chart.js';
 import sortData from './sortData.js';
 import {searchCourse, displayMatchingCourses} from './search.js';
 
-// Ensure the DOM is fully loaded before adding event listeners
+/**
+ * Adds event listeners to the DOM elements.
+ * @function
+ */
 document.addEventListener('DOMContentLoaded', (event) => {
   let shouldDisplayDropdown = true;
 
-  // Event listener for the search button
+  /**
+   * Event listener for the search button.
+   */
   document.getElementById('searchButton').addEventListener('click',
       searchCourse);
 
-  // Event listener for the clear button
+  /**
+   * Event listener for the clear button.
+   */
   document.getElementById('clearButton').addEventListener('click', function () {
     // Clear the search bar and the dropdown
     document.getElementById('search').value = '';
     document.getElementById('searchDropdown').innerHTML = '';
   });
 
-  // Event listener for the search bar to update the dropdown
+  /**
+   * Event listener for the search bar to update the dropdown.
+   */
   document.getElementById('search').addEventListener('input',
       async function () {
         if (shouldDisplayDropdown) {
@@ -40,7 +54,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
       });
 
-  // Event listener for the search bar to refresh the graphs
+  /**
+   * Event listener for the search bar to refresh the graphs.
+   */
   document.getElementById('search').addEventListener('keydown',
       async function (event) {
         // Only call searchCourse when the Enter key is pressed
@@ -50,7 +66,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
       });
 
-  // Event listener for the filter selection
+  /**
+   * Event listener for the filter selection.
+   */
   document.getElementById('filter').addEventListener('change',
       async function () {
         // Clear the infoContainer element

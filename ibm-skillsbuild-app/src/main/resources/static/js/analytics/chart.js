@@ -1,6 +1,14 @@
+/**
+ * @module chart
+ * This module creates a chart with the fetched data.
+ */
+
 import displayCourseInfo from "./displayCourseInfo.js";
 
-// Create a new Chart.js plugin
+/**
+ * Create a new Chart.js plugin
+ * @type {{afterDraw: clickLabelPlugin.afterDraw, onClick: clickLabelPlugin.onClick, id: string}}
+ */
 const clickLabelPlugin = {
   id: 'clickLabelPlugin',
   afterDraw: function (chart) {
@@ -56,12 +64,24 @@ const clickLabelPlugin = {
   }
 };
 
+/**
+ * Creates a chart with the fetched data.
+ * @function createChart
+ * @param {Array} data - The data to display in the chart.
+ * @param {string} filter - The filter to apply to the data.
+ */
 function createChart(data, filter) {
   // Prepare the data
   const courses = data.map(item => {
-    // Truncate the course name to 30 characters and append "..." if it's longer
-    return item.name.length > 30 ? item.name.substring(0, 30) + '...'
-        : item.name;
+    // Check if there is only one course being displayed
+    if (data.length === 1) {
+      // If there is only one course, don't truncate the course name
+      return item.name;
+    } else {
+      // If there are multiple courses, truncate the course name to 30 characters and append "..." if it's longer
+      return item.name.length > 30 ? item.name.substring(0, 30) + '...'
+          : item.name;
+    }
   });
   const startedData = data.map(item => item.started);
   const completedData = data.map(item => item.completed);
@@ -119,6 +139,16 @@ function createChart(data, filter) {
           data: data.map(
               item => (item.completed / (item.started + item.completed)) * 100),
           backgroundColor: 'green'
+        }
+      ];
+      break;
+    case 'averageRating':
+      type = 'bar';
+      datasets = [
+        {
+          label: 'Average Rating',
+          data: data.map(item => item.averageRating),
+          backgroundColor: 'purple'
         }
       ];
       break;

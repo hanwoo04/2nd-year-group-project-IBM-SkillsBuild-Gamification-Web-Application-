@@ -1,8 +1,19 @@
+/**
+ * @module search
+ * This module provides functions to search for a course and display matching courses in the dropdown list.
+ */
+
 import fetchData from './fetchData.js';
 import createChart from "./chart.js";
 import displayCourseInfo from "./displayCourseInfo.js";
 
-// Function to search for a course
+/**
+ * Searches for a course based on the provided query and displays a chart for the matching courses.
+ * If only one course matches the query, it also displays its data.
+ * @function searchCourse
+ * @param {Event} [event] - The event object from the event listener. Optional.
+ * @returns {Promise<void>}
+ */
 async function searchCourse(event) {
   // Get the search query
   const query = event?.target?.value.toLowerCase() || document.getElementById(
@@ -26,7 +37,12 @@ async function searchCourse(event) {
   }
 }
 
-// Function for displaying matching courses in the dropdown list
+/**
+ * Displays matching courses in the dropdown list based on the provided query.
+ * @function displayMatchingCourses
+ * @param {string} query - The search query.
+ * @param {Array} data - The array of course data.
+ */
 function displayMatchingCourses(query, data) {
   // Get the dropdown list element
   const dropdown = document.getElementById('searchDropdown');

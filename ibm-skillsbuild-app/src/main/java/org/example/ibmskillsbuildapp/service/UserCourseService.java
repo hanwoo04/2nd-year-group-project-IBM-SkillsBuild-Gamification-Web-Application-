@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.example.ibmskillsbuildapp.model.Course;
@@ -32,38 +34,67 @@ public class UserCourseService {
     private UserCourseRepository userCourseRepository;
 
     /**
-     * Enrolls a user in a course. This method finds the UserCourse object that corresponds to the
-     * given user and course, sets the status of the UserCourse object to STARTED, and saves the
-     * updated UserCourse object in the repository.
+     * Changes the status of a course for a user. This method finds the UserCourse object that
+     * corresponds to the given user and course, sets the status of the UserCourse object to the
+     * provided status, sets the date based on the status, and saves the updated UserCourse object
+     * in the repository. If the status is COMPLETED, it also increments the user's score by 100.
+     *
+     * @param user   the User object representing the user whose course status is being changed
+     * @param course the Course object representing the course whose status is being changed
+     * @param status the new status to be set for the course
+     * @param date   the date to be set based on the status
+     */
+    public void changeCourseStatus(User user, Course course, LearningStatus status, Date date) {
+        UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
+        userCourse.setStatus(status);
+        if (status == LearningStatus.STARTED) {
+            userCourse.setStartDate(date);
+        } else if (status == LearningStatus.COMPLETED) {
+            userCourse.setCompletionDate(date);
+            user.setScore(user.getScore() + 100);
+            userRepository.save(user);
+        }
+        userCourseRepository.save(userCourse);
+    }
+
+    /**
+     * Enrolls a user in a course. This method uses the changeCourseStatus() method to set the
+     * status of the UserCourse object that corresponds to the given user and course to STARTED, and
+     * sets the start date to the current date.
      *
      * @param user   the User object representing the user who is enrolling in the course
      * @param course the Course object representing the course the user is enrolling in
      */
     public void enroll(User user, Course course) {
-        UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
-        userCourse.setStatus(LearningStatus.STARTED);
-        userCourse.setStartDate(new Date());
-        userCourseRepository.save(userCourse);
+        changeCourseStatus(user, course, LearningStatus.STARTED, new Date());
     }
 
     /**
-     * Marks a course as completed for a user. This method finds the UserCourse object that
-     * corresponds to the given user and course, sets the status of the UserCourse object to
-     * COMPLETED, and saves the updated UserCourse object in the repository. It also increments the
-     * user's score by 100.
+     * Marks a course as completed for a user. This method uses the changeCourseStatus() method to
+     * set the status of the UserCourse object that corresponds to the given user and course to
+     * COMPLETED, and sets the completion date to the current date. It also increments the user's
+     * score by 100.
      *
      * @param user   the User object representing the user who is completing the course
      * @param course the Course object representing the course the user is completing
      */
     public void complete(User user, Course course) {
-        UserCourse userCourse = userCourseRepository.findByUserAndCourse(user, course);
-        userCourse.setStatus(LearningStatus.COMPLETED);
-        userCourse.setCompletionDate(new Date());
-        userCourseRepository.save(userCourse);
+        changeCourseStatus(user, course, LearningStatus.COMPLETED, new Date());
+    }
 
-        // Update the user's score
-        user.setScore(user.getScore() + 100);
-        userRepository.save(user);
+    /**
+     * Calculates the count of courses that satisfy a given condition.
+     *
+     * @param predicate the condition that the courses must satisfy
+     * @return a Map where the keys are the Course objects and the values are the counts of courses
+     * that satisfy the given condition
+     */
+    public Map<Course, Long> getCoursesCount(Predicate<UserCourse> predicate) {
+        List<UserCourse> userCourses = new ArrayList<>(
+            (Collection<? extends UserCourse>) userCourseRepository.findAll());
+        Stream<UserCourse> filteredCoursesStream = userCourses.stream().filter(predicate);
+        return filteredCoursesStream.collect(
+            Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
     }
 
     /**
@@ -73,13 +104,8 @@ public class UserCourseService {
      * who have started each course
      */
     public Map<Course, Long> getStartedCoursesCount() {
-        List<UserCourse> userCourses = new ArrayList<>(
-            (Collection<? extends UserCourse>) userCourseRepository.findAll());
-        Stream<UserCourse> startedCoursesStream = userCourses.stream()
-            .filter(userCourse -> userCourse.getStatus() == LearningStatus.STARTED
-                && userCourse.getStartDate() != null);
-        return startedCoursesStream.collect(
-            Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
+        return getCoursesCount(userCourse -> userCourse.getStatus() == LearningStatus.STARTED
+            && userCourse.getStartDate() != null);
     }
 
     /**
@@ -89,13 +115,8 @@ public class UserCourseService {
      * who have completed each course
      */
     public Map<Course, Long> getCompletedCoursesCount() {
-        List<UserCourse> userCourses = new ArrayList<>(
-            (Collection<? extends UserCourse>) userCourseRepository.findAll());
-        Stream<UserCourse> completedCoursesStream = userCourses.stream()
-            .filter(userCourse -> userCourse.getStatus() == LearningStatus.COMPLETED
-                && userCourse.getCompletionDate() != null);
-        return completedCoursesStream.collect(
-            Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
+        return getCoursesCount(userCourse -> userCourse.getStatus() == LearningStatus.COMPLETED
+            && userCourse.getCompletionDate() != null);
     }
 
     /**
@@ -105,12 +126,7 @@ public class UserCourseService {
      * who have rated each course
      */
     public Map<Course, Long> getRatedCoursesCount() {
-        List<UserCourse> userCourses = new ArrayList<>(
-            (Collection<? extends UserCourse>) userCourseRepository.findAll());
-        Stream<UserCourse> ratedCoursesStream = userCourses.stream()
-            .filter(userCourse -> userCourse.getRating() != null);
-        return ratedCoursesStream.collect(
-            Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
+        return getCoursesCount(userCourse -> userCourse.getRating() != null);
     }
 
     /**
@@ -122,24 +138,42 @@ public class UserCourseService {
     public Map<Course, Long> getEnrollmentsLast30DaysCount() {
         Date thirtyDaysAgo = Date.from(
             LocalDate.now().minusDays(30).atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return getCoursesCount(
+            userCourse -> userCourse.getStartDate() != null && userCourse.getStartDate()
+                .after(thirtyDaysAgo));
+    }
+
+    /**
+     * Calculates the average rating for each course.
+     *
+     * @return a Map where the keys are the Course objects and the values are the average ratings
+     * for each course which are truncated to two decimal places
+     */
+    public Map<Course, Double> getAverageRatings() {
         List<UserCourse> userCourses = new ArrayList<>(
             (Collection<? extends UserCourse>) userCourseRepository.findAll());
-        Stream<UserCourse> last30DaysEnrollmentStream = userCourses.stream()
-            .filter(userCourse -> userCourse.getStartDate() != null && userCourse.getStartDate()
-                .after(thirtyDaysAgo));
-        return last30DaysEnrollmentStream.collect(
-            Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
+        return userCourses.stream()
+            .filter(userCourse -> userCourse.getRating() != null)
+            .collect(Collectors.groupingBy(UserCourse::getCourse,
+                Collectors.collectingAndThen(
+                    Collectors.averagingDouble(UserCourse::getRating),
+                    average -> Math.round(average * 100.0) / 100.0
+                )));
     }
 
     /**
      * Gathers, formats, and groups analytics data for each course.
      *
-     * @return a List of Maps where each Map represents a course with its name and counts for each property
+     * @return a List of Maps where each Map represents a course with its name and counts for each
+     * property
      */
     public List<Map<String, Object>> getAnalyticsData() {
         Map<String, Map<Course, Long>> analyticsData = gatherAnalyticsData();
+        Map<String, Map<Course, Double>> averageRatingsData = new HashMap<>();
+        averageRatingsData.put("averageRating", getAverageRatings());
 
         List<Map<String, Object>> dataArray = convertDataToArray(analyticsData);
+        dataArray.addAll(convertDataToArray(averageRatingsData));
 
         Map<String, Map<String, Object>> groupedData = groupDataByCourseName(dataArray);
 
@@ -166,14 +200,15 @@ public class UserCourseService {
      * Converts the gathered analytics data to an array format.
      *
      * @param analyticsData the Map of analytics data gathered from the gatherAnalyticsData()
-     *                      method
+     *                      method. The Map can have Course objects as keys and either Long or
+     *                      Double as values.
      * @return a List of Maps where each Map represents a course with its name, property, and count
      */
-    private List<Map<String, Object>> convertDataToArray(
-        Map<String, Map<Course, Long>> analyticsData) {
+    private <T extends Number> List<Map<String, Object>> convertDataToArray(
+        Map<String, Map<Course, T>> analyticsData) {
         return analyticsData.entrySet().stream().flatMap(entry -> {
             String propertyName = entry.getKey();
-            Map<Course, Long> courseCounts = entry.getValue();
+            Map<Course, T> courseCounts = entry.getValue();
             return courseCounts.entrySet().stream().map(courseCountEntry -> {
                 Map<String, Object> item = new HashMap<>();
                 item.put("name", courseCountEntry.getKey().getCourseName());
@@ -181,7 +216,7 @@ public class UserCourseService {
                 item.put("count", courseCountEntry.getValue());
                 return item;
             });
-        }).toList();
+        }).collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
