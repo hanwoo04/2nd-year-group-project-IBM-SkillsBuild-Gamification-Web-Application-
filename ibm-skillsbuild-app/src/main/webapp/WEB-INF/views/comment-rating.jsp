@@ -12,14 +12,14 @@
 <h2>Comment</h2>
 <div class="comments">
     <ul id="commentList">
-        <li>I loved studying this course!</li>
+        <li>I loved studying "Artificial Intelligence - AI Foundations: A Collaboration of ISTE and IBM" course!</li>
     </ul>
 </div>
 
 <h2 class="comment-container">
     <img src="${pageContext.request.contextPath}/img/textbox.png" alt="Textbox Image" class="textbox-image">
     <%--putting image inside the comment-contatiner--%>
-    <label for="commentArea"></label><textarea id="commentArea" class="comment-area" placeholder="Add a comment here!"></textarea>
+    <label for="commentArea"></label><textarea id="commentArea" class="comment-area" placeholder="Add a comment about your completed course here!"></textarea>
 </h2>
 <br>
 <button id="addCommentButton" class="addcomment">Add Comment</button>
@@ -50,18 +50,54 @@
 </h2>
 
 <ul id="ratingList" class="rating">
-    <li>5 star/stars</li>
+    <li>AI Fundamentals - 5 star/stars</li>
+    <li>Cloud Computing Fundamentals - 3 star/stars</li>
+    <li>Enterprise Design Thinking Practitioner - 1 star/stars</li>
 </ul>
 
 <form id="ratingForm">
-    <label for="rating" class="h22">Add a rating:</label>
+    <label for="rating">Add a rating for completed course:</label>
     <%--5 options between 1 to 5 stars--%>
-    <select name="value" id="rating">
-        <option value="1">1 star</option>
-        <option value="2">2 stars</option>
-        <option value="3">3 stars</option>
-        <option value="4">4 stars</option>
-        <option value="5">5 stars</option>
+    <select name="value" id="rating" class="option">
+        <optgroup label="A Collaboration of ISTE and IBM">
+            <option value="A Collaboration of ISTE and IBM - 1">1 star</option>
+            <option value="A Collaboration of ISTE and IBM - 2">2 stars</option>
+            <option value="A Collaboration of ISTE and IBM - 3">3 stars</option>
+            <option value="A Collaboration of ISTE and IBM - 4">4 stars</option>
+            <option value="A Collaboration of ISTE and IBM - 5">5 stars</option>
+        </optgroup>
+
+        <optgroup label="AI Fundamentals">
+            <option value="AI Fundamentals - 1">1 star</option>
+            <option value="AI Fundamentals - 2">2 stars</option>
+            <option value="AI Fundamentals - 3">3 stars</option>
+            <option value="AI Fundamentals - 4">4 stars</option>
+            <option value="AI Fundamentals - 5">5 stars</option>
+        </optgroup>
+
+        <optgroup label="Cloud Computing Fundamentals">
+            <option value="Cloud Computing Fundamentals - 1">1 star</option>
+            <option value="Cloud Computing Fundamentals - 2">2 stars</option>
+            <option value="Cloud Computing Fundamentals - 3">3 stars</option>
+            <option value="Cloud Computing Fundamentals - 4">4 stars</option>
+            <option value="Cloud Computing Fundamentals - 5">5 stars</option>
+        </optgroup>
+
+        <optgroup label="Introduction to Cloud">
+            <option value="Introduction to Cloud - 1">1 star</option>
+            <option value="Introduction to Cloud - 2">2 stars</option>
+            <option value="Introduction to Cloud - 3">3 stars</option>
+            <option value="Introduction to Cloud - 4">4 stars</option>
+            <option value="Introduction to Cloud - 5">5 stars</option>
+        </optgroup>
+
+        <optgroup label="Enterprise Design Thinking Practitioner">
+            <option value="Enterprise Design Thinking Practitioner - 1">1 star</option>
+            <option value="Enterprise Design Thinking Practitioner - 2">2 stars</option>
+            <option value="Enterprise Design Thinking Practitioner - 3">3 stars</option>
+            <option value="Enterprise Design Thinking Practitioner - 4">4 stars</option>
+            <option value="Enterprise Design Thinking Practitioner - 5">5 stars</option>
+        </optgroup>
     </select>
     <br>
     <br>
