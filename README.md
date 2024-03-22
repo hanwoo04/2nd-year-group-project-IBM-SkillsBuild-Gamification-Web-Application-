@@ -58,7 +58,7 @@ To setup a MySQL connection, you will need a MySQL server installed and running 
 
 After installing your MySQL server and MySQL Workbench:
   -Open Workbench and create a new connection.
-  ![Alt text](image.png "SQL workbench")
+  ![SQL_Page1](../README_images/SQL_Page1.png "SQL workbench")
 
 ### Running the Program
 
