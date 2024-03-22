@@ -3,6 +3,7 @@ div.title {
     color: #1f70c1;
     font-size: x-large;
 }
+
 div.followers,div.friends,div.results {
     width: 50%;
     text-align: center;
@@ -10,15 +11,19 @@ div.followers,div.friends,div.results {
     border-radius: 10px;
     margin: 10px;
 }
+
 div.results {
     margin: auto;
 }
+
 .container {
     display: flex;
 }
+
 div.searchBar {
     text-align: center;
 }
+
 .addFriend {
     background-color: #04AA6D;
     border: none;
@@ -30,6 +35,7 @@ div.searchBar {
     border-radius: 2px;
     padding: 3px;
 }
+
 .removeFriend {
     background-color: #fa1c1c;
     border: none;
@@ -44,4 +50,16 @@ div.searchBar {
 
 .addFriend:hover,.removeFriend:hover{
     cursor: pointer;
+}
+
+.friend {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add margin bottom for spacing */
+}
+
+.friend img {
+    width: 30px; /* Adjust the width to make it smaller */
+    height: 30px; /* Adjust the height to make it smaller */
+    margin-right: 10px; /* Add some space between the image and the text */
 }
