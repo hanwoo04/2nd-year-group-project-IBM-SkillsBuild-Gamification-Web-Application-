@@ -8,6 +8,7 @@
 <jsp:include page="nav.jsp">
     <jsp:param name="activePage" value="comment-rating"/>
 </jsp:include>
+<%--this is to display the comment and rating on the navigation bar in the webpage--%>
 <h2>Comment</h2>
 <div class="comments">
     <ul id="commentList">
@@ -17,32 +18,35 @@
 
 <h2 class="comment-container">
     <img src="${pageContext.request.contextPath}/img/textbox.png" alt="Textbox Image" class="textbox-image">
-    <textarea id="commentBox" class="comment-box" placeholder="Add a comment here!"></textarea>
+    <%--putting image inside the comment-contatiner--%>
+    <label for="commentArea"></label><textarea id="commentArea" class="comment-area" placeholder="Add a comment here!"></textarea>
 </h2>
 <br>
 <button id="addCommentButton" class="addcomment">Add Comment</button>
+<%--this is the button for adding comments--%>
 
 <script>
-    function addCommentButtonClick() {
-        const commentText = document.getElementById('commentBox').value.trim();
+    function addCommentList() {
+        const commentText = document.getElementById('commentArea').value.trim();
 
         if (commentText !== '') {
-            const newCommentItem = document.createElement('li');
-            newCommentItem.textContent = commentText;
+            const newComment = document.createElement('li');
+            newComment.textContent = commentText;
 
-            const existingCommentsList = document.getElementById('commentList');
-            existingCommentsList.appendChild(newCommentItem);
-
+            const existingComments = document.getElementById('commentList');
+            existingComments.appendChild(newComment);
+            <%--the user should enter a comment before clicking on the button--%>
         } else {
-            alert('Please enter a comment before adding.');
+            alert('Please enter a comment.');
         }
     }
-    document.getElementById('addCommentButton').addEventListener('click', addCommentButtonClick);
+    document.getElementById('addCommentButton').addEventListener('click', addCommentList);
 </script>
 <br>
 
 <h2 class="rating-star">
     Rating <img src="${pageContext.request.contextPath}/img/star.png" alt="Rating Image" class="rating-image">
+    <%--Displaying star image next to the title Rating--%>
 </h2>
 
 <ul id="ratingList" class="rating">
@@ -51,6 +55,7 @@
 
 <form id="ratingForm">
     <label for="rating" class="h22">Add a rating:</label>
+    <%--5 options between 1 to 5 stars--%>
     <select name="value" id="rating">
         <option value="1">1 star</option>
         <option value="2">2 stars</option>
@@ -60,27 +65,27 @@
     </select>
     <br>
     <br>
-    <button id="addRatingBtn" class="addrating">Add Rating</button>
+    <button id="addRatingButton" class="addrating">Add Rating</button>
 </form>
 
 
 <script>
-    function addRatingButtonClick(event) {
+    <%--function for list of rating--%>
+    function addRatingList(event) {
         event.preventDefault();
+        const rating = document.getElementById('rating').value;
 
-        const ratingValue = document.getElementById('rating').value;
+        if (rating !== '') {
 
-        if (ratingValue !== '') {
-
-            const newRatingItem = document.createElement('li');
-            newRatingItem.textContent =ratingValue + " star/stars";
-
-            const existingRatingsList = document.getElementById('ratingList');
-            existingRatingsList.appendChild(newRatingItem);
+            const newRating = document.createElement('li');
+            newRating.textContent =rating + " star/stars";
+            <%--Displaying pre setted existing rating list--%>
+            const existingRatings = document.getElementById('ratingList');
+            existingRatings.appendChild(newRating);
         }
     }
 
-    document.getElementById('addRatingBtn').addEventListener('click', addRatingButtonClick);
+    document.getElementById('addRatingButton').addEventListener('click', addRatingList);
 </script>
 </body>
 </html>

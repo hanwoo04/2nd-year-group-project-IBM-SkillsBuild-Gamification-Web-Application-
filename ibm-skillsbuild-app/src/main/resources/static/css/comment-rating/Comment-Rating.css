@@ -4,7 +4,7 @@
     height: 200px;
 }
 
-.comment-box {
+.comment-area {
     position: absolute;
     top: 25px;
     left: 75px;
@@ -19,7 +19,7 @@
     z-index: 1;
 }
 
-.comment-box::placeholder {
+.comment-area::placeholder {
     color: gold;
 }
 
