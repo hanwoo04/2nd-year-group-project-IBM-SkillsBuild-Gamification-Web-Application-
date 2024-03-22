@@ -137,15 +137,22 @@ nav a {
   color: white;
 }
 
+/* Avatar styles */
 .nav-avatar img {
-  width: 70px; /* Adjust the width as needed */
-  height: 70px; /* Adjust the height as needed */
-  border-radius: 50%; /* Make it round */
-  border: none; /* Remove the border */
-  transition: transform 0.3s ease; /* Add transition for smooth effect */
+  width: 70px; 
+  height: 70px; 
+  border-radius: 50%; 
+  border: none; 
+  transition: transform 0.3s ease; 
 }
 
 .nav-avatar img:hover {
-  transform: scale(1.1); /* Scale up the image on hover */
+  transform: scale(1.1); 
 }
+
+/* Focus styles */
+.nav-avatar img:focus {
+  outline: 2px solid #1f70c1; 
+}
+
 

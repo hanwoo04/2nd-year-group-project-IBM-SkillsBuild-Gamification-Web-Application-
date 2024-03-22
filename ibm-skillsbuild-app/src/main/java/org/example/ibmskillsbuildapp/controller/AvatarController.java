@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Base64;
 import java.util.List;
 
@@ -95,8 +96,12 @@ public class AvatarController {
     }
 
     @RequestMapping("/profile")
-    public String profilePage(Model model, HttpSession session) {
+    public String profilePage(Model model, HttpSession session, Principal principal) {
         List<Avatar> avatars = avatarService.getAllAvatars();
+
+        // Retrieve the username
+        String username = principal.getName();
+
         if (!avatars.isEmpty()) {
             // Pass the latest avatar data to the profile page
             Avatar latestAvatar = avatars.get(avatars.size() - 1);
@@ -105,7 +110,9 @@ public class AvatarController {
             // No avatars found, set default data or handle as needed
             session.setAttribute("avatarDataURL", "/img/Null_Profile_Image.png");
         }
+
         model.addAttribute("avatars", avatars); // Pass all avatars to the profile page
+        model.addAttribute("username", username); // Pass the username to the profile page
 
         // Also add the avatarDataURL to the model for use in the nav bar
         model.addAttribute("avatarDataURL", session.getAttribute("avatarDataURL"));

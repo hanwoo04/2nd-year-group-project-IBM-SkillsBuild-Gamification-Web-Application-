@@ -130,29 +130,36 @@ body {
 }
 
 /* Avatar styles */
-.avatar {
-    margin-top: 50px; /* Set margin top */
-    align-self: center; /* Align avatar to the center horizontally */
-}
-
 .avatar img {
     width: 200px; /* Set width */
     height: 200px; /* Set height */
     border-radius: 50%; /* Make the avatar round */
     border: 5px solid #1f70c1; /* Set border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle box shadow */
+    transition: border-color 0.3s, transform 0.3s; /* Add transition for border color and transform */
+}
+
+/* Apply hover effect on avatar */
+.avatar img:hover {
+    border-color: #255ba3; /* Change border color on hover */
+    transform: scale(1.05); /* Add slight scale effect on hover */
 }
 
 /* Edit avatar button styles */
 .edit-avatar a {
     display: inline-block;
-    padding: 10px 20px; /* Set padding */
+    padding: 12px 24px; /* Increase padding */
     background-color: #1f70c1; /* Set background color */
     color: #fff; /* Set text color */
     text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Set border radius */
-    transition: background-color 0.3s ease; /* Add transition for hover effect */
+    border-radius: 8px; /* Set border radius */
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for background color and transform */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle box shadow */
 }
 
+/* Apply hover effect on edit avatar button */
 .edit-avatar a:hover {
     background-color: #255ba3; /* Change background color on hover */
+    transform: translateY(-2px); /* Move button up slightly on hover */
 }
+
