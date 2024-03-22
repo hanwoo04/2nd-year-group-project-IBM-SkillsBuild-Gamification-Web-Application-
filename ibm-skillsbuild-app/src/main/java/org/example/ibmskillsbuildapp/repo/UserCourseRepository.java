@@ -1,9 +1,12 @@
 package org.example.ibmskillsbuildapp.repo;
 
 import org.example.ibmskillsbuildapp.model.Course;
+import org.example.ibmskillsbuildapp.model.LearningStatus;
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.model.UserCourse;
 import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 /**
  * Repository interface for managing {@link UserCourse} entities. This repository provides methods
@@ -19,4 +22,6 @@ public interface UserCourseRepository extends CrudRepository<UserCourse, Long> {
      * @return the UserCourse with the specified user and course.
      */
     UserCourse findByUserAndCourse(User user, Course course);
+
+    List<UserCourse> findAllByStatus(LearningStatus status);
 }
