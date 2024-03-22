@@ -6,6 +6,7 @@ the name of the JSP file that you are including it in:
 </jsp:include>
 --%>
 
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
@@ -16,13 +17,23 @@ the name of the JSP file that you are including it in:
                     src="https://b585204.smushcdn.com/585204/wp-content/uploads/2020/09/ibm-logo-2-1-300x131.png?lossy=0&strip=1&webp=0"
                     alt="Home"/></div>
         </a>
-        <div class="dropdown">
+        <!-- Account dropdown -->
+        <div class="dropdown" id="accountDropdown">
             <a href="javascript:void(0)">Your Account</a>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/viewFriends">Friends</a>
                 <a href="${pageContext.request.contextPath}/viewAccountDetails">Your Details</a>
             </div>
         </div>
+        <!-- Admin dropdown -->
+        <sec:authorize access="hasRole('ADMIN')">
+            <div class="dropdown" id="adminDropdown">
+                <a href="javascript:void(0)">Admin</a>
+                <div class="dropdown-content">
+                    <a href="${pageContext.request.contextPath}/viewAnalytics">Analytics Dashboard</a>
+                </div>
+            </div>
+        </sec:authorize>
     </div>
     <div id="navbar">
         <ul>

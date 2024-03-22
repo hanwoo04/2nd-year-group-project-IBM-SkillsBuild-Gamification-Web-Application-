@@ -49,7 +49,6 @@ public class AuthenticationController {
      * it will redirect them to the dashboard.
      * @return the name of the view to be rendered, in this case "viewDashboard"
      */
-
     @GetMapping(value = "/success-login")
     public String successLogin(Principal principal) {
         User user = repo.findByUserName(principal.getName());
@@ -63,7 +62,6 @@ public class AuthenticationController {
      * Handles GET requests to the /login-form endpoint. Retrieves user request to log-in.
      * @return the name of the view to be rendered, in this case "login"
      */
-
     @GetMapping(value = "/login-form")
     public String loginForm(Model model) {
         model.addAttribute("service", "what");
@@ -75,9 +73,9 @@ public class AuthenticationController {
         return "login";
     }
 
-    @RequestMapping(value = "/access-denied")
+    @GetMapping("/accessDenied")
     public String accessDenied() {
-        return "denied";
+        return "accessDenied";
     }
 
     /**
