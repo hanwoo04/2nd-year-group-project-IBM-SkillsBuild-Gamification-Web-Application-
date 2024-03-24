@@ -1,3 +1,12 @@
+<%--
+To use this file, include it in your JSP file using the following code, replacing "jspName" with
+the name of the JSP file that you are including it in:
+<jsp:include page="nav.jsp">
+    <jsp:param name="activePage" value="jspName"/>
+</jsp:include>
+--%>
+
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.example.ibmskillsbuildapp.model.Avatar" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
@@ -18,7 +27,8 @@
                     src="https://b585204.smushcdn.com/585204/wp-content/uploads/2020/09/ibm-logo-2-1-300x131.png?lossy=0&strip=1&webp=0"
                     alt="Home"/></div>
         </a>
-        <div class="dropdown">
+        <!-- Account dropdown -->
+        <div class="dropdown" id="accountDropdown">
             <a href="${pageContext.request.contextPath}/profile">
                 <div class="avatar nav-avatar">
                     <img src="<%= avatarDataURL %>" alt="Avatar" width="50" height="50">
@@ -29,7 +39,16 @@
                 <a href="${pageContext.request.contextPath}/viewFriends">Friends</a>
                 <a href="${pageContext.request.contextPath}/viewAccountDetails">Your Details</a>
             </div>
-        </div> <!-- Close the div for the dropdown -->
+        </div>
+        <!-- Admin dropdown -->
+        <sec:authorize access="hasRole('ADMIN')">
+            <div class="dropdown" id="adminDropdown">
+                <a href="javascript:void(0)">Admin</a>
+                <div class="dropdown-content">
+                    <a href="${pageContext.request.contextPath}/viewAnalytics">Analytics Dashboard</a>
+                </div>
+            </div>
+        </sec:authorize>
     </div>
     <div id="navbar">
         <ul>

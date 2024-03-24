@@ -28,9 +28,15 @@ nav a {
 
 .dropdown {
   position: fixed;
-  float: right;
   top: 0.5rem;
+}
+
+#accountDropdown {
   right: 0.5rem;
+}
+
+#adminDropdown {
+  left: 0.5rem;
 }
 
 .dropdown a {
@@ -51,8 +57,8 @@ nav a {
   border-top: none;
 }
 
-/* Pseudo element to remove border where the dropdown content meets the dropdown button */
-.dropdown:hover .dropdown-content::before {
+/* Pseudo element for account dropdown to remove the border where button meets dropdown */
+#accountDropdown.dropdown:hover .dropdown-content::before {
   content: "";
   position: absolute;
   top: 0;
@@ -63,12 +69,23 @@ nav a {
   border-top-left-radius: 0.25rem;
 }
 
+/* Pseudo element for admin dropdown to remove the border where button meets dropdown */
+#adminDropdown.dropdown:hover .dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 7.375rem;
+  width: calc(100% - 7.375rem); /* Width of pseudo element */
+  height: 0.0625rem;
+  background: #8d8d8d;
+  border-top-right-radius: 0.25rem;
+}
+
 .dropdown a:hover {
-  background-color: rgb(9, 69, 133);
+  background-color: rgb(12, 90, 169);
 }
 
 .dropdown > a, .dropdown-content a {
-  /* Other styles */
   transition: background-color 0.3s ease;
 }
 
@@ -83,6 +100,11 @@ nav a {
   animation: fadeIn 0.5s ease-in-out;
   border: 0.0625rem solid #8d8d8d;
   border-radius: 0.25rem 0 0.25rem 0.25rem;
+}
+
+#adminDropdown .dropdown-content {
+  left: 0;
+  right: auto;
 }
 
 .dropdown-content a {
@@ -127,7 +149,6 @@ nav a {
 }
 
 #navbar li a:not(.active) {
-  /* Other styles */
   transition: background-color 0.3s ease;
 }
 
