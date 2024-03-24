@@ -52,13 +52,13 @@ div.searchBar {
     cursor: pointer;
 }
 
-.friend {
+.friend, .follower{
     display: flex; /* Use flexbox for horizontal alignment */
     align-items: center; /* Align items vertically */
     margin-bottom: 10px; /* Add margin bottom for spacing */
 }
 
-.friend img {
+.friend img, .follower img {
     width: 30px; /* Adjust the width to make it smaller */
     height: 30px; /* Adjust the height to make it smaller */
     margin-right: 10px; /* Add some space between the image and the text */
