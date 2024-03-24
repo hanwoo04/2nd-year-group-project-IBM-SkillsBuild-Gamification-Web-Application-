@@ -75,6 +75,8 @@ How to run the program on your local machine.
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Gradle](https://gradle.org/)
 - [MySQL](https://www.mysql.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Chart.js](https://www.chartjs.org/)
 
 ## Contact
 
