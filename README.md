@@ -110,9 +110,6 @@ In this file, edit the shown 3 lines ‘spring.datasource.url’, ‘spring.data
 
       ![SQL_Page11](../README_images/SQL_Page11.png "applicationProperties")
 
-  -You will now be able to run the project in your IDE of choice! 
-
-
 ### Running the Program
 
 How to run the program on your local machine.
