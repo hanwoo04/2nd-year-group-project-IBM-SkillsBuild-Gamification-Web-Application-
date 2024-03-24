@@ -88,7 +88,7 @@ You will need:
       ![SQL_Page6](../README_images/SQL_Page6.png "SQL Admin")
 
     - From here, click ‘Add Account’ to create a new user.
-      Give it a name, here we use “skillsbuilduser”, and a password.
+      Give it a name, here we use `skillsbuilduser`, and a password.
       Then navigate to ‘Schema Privileges’.
 
       ![SQL_Page7](../README_images/SQL_Page7.png "SQL privs")
