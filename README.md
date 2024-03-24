@@ -54,62 +54,62 @@ You will need:
 
 4. **Set up MySQL connection**
 
-To setup a MySQL connection, you will need a MySQL server installed and running on your machine, and some way to create a schema and user. For this guide, we will be using the MySQL Windows Installer (8.0.36) for the MySQL server and MySQL Workbench, available at [SQL Installer](https://dev.mysql.com/downloads/installer/).
+    To setup a MySQL connection, you will need a MySQL server installed and running on your machine, and some way to create a schema and user. For this guide, we will be using the MySQL Windows Installer (8.0.36) for the MySQL server and MySQL Workbench, available at [SQL Installer](https://dev.mysql.com/downloads/installer/).
 
-After installing your MySQL server and MySQL Workbench:
+    After installing your MySQL server and MySQL Workbench:
 
-- Open Workbench and create a new connection.
+    - Open Workbench and create a new connection.
 
-  ![SQL_Page1](../README_images/SQL_Page1.png "SQL workbench")
+      ![SQL_Page1](../README_images/SQL_Page1.png "SQL workbench")
 
-- Name your connection (something recognisable) and set a user to connect with (here we use root user). Click ‘Test Connection’ and login with the user to make sure the connection is working, then click ‘OK’.
+    - Name your connection (something recognisable) and set a user to connect with (here we use root user). Click ‘Test Connection’ and login with the user to make sure the connection is working, then click ‘OK’.
 
-  ![SQL_Page2](../README_images/SQL_Page2.png "SQL connection")
+      ![SQL_Page2](../README_images/SQL_Page2.png "SQL connection")
 
-  If the connection is not working, you can click ‘Configure Server Management...’ for more thorough testing.
+      If the connection is not working, you can click ‘Configure Server Management...’ for more thorough testing.
 
-- You should see the following popup after clicking ‘OK’
+    - You should see the following popup after clicking ‘OK’
 
-  ![SQL_Page3](../README_images/SQL_Page3.png "SQL success")
+      ![SQL_Page3](../README_images/SQL_Page3.png "SQL success")
 
-- Connect to your server by clicking on the connection and logging in.
+    - Connect to your server by clicking on the connection and logging in.
 
-  ![SQL_Page4](../README_images/SQL_Page4.png "SQL main")
+      ![SQL_Page4](../README_images/SQL_Page4.png "SQL main")
 
-- Create a new schema with the following statement:
+    - Create a new schema with the following statement:
 
-  - `CREATE SCHEMA schemaname;`
-    where schemaname is your chosen name for the schema. Here we use `skillsbuilddb`.
-  - Next, execute the statement, either by pressing Ctrl + Enter, or by clicking the lightning button above the statement. When the statement is executed, it will show at the bottom to say if it was successful or unsuccessful.
+      - `CREATE SCHEMA schemaname;`
+        where schemaname is your chosen name for the schema. Here we use `skillsbuilddb`.
+      - Next, execute the statement, either by pressing Ctrl + Enter, or by clicking the lightning button above the statement. When the statement is executed, it will show at the bottom to say if it was successful or unsuccessful.
 
-  ![SQL_Page5](../README_images/SQL_Page5.png "SQL schema")
+      ![SQL_Page5](../README_images/SQL_Page5.png "SQL schema")
 
-- Next, we create a new user for the schema. Click ‘Users and Privileges’ in the left-hand side ‘Administration’ menu.
-  ![SQL_Page6](../README_images/SQL_Page6.png "SQL Admin")
+    - Next, we create a new user for the schema. Click ‘Users and Privileges’ in the left-hand side ‘Administration’ menu.
+      ![SQL_Page6](../README_images/SQL_Page6.png "SQL Admin")
 
-- From here, click ‘Add Account’ to create a new user.
-  Give it a name, here we use “skillsbuilduser”, and a password.
-  Then navigate to ‘Schema Privileges’.
+    - From here, click ‘Add Account’ to create a new user.
+      Give it a name, here we use “skillsbuilduser”, and a password.
+      Then navigate to ‘Schema Privileges’.
 
-  ![SQL_Page7](../README_images/SQL_Page7.png "SQL privs")
+      ![SQL_Page7](../README_images/SQL_Page7.png "SQL privs")
 
-- Here, click ‘Add Entry...’ to create a new privilege entry.
+    - Here, click ‘Add Entry...’ to create a new privilege entry.
 
-  ![SQL_Page8](../README_images/SQL_Page8.png "SQL entry")
+      ![SQL_Page8](../README_images/SQL_Page8.png "SQL entry")
 
-- Select your schema from the drop-down list under ‘Selected schema:’, and click ‘OK’.
+    - Select your schema from the drop-down list under ‘Selected schema:’, and click ‘OK’.
 
-  ![SQL_Page9](../README_images/SQL_Page9.png "SQL select_schema")
+      ![SQL_Page9](../README_images/SQL_Page9.png "SQL select_schema")
 
-- Now you have created an entry, click ‘Select “ALL”’ to grant your user schema privileges, then click ‘Apply’.
+    - Now you have created an entry, click ‘Select “ALL”’ to grant your user schema privileges, then click ‘Apply’.
 
-  ![SQL_Page10](../README_images/SQL_Page10.png "SQL apply")
+      ![SQL_Page10](../README_images/SQL_Page10.png "SQL apply")
 
-- Now you have successfully setup your MySQL connection and user!
-  Open up the `application.properties` (located in `./ibm-skillsbuild-app/src/main/resources`) file in your preferred file editor.
-  In this file, edit the shown 3 lines `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password` with your schema name, user username and password.
+    - Now you have successfully setup your MySQL connection and user!
+      Open up the `application.properties` (located in `./ibm-skillsbuild-app/src/main/resources`) file in your preferred file editor.
+      In this file, edit the shown 3 lines `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password` with your schema name, user username and password.
 
-  ![SQL_Page11](../README_images/SQL_Page11.png "applicationProperties")
+      ![SQL_Page11](../README_images/SQL_Page11.png "applicationProperties")
 
 ### Running the Program
 
