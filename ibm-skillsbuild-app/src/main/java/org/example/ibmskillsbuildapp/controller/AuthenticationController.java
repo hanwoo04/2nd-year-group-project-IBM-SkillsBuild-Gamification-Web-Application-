@@ -45,8 +45,9 @@ public class AuthenticationController {
     private LearningPathRepository learningPathRepository;
 
     /**
-     * Handles GET requests to the /success-login endpoint. Retrieves user by username and if assigned a role.
-     * it will redirect them to the dashboard.
+     * Handles GET requests to the /success-login endpoint. Retrieves user by username and if
+     * assigned a role. it will redirect them to the dashboard.
+     *
      * @return the name of the view to be rendered, in this case "viewDashboard"
      */
     @GetMapping(value = "/success-login")
@@ -60,27 +61,41 @@ public class AuthenticationController {
 
     /**
      * Handles GET requests to the /login-form endpoint. Retrieves user request to log-in.
+     *
      * @return the name of the view to be rendered, in this case "login"
      */
-    @GetMapping(value = "/login-form")
+    @GetMapping("/login-form")
     public String loginForm(Model model) {
         model.addAttribute("service", "what");
         return "login";
     }
 
-    @RequestMapping(value = "/error-login")
+    /**
+     * Handles GET requests to the /error-login endpoint. This method is called when there is an
+     * error in the login process.
+     *
+     * @return the name of the view to be rendered, in this case "login"
+     */
+    @GetMapping("/error-login")
     public String errorLogin() {
         return "login";
     }
 
+    /**
+     * Handles GET requests to the /accessDenied endpoint. This method is called when a user tries
+     * to access a resource for which they do not have permission.
+     *
+     * @return the name of the view to be rendered, in this case "accessDenied"
+     */
     @GetMapping("/accessDenied")
     public String accessDenied() {
         return "accessDenied";
     }
 
     /**
-     * Handles GET requests to the /register endpoint. Retrieves user request to signup to the website.
-     * it will redirect them to register form.
+     * Handles GET requests to the /register endpoint. Retrieves user request to sign up to the
+     * website. it will redirect them to register form.
+     *
      * @return the name of the view to be rendered, in this case "register"
      */
     @GetMapping("/register")
@@ -90,9 +105,10 @@ public class AuthenticationController {
     }
 
     /**
-     * Handles GET requests to the /register endpoint. Retrieves user username and password, assigns it a role, encrypts
-     * password sets their learning path and sets their courses. This then creates the new user.
-     * it will redirect them to login.
+     * Handles GET requests to the /register endpoint. Retrieves user username and password, assigns
+     * it a role, encrypts password sets their learning path and sets their courses. This then
+     * creates the new user. it will redirect them to login.
+     *
      * @return the name of the view to be rendered, in this case "register"/"login"
      */
     @PostMapping("/register")

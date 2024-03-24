@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,7 +28,7 @@ public class SecurityConfig {
     private PasswordEncoder passwordEncoder;
 
     @Bean
-    public static PasswordEncoder PasswordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -41,12 +40,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc)
         throws Exception {
-        http.authorizeRequests(auth ->
-                auth.requestMatchers(mvc.pattern("/greeting")).hasRole("USER")
-                    .requestMatchers(mvc.pattern("/greeting")).hasRole("ADMIN")
-                    .requestMatchers(mvc.pattern("/register")).permitAll()
-                    .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                    .anyRequest().authenticated()
+        http.authorizeRequests(auth -> auth
+                .requestMatchers(mvc.pattern("/register")).permitAll()
+                .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+                .anyRequest().authenticated()
             )
             .formLogin(login -> login
                 .loginPage("/login-form")

@@ -92,7 +92,9 @@ public class UserCourseService {
     public Map<Course, Long> getCoursesCount(Predicate<UserCourse> predicate) {
         List<UserCourse> userCourses = new ArrayList<>(
             (Collection<? extends UserCourse>) userCourseRepository.findAll());
-        Stream<UserCourse> filteredCoursesStream = userCourses.stream().filter(predicate);
+        Stream<UserCourse> filteredCoursesStream = userCourses.stream()
+            .filter(userCourse -> userCourse.getCourse() != null)
+            .filter(predicate);
         return filteredCoursesStream.collect(
             Collectors.groupingBy(UserCourse::getCourse, Collectors.counting()));
     }
