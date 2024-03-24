@@ -1,9 +1,15 @@
 package org.example.ibmskillsbuildapp.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import jakarta.servlet.http.HttpSession;
+import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.example.ibmskillsbuildapp.service.AvatarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,20 +23,50 @@ public class LeaderboardController {
     @Autowired
     private UserRepository repo;
 
+    @Autowired
+    private AvatarService avatarService;
+
     @GetMapping("/viewLeaderboard")
-    public String showLeaderboard(Model model) {
+    public String showLeaderboard(Model model, HttpSession session) {
+        // Retrieve the latest avatar data or set default values if no avatars are found
+        List<Avatar> avatars = avatarService.getAllAvatars();
+        Avatar latestAvatar = avatars.isEmpty() ? null : avatars.get(avatars.size() - 1);
+
+        // Retrieve the currently logged-in user
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = ((UserDetails) principal).getUsername();
-        User user = repo.findByUserName(username);//Gets user
-        List<Long> friendsListId = new ArrayList<>();
-        friendsListId.add(user.getId());
-        for (User f : user.getFriends()) {
-            friendsListId.add(f.getId());
+        User user = repo.findByUserName(username);
+
+        // Pass the current user and avatar URL to the model
+        model.addAttribute("currentUser", user);
+
+        // Initialize avatar object for the current user if not already initialized
+        if (user.getAvatar() == null) {
+            user.setAvatar(new Avatar()); // Create a new Avatar object
         }
-        //Loop provides a list of friend ids which we can use to sort the order via CrudRepository
-        model.addAttribute("friends", repo.findByIdInOrderByScoreDesc(friendsListId));//Friends Only
-        model.addAttribute("players", repo.findAllByOrderByScoreDesc());//Global Leaderboard
-        model.addAttribute("user", user);
+
+        // Set the avatar data URL for the current user
+        user.getAvatar().setAvatarDataURL(latestAvatar != null ? latestAvatar.getAvatarDataURL() : "/img/Null_Profile_Image.png");
+        model.addAttribute("currentUserAvatarURL", user.getAvatar().getAvatarDataURL());
+
+        // Separate the current user from other players in the global leaderboard
+        List<User> allPlayers = repo.findAllByOrderByScoreDesc();
+        allPlayers.remove(user); // Remove current user from global leaderboard
+        model.addAttribute("allPlayers", allPlayers);
+
+        // Set default avatar URL for players who don't have an avatar
+        for (User player : allPlayers) {
+            if (player.getAvatar() == null) {
+                player.setAvatar(new Avatar()); // Create a new Avatar object
+                player.getAvatar().setAvatarDataURL("/img/Null_Profile_Image.png");
+            }
+        }
+
+        // Sort the friends list based on their scores
+        List<User> friends = new ArrayList<>(user.getFriends());
+        Collections.sort(friends, Comparator.comparingInt(User::getScore).reversed());
+        model.addAttribute("friends", friends);
+
         return "leaderboard";
     }
 }

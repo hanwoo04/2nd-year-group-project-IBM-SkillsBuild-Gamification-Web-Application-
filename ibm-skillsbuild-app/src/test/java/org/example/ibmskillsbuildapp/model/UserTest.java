@@ -1,7 +1,6 @@
 package org.example.ibmskillsbuildapp.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -127,6 +126,28 @@ class UserTest {
         // Assert
         assertTrue(user3.getFriends().contains(user1));
         assertTrue(user3.getFriends().contains(user2));
+    }
+    @Test
+    void testDeleteFriend(){
+        // Arrange
+        User user1 = new User();
+        user1.setUserName("alice");
+
+        User user2 = new User();
+        user2.setUserName("bob");
+
+        User user3 = new User();
+        user3.setUserName("yash");
+
+        //Set up friend List
+        List<User> friends = new ArrayList<>();
+        friends.add(user1);
+        friends.add(user2);
+        user3.setFriends(friends);
+        user3.getFriends().remove(user2);
+        assertFalse(user3.getFriends().contains(user2));
+        assertTrue(user3.getFriends().contains(user1));
+        //In this scenario user 3 has removed user2 from a friend so the test checks if this user has been removed and only that user.
     }
 
 }

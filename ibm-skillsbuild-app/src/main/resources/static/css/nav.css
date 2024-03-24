@@ -45,14 +45,7 @@ nav a {
   transition: background-color 0.3s ease;
 }
 
-.dropdown > a {
-  padding: 0.5rem 0.5rem;
-  display: block;
-  text-align: center;
-  font-weight: bold;
-  border: 0.0625rem solid #8d8d8d;
-  border-radius: 0.25rem;
-}
+
 
 .dropdown:hover > a {
   border-bottom: none;
@@ -164,3 +157,23 @@ nav a {
   background-color: #1f70c1;
   color: white;
 }
+
+/* Avatar styles */
+.nav-avatar img {
+  width: 70px; 
+  height: 70px; 
+  border-radius: 50%; 
+  border: none; 
+  transition: transform 0.3s ease; 
+}
+
+.nav-avatar img:hover {
+  transform: scale(1.1); 
+}
+
+/* Focus styles */
+.nav-avatar img:focus {
+  outline: 2px solid #1f70c1; 
+}
+
+
