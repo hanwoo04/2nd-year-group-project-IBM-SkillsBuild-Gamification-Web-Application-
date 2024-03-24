@@ -54,7 +54,7 @@ You will need:
 
 4. **Set up MySQL connection**
 
-To setup a MySQL connection, you will need a MySQL server installed and running on your machine, and some way to create a schema and user. For this manual, we will be using the MySQL Windows Installer (8.0.36) for the MySQL server and MySQL Workbench, available at [SQL Installer](https://dev.mysql.com/downloads/installer/).
+To setup a MySQL connection, you will need a MySQL server installed and running on your machine, and some way to create a schema and user. For this guide, we will be using the MySQL Windows Installer (8.0.36) for the MySQL server and MySQL Workbench, available at [SQL Installer](https://dev.mysql.com/downloads/installer/).
 
 After installing your MySQL server and MySQL Workbench:
 
@@ -66,7 +66,7 @@ After installing your MySQL server and MySQL Workbench:
 
   ![SQL_Page2](../README_images/SQL_Page2.png "SQL connection")
 
-If the connection is not working, you can click ‘Configure Server Management...’ for more thorough testing.
+  If the connection is not working, you can click ‘Configure Server Management...’ for more thorough testing.
 
 - You should see the following popup after clicking ‘OK’
 
