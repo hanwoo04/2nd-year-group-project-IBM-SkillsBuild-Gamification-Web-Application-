@@ -1,10 +1,5 @@
 package org.example.ibmskillsbuildapp.controller;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import jakarta.servlet.http.HttpSession;
 import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.model.User;
@@ -16,6 +11,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 public class LeaderboardController {
@@ -51,8 +51,6 @@ public class LeaderboardController {
 
         // Separate the current user from other players in the global leaderboard
         List<User> allPlayers = repo.findAllByOrderByScoreDesc();
-        allPlayers.remove(user); // Remove current user from global leaderboard
-        model.addAttribute("allPlayers", allPlayers);
 
         // Set default avatar URL for players who don't have an avatar
         for (User player : allPlayers) {
@@ -62,8 +60,17 @@ public class LeaderboardController {
             }
         }
 
+        // Sort the allPlayers list based on their scores
+        Collections.sort(allPlayers, Comparator.comparingInt(User::getScore).reversed());
+
+        // Pass the allPlayers list to the model
+        model.addAttribute("allPlayers", allPlayers);
+
         // Sort the friends list based on their scores
         List<User> friends = new ArrayList<>(user.getFriends());
+        if (!friends.contains(user)) {
+            friends.add(user); // Add current user to friends list if not already present
+        }
         Collections.sort(friends, Comparator.comparingInt(User::getScore).reversed());
         model.addAttribute("friends", friends);
 

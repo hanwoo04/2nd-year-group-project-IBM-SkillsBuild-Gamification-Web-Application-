@@ -3,9 +3,7 @@
 
 <%
     String currentUserAvatarURL = (String) request.getAttribute("currentUserAvatarURL");
-    if (currentUserAvatarURL == null || currentUserAvatarURL.isEmpty() || currentUserAvatarURL.equals("avatar")) {
-        currentUserAvatarURL = request.getContextPath() + "/img/Null_Profile_Image.png";
-    }
+    currentUserAvatarURL = (currentUserAvatarURL == null || currentUserAvatarURL.isEmpty() || currentUserAvatarURL.equals("avatar")) ? request.getContextPath() + "/img/Null_Profile_Image.png" : currentUserAvatarURL;
 %>
 
 <!DOCTYPE html>
@@ -47,7 +45,7 @@
             </tr>
         </c:forEach>
         <!-- Display the current user in the global leaderboard -->
-        <c:if test="${not empty currentUser}">
+        <c:if test="${empty allPlayers}">
             <tr>
                 <td>
                     <div class="friend">
@@ -80,7 +78,7 @@
             </tr>
         </c:forEach>
         <!-- Display the current user in the friends leaderboard -->
-        <c:if test="${not empty currentUser}">
+        <c:if test="${empty friends}">
             <tr>
                 <td>
                     <div class="friend">
