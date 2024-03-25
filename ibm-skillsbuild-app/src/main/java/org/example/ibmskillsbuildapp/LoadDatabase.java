@@ -126,9 +126,9 @@ public class LoadDatabase {
 
                         // Add score to user
                         user.setScore(user.getScore() + 100);
+                        userRepository.save(user);
                     }
                 }
-
                 userCourseRepository.save(userCourse);
             }
         }
