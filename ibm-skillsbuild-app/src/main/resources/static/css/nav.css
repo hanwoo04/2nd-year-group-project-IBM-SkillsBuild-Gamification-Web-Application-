@@ -45,40 +45,19 @@ nav a {
   transition: background-color 0.3s ease;
 }
 
-
+#adminDropdown > a {
+  padding: 0.5rem 0.5rem;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  border: 0.0625rem solid #8d8d8d;
+  border-radius: 0.25rem;
+}
 
 .dropdown:hover > a {
   border-bottom: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
-
-.dropdown:hover .dropdown-content {
-  border-top: none;
-}
-
-/* Pseudo element for account dropdown to remove the border where button meets dropdown */
-#accountDropdown.dropdown:hover .dropdown-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 7.375rem;
-  width: calc(100% - 7.375rem); /* Width of pseudo element */
-  height: 0.0625rem;
-  background: #8d8d8d;
-  border-top-left-radius: 0.25rem;
-}
-
-/* Pseudo element for admin dropdown to remove the border where button meets dropdown */
-#adminDropdown.dropdown:hover .dropdown-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 7.375rem;
-  width: calc(100% - 7.375rem); /* Width of pseudo element */
-  height: 0.0625rem;
-  background: #8d8d8d;
-  border-top-right-radius: 0.25rem;
 }
 
 .dropdown a:hover {
@@ -99,7 +78,8 @@ nav a {
   z-index: 1;
   animation: fadeIn 0.5s ease-in-out;
   border: 0.0625rem solid #8d8d8d;
-  border-radius: 0.25rem 0 0.25rem 0.25rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
 }
 
 #adminDropdown .dropdown-content {

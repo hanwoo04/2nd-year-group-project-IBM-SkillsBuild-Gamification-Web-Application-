@@ -95,7 +95,7 @@ public class LoadDatabase {
 
         for (int i = 0; i < 25; i++) {
             User user = new User();
-            user.setUserName("User" + i);
+            user.setUserName("DemoUser" + i);
             user.setPassword(passwordEncoder.encode("password" + i));
             user = userRepository.save(user);
 
@@ -123,6 +123,9 @@ public class LoadDatabase {
 
                         // Randomly generate a rating
                         userCourse.setRating(random.nextInt(5) + 1);
+
+                        // Add score to user
+                        user.setScore(user.getScore() + 100);
                     }
                 }
 

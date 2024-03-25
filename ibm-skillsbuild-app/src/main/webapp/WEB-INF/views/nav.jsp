@@ -17,7 +17,6 @@ the name of the JSP file that you are including it in:
     }
 %>
 
-
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/nav.css">
 <nav>
@@ -33,7 +32,6 @@ the name of the JSP file that you are including it in:
                 <div class="avatar nav-avatar">
                     <img src="<%= avatarDataURL %>" alt="Avatar" width="50" height="50">
                 </div>
-
             </a>
             <div class="dropdown-content">
                 <a href="${pageContext.request.contextPath}/viewFriends">Friends</a>
@@ -64,7 +62,7 @@ the name of the JSP file that you are including it in:
             </li>
 
             <li><a href="${pageContext.request.contextPath}/comment-rating"
-                   class="${param.activePage == 'comment-rating' ? 'active' : ''}">Comment and rating</a>
+                   class="${param.activePage == 'comment-rating' ? 'active' : ''}">Comment and Rating</a>
             </li>
 
             <%-- Currently redundant, but checks if the user is logged in. If they aren't,
