@@ -21,17 +21,7 @@
     <div class="title">
         <h1>Quiz</h1>
     </div>
-    <a href="http://localhost:8080/streaks/4" class="streak">
-        <%-- Display streak count or "0 day streak" if streak count is null --%>
-        <c:choose>
-            <c:when test="${empty userStreak}">
-                0 day streak
-            </c:when>
-            <c:otherwise>
-                ${userStreak.streakCount} day streak
-            </c:otherwise>
-        </c:choose>
-    </a>
+
     <div class="container m_t_2">
         <div class="quiz">
             <div class="p_1"><progress max="8" value="0"></progress></div>
