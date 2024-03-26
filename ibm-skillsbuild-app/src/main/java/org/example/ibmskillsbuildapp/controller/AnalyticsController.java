@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AnalyticsController {
 
     /**
-     * Handles GET requests to the /viewAnalytics endpoint.
-     * Only users with the 'ADMIN' role can access this method.
+     * Handles GET requests to the /viewAnalytics endpoint. Only users with the 'ADMIN' role can
+     * access this method.
      *
      * @param model the Model object to be used in the view
      * @return the name of the analytics view

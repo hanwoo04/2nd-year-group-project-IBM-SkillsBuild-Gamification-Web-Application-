@@ -21,10 +21,10 @@ const fetchStreakInfo = async () => {
     // Set streak start date to 'streakCount' days ago from the current date
     streakStartDate.setDate(streakStartDate.getDate() - streakCount);
 
-    return { streakCount: streakCount, streakStartDate };
+    return {streakCount: streakCount, streakStartDate};
   } catch (error) {
     console.error('Error fetching streak information:', error);
-    return { streakCount: 0, streakStartDate: null }; // Default values if there's an error
+    return {streakCount: 0, streakStartDate: null}; // Default values if there's an error
   }
 };
 
@@ -43,7 +43,7 @@ const getStreakCount = async () => {
 
 // Function to render the calendar view
 const renderCalendar = async () => {
-  const { streakCount, streakStartDate } = await fetchStreakInfo(); // Fetch streak information
+  const {streakCount, streakStartDate} = await fetchStreakInfo(); // Fetch streak information
   const firstDayofMonth = new Date(currYear, currMonth, 1).getDay(); // Get the day of the week for the first day of the month
   const lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(); // Get the last date of the month
   let liTag = ""; // Variable to store HTML list items

@@ -1,6 +1,10 @@
 package org.example.ibmskillsbuildapp.controller;
 
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.model.User;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
@@ -11,11 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 @Controller
 public class LeaderboardController {
@@ -40,7 +39,9 @@ public class LeaderboardController {
         Avatar currentAvatar = currentUser.getAvatar();
 
         // Pass the avatar URL to the model
-        model.addAttribute("currentUserAvatarURL", currentAvatar != null ? currentAvatar.getAvatarDataURL() : "/img/Null_Profile_Image.png");
+        model.addAttribute("currentUserAvatarURL",
+            currentAvatar != null ? currentAvatar.getAvatarDataURL()
+                : "/img/Null_Profile_Image.png");
 
         // Separate the current user from other players in the global leaderboard
         List<User> allPlayers = repo.findAllByOrderByScoreDesc();
@@ -71,5 +72,4 @@ public class LeaderboardController {
 
         return "leaderboard";
     }
-
 }

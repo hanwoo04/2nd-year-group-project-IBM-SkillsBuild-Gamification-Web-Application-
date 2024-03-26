@@ -1,8 +1,12 @@
 package org.example.ibmskillsbuildapp;
 
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.example.ibmskillsbuildapp.model.Course;
@@ -19,8 +23,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import static org.mockito.Mockito.*;
 
 class LoadDatabaseTest {
 
@@ -60,7 +62,8 @@ class LoadDatabaseTest {
         courseRepositoryField.setAccessible(true);
         courseRepositoryField.set(loadDatabase, courseRepository);
 
-        Field userCourseRepositoryField = LoadDatabase.class.getDeclaredField("userCourseRepository");
+        Field userCourseRepositoryField = LoadDatabase.class.getDeclaredField(
+            "userCourseRepository");
         userCourseRepositoryField.setAccessible(true);
         userCourseRepositoryField.set(loadDatabase, userCourseRepository);
 

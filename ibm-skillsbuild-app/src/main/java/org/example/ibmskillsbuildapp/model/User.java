@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +78,7 @@ public class User {
         this.avatar = avatar;
         avatar.setUser(this); // Set the user for the avatar
     }
+
     public List<User> getFriends() {
         return friends;
     }
@@ -106,8 +106,6 @@ public class User {
     public List<UserLearningPath> getUserLearningPaths() {
         return userLearningPaths;
     }
-
-
 
     public void setUserLearningPaths(List<UserLearningPath> userLearningPaths) {
         this.userLearningPaths = userLearningPaths;

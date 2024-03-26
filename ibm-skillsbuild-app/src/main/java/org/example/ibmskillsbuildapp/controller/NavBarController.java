@@ -1,14 +1,12 @@
 package org.example.ibmskillsbuildapp.controller;
 
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.service.AvatarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.servlet.http.HttpSession;
-
-import java.util.List;
 
 @Controller
 public class NavBarController {
@@ -27,6 +25,4 @@ public class NavBarController {
 
         return "nav";
     }
-
-
 }

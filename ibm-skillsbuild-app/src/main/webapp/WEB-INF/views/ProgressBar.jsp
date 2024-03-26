@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,12 +39,12 @@
                 <span>${AIPercentage}%</span>
 
             </div>
-                <c:forEach var="course" items="${AI}">
-                    <p class="lighthover"><a href="${course.url}"
-                                             target="_blank">
+            <c:forEach var="course" items="${AI}">
+                <p class="lighthover"><a href="${course.url}"
+                                         target="_blank">
                         ${course.courseName}</a></p>
 
-                </c:forEach>
+            </c:forEach>
         </div>
 
 
@@ -91,4 +91,3 @@
 <script src="${pageContext.request.contextPath}/js/ProgressBar/ProgressBar.js"></script>
 </body>
 </html>
-

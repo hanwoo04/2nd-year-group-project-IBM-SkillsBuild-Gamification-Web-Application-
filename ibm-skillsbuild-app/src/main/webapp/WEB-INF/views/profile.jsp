@@ -7,11 +7,13 @@
     <title>Profile Page</title>
     <!-- Include CSS files -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/profile/profile.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/css/profile/profile.css">
     <!-- Include Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
 
@@ -34,11 +36,9 @@
 
     <!-- Add an Edit Avatar button/link with parameters -->
     <div class="edit-avatar">
-        <a href="/avatar?avatarDataURL=${avatarDataURL}&skinColor=${currentUserAvatarURL}&eyeColor=${currentUser.getAvatar().getEyeColor()}&hairType=${currentUser.getAvatar().getHairType()}&hairColor=${currentUser.getAvatar().getHairColor()}&noseSize=${currentUser.getAvatar().getNoseSize()}&mouthSize=${currentUser.getAvatar().getMouthSize()}&glasses=${currentUser.getAvatar().isGlasses()}">Edit Avatar</a>
+        <a href="/avatar?avatarDataURL=${avatarDataURL}&skinColor=${currentUserAvatarURL}&eyeColor=${currentUser.getAvatar().getEyeColor()}&hairType=${currentUser.getAvatar().getHairType()}&hairColor=${currentUser.getAvatar().getHairColor()}&noseSize=${currentUser.getAvatar().getNoseSize()}&mouthSize=${currentUser.getAvatar().getMouthSize()}&glasses=${currentUser.getAvatar().isGlasses()}">Edit
+            Avatar</a>
     </div>
-
-
-
 
 
     <!-- Display streak message and streak count -->

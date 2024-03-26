@@ -1,6 +1,7 @@
 package org.example.ibmskillsbuildapp.model;
 
 public class Comment {
+
     private String text;
 
     public Comment() {

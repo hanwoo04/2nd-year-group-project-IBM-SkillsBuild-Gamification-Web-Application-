@@ -3,7 +3,9 @@
 
 <%
     String currentUserAvatarURL = (String) request.getAttribute("currentUserAvatarURL");
-    currentUserAvatarURL = (currentUserAvatarURL == null || currentUserAvatarURL.isEmpty() || currentUserAvatarURL.equals("avatar")) ? request.getContextPath() + "/img/Null_Profile_Image.png" : currentUserAvatarURL;
+    currentUserAvatarURL = (currentUserAvatarURL == null || currentUserAvatarURL.isEmpty()
+            || currentUserAvatarURL.equals("avatar")) ? request.getContextPath()
+            + "/img/Null_Profile_Image.png" : currentUserAvatarURL;
 %>
 
 <!DOCTYPE html>
@@ -14,10 +16,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/leaderboard/leaderboard.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/css/leaderboard/leaderboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
 <jsp:include page="nav.jsp">
@@ -37,7 +41,8 @@
             <tr>
                 <td>
                     <div class="friend">
-                        <img src="${player.avatar.avatarDataURL}" alt="Avatar" width="50" height="50">
+                        <img src="${player.avatar.avatarDataURL}" alt="Avatar" width="50"
+                             height="50">
                             ${player.userName}
                     </div>
                 </td>
@@ -70,7 +75,8 @@
             <tr>
                 <td>
                     <div class="friend">
-                        <img src="${friend.avatar.avatarDataURL}" alt="Avatar" width="50" height="50">
+                        <img src="${friend.avatar.avatarDataURL}" alt="Avatar" width="50"
+                             height="50">
                             ${friend.userName}
                     </div>
                 </td>

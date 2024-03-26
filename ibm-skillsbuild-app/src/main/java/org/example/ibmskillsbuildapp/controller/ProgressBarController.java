@@ -1,6 +1,14 @@
 package org.example.ibmskillsbuildapp.controller;
 
-import org.example.ibmskillsbuildapp.model.*;
+import static org.example.ibmskillsbuildapp.model.LearningStatus.COMPLETED;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import org.example.ibmskillsbuildapp.model.Course;
+import org.example.ibmskillsbuildapp.model.LearningPath;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.model.UserCourse;
 import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
 import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
@@ -10,13 +18,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.text.DecimalFormat;
-import java.util.*;
-import static org.example.ibmskillsbuildapp.model.LearningStatus.COMPLETED;
 
 @Controller
 public class ProgressBarController {
-
 
     @Autowired
     private LearningPathRepository learningPathRepository;
@@ -37,7 +41,8 @@ public class ProgressBarController {
         List<Course> CC = new ArrayList<>();
         List<Course> DT = new ArrayList<>();
         Iterable<LearningPath> learningPaths = learningPathRepository.findAll();
-        List<UserCourse> completedCourses = userCourseRepository.findAllByUserAndStatus(user,COMPLETED);
+        List<UserCourse> completedCourses = userCourseRepository.findAllByUserAndStatus(user,
+            COMPLETED);
 
         for (LearningPath path : learningPaths) {
             for (Course course : path.getCourses()) {
@@ -57,7 +62,8 @@ public class ProgressBarController {
         int CCcount = 0;
         int DTCount = 0;
         for (UserCourse userCourse : completedCourses) {
-            if (userCourse.getCourse().getLearningPath().getPathName().equals("Artificial Intelligence")) {
+            if (userCourse.getCourse().getLearningPath().getPathName()
+                .equals("Artificial Intelligence")) {
                 AICount += 1;
             }
 
@@ -87,6 +93,3 @@ public class ProgressBarController {
         return "ProgressBar";
     }
 }
-
-
-

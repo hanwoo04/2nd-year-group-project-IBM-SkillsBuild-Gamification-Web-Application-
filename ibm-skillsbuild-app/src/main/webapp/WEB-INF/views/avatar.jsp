@@ -30,7 +30,8 @@
         </select>
         <label for="eyeColor">Eye Color:</label>
         <select id="eyeColor" onchange="changeEyeColor()">
-            <option value="#4e3c28" ${eyeColor eq '#4e3c28' ? 'selected' : ''}>Brown</option> <!-- Darker brown -->
+            <option value="#4e3c28" ${eyeColor eq '#4e3c28' ? 'selected' : ''}>Brown</option>
+            <!-- Darker brown -->
             <option value="#348899" ${eyeColor eq '#348899' ? 'selected' : ''}>Blue</option>
             <option value="#90c3d4" ${eyeColor eq '#90c3d4' ? 'selected' : ''}>Gray</option>
         </select>
@@ -39,7 +40,8 @@
             <option value="curly" ${hairType eq 'curly' ? 'selected' : ''}>Curly Hair</option>
             <option value="short" ${hairType eq 'short' ? 'selected' : ''}>Short Hair</option>
             <option value="long" ${hairType eq 'long' ? 'selected' : ''}>Long Hair</option>
-            <option value="bald" ${hairType eq 'bald' ? 'selected' : ''}>Bald</option> <!-- Added bald option -->
+            <option value="bald" ${hairType eq 'bald' ? 'selected' : ''}>Bald</option>
+            <!-- Added bald option -->
         </select>
         <label for="hairColor">Hair Color:</label>
         <select id="hairColor" onchange="changeHairColor()">
@@ -61,12 +63,11 @@
             <option value="big" ${mouthSize eq 'big' ? 'selected' : ''}>Big Mouth</option>
         </select>
         <label for="glassesCheckbox">Wear Glasses:</label>
-        <input type="checkbox" id="glassesCheckbox" onchange="changeGlasses()" ${glasses ? 'checked' : ''}>
+        <input type="checkbox" id="glassesCheckbox"
+               onchange="changeGlasses()" ${glasses ? 'checked' : ''}>
         <button onclick="saveAvatar()">Save Avatar</button>
     </div>
 </div>
-
-
 
 
 <script src="/js/avatar/avatar.js"></script>

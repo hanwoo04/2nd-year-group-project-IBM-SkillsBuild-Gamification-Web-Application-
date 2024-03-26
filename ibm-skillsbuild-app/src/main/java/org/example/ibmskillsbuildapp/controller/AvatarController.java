@@ -1,26 +1,25 @@
 package org.example.ibmskillsbuildapp.controller;
-import org.example.ibmskillsbuildapp.model.User;
-import org.example.ibmskillsbuildapp.repo.UserRepository;
-import org.example.ibmskillsbuildapp.service.UserService;
-import org.springframework.security.core.Authentication;
 
 import jakarta.servlet.http.HttpSession;
-
-import org.example.ibmskillsbuildapp.model.Avatar;
-import org.example.ibmskillsbuildapp.service.AvatarService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Base64;
-import java.util.List;
+import org.example.ibmskillsbuildapp.model.Avatar;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.example.ibmskillsbuildapp.service.AvatarService;
+import org.example.ibmskillsbuildapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class AvatarController {
@@ -29,9 +28,9 @@ public class AvatarController {
     private final UserService userService;
     private final UserRepository userRepository;
 
-
     @Autowired
-    public AvatarController(AvatarService avatarService, UserService userService, UserRepository userRepository) {
+    public AvatarController(AvatarService avatarService, UserService userService,
+        UserRepository userRepository) {
         this.avatarService = avatarService;
         this.userService = userService;
         this.userRepository = userRepository;
@@ -69,21 +68,22 @@ public class AvatarController {
         return "avatar";
     }
 
-
     @PostMapping("/saveAvatar")
     public ResponseEntity<String> saveAvatar(@RequestParam("avatar") MultipartFile avatarFile,
-                                             @RequestParam("skinColor") String skinColor,
-                                             @RequestParam("eyeColor") String eyeColor,
-                                             @RequestParam("hairType") String hairType,
-                                             @RequestParam("hairColor") String hairColor,
-                                             @RequestParam("noseSize") String noseSize,
-                                             @RequestParam("mouthSize") String mouthSize,
-                                             @RequestParam(value = "glasses", required = false, defaultValue = "false") boolean glasses,
-                                             HttpSession session) {
+        @RequestParam("skinColor") String skinColor,
+        @RequestParam("eyeColor") String eyeColor,
+        @RequestParam("hairType") String hairType,
+        @RequestParam("hairColor") String hairColor,
+        @RequestParam("noseSize") String noseSize,
+        @RequestParam("mouthSize") String mouthSize,
+        @RequestParam(value = "glasses", required = false, defaultValue = "false") boolean glasses,
+        HttpSession session) {
         try {
             // Process the avatarFile (MultipartFile)
             byte[] avatarData = avatarFile.getBytes();
-            String avatarDataURL = "data:" + avatarFile.getContentType() + ";base64," + Base64.getEncoder().encodeToString(avatarData);
+            String avatarDataURL =
+                "data:" + avatarFile.getContentType() + ";base64," + Base64.getEncoder()
+                    .encodeToString(avatarData);
 
             // Get the authenticated user
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -118,12 +118,9 @@ public class AvatarController {
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to save avatar. Please try again later.");
+                .body("Failed to save avatar. Please try again later.");
         }
     }
-
-
-
 
     @RequestMapping("/profile")
     public String profilePage(Model model, HttpSession session, Principal principal) {
@@ -149,8 +146,4 @@ public class AvatarController {
 
         return "profile"; // Assuming your profile page JSP file is named profile.jsp
     }
-
-
-
-
 }

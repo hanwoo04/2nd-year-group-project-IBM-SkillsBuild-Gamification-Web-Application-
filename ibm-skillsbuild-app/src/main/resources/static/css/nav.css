@@ -140,20 +140,20 @@ nav a {
 
 /* Avatar styles */
 .nav-avatar img {
-  width: 70px; 
-  height: 70px; 
-  border-radius: 50%; 
-  border: none; 
-  transition: transform 0.3s ease; 
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  transition: transform 0.3s ease;
 }
 
 .nav-avatar img:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 /* Focus styles */
 .nav-avatar img:focus {
-  outline: 2px solid #1f70c1; 
+  outline: 2px solid #1f70c1;
 }
 
 

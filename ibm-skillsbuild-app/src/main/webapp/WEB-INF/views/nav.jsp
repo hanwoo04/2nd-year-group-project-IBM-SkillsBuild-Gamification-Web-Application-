@@ -13,7 +13,8 @@ the name of the JSP file that you are including it in:
 <%
     String avatarDataURL = (String) session.getAttribute("avatarDataURL");
     if (avatarDataURL == null || avatarDataURL.isEmpty()) {
-        avatarDataURL = session.getServletContext().getContextPath() + "/img/Null_Profile_Image.png";
+        avatarDataURL =
+                session.getServletContext().getContextPath() + "/img/Null_Profile_Image.png";
     }
 %>
 
@@ -43,7 +44,8 @@ the name of the JSP file that you are including it in:
             <div class="dropdown" id="adminDropdown">
                 <a href="javascript:void(0)">Admin</a>
                 <div class="dropdown-content">
-                    <a href="${pageContext.request.contextPath}/viewAnalytics">Analytics Dashboard</a>
+                    <a href="${pageContext.request.contextPath}/viewAnalytics">Analytics
+                        Dashboard</a>
                 </div>
             </div>
         </sec:authorize>
@@ -62,7 +64,8 @@ the name of the JSP file that you are including it in:
             </li>
 
             <li><a href="${pageContext.request.contextPath}/comment-rating"
-                   class="${param.activePage == 'comment-rating' ? 'active' : ''}">Comment and Rating</a>
+                   class="${param.activePage == 'comment-rating' ? 'active' : ''}">Comment and
+                Rating</a>
             </li>
 
             <%-- Currently redundant, but checks if the user is logged in. If they aren't,

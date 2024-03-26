@@ -17,11 +17,10 @@ public class Question {
     private int ans;
 
     public Question() {
-
     }
 
-
-    public Question(int quesId, String title, String optionA, String optionB, String optionC, int ans) {
+    public Question(int quesId, String title, String optionA, String optionB, String optionC,
+        int ans) {
         this.quesId = quesId;
         this.title = title;
         this.optionA = optionA;
@@ -29,6 +28,4 @@ public class Question {
         this.optionC = optionC;
         this.ans = ans;
     }
-
-
 }

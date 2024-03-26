@@ -143,20 +143,20 @@ function quizInit() {
     } // END nextQuestion
 
     // RESULTS
-      function calculateResults() {
-          let resultText = ""; // Initialize an empty string to store the result text
-          // Find the result corresponding to the user's total score
-          for (let i = 0; i < results.length; i++) {
-              if (currentScore >= results[i].minScore) {
-                  resultText = results[i].text;
-                  break; // Break the loop once the first suitable result is found
-              }
-          }
-          // Display the result text
-          $('.quiz .question').html(
-              '<p class="questionText">Quiz Complete. Here are the Results:</p><p>'
-              + resultText + '</p>');
+    function calculateResults() {
+      let resultText = ""; // Initialize an empty string to store the result text
+      // Find the result corresponding to the user's total score
+      for (let i = 0; i < results.length; i++) {
+        if (currentScore >= results[i].minScore) {
+          resultText = results[i].text;
+          break; // Break the loop once the first suitable result is found
+        }
       }
+      // Display the result text
+      $('.quiz .question').html(
+          '<p class="questionText">Quiz Complete. Here are the Results:</p><p>'
+          + resultText + '</p>');
+    }
   } // END quiz engine
 
   // Init render

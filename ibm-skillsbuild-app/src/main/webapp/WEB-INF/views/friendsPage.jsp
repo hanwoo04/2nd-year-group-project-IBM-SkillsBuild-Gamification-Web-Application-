@@ -3,7 +3,8 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/global.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Friends/friendsList.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/css/Friends/friendsList.css">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -28,24 +29,28 @@
     <div class="results">
         <c:forEach items="${searchResults}" var="result">
             <div class="friend">
-                <img src="${pageContext.request.contextPath}/img/Null_Profile_Image.png" alt="Avatar">
+                <img src="${pageContext.request.contextPath}/img/Null_Profile_Image.png"
+                     alt="Avatar">
                 <p>${result.getUserName()}</p>
                 <form action="addFriend" method="post">
                     <input type="hidden" name="friendId" value="${result.id}">
                     <input type="hidden" name="userId" value="${user.id}">
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                     <input type="submit" value="Add Friend" class="addFriend">
-                </form><!-- The form acts as a button to add the user as a friend providing all necessary information in the background-->
+                </form>
+                <!-- The form acts as a button to add the user as a friend providing all necessary information in the background-->
             </div>
         </c:forEach>
     </div>
 </c:if> <!-- Stops css showing up until anything is searched-->
 <div class="container">
     <div class="friends">
-        <p>${friends.size()} Friends</p><!--Provides list of friends along with option to remove them as a friend-->
+        <p>${friends.size()} Friends</p>
+        <!--Provides list of friends along with option to remove them as a friend-->
         <c:forEach items="${friends}" var="friend">
             <div class="friend">
-                <img src="${pageContext.request.contextPath}/img/Null_Profile_Image.png" alt="Avatar">
+                <img src="${pageContext.request.contextPath}/img/Null_Profile_Image.png"
+                     alt="Avatar">
                 <p>${friend.getUserName()}</p>
                 <form action="deleteFriend" method="post">
                     <input type="hidden" name="friendId" value="${friend.id}">
@@ -56,11 +61,13 @@
             </div>
         </c:forEach>
     </div>
-    <div class="followers"><!-- Shows a list of people that have the user in their friends list/follow the user-->
+    <div class="followers">
+        <!-- Shows a list of people that have the user in their friends list/follow the user-->
         <p>${followers.size()} Followers </p>
         <c:forEach items="${followers}" var="follower">
             <div class="follower">
-                <img src="${pageContext.request.contextPath}/img/Null_Profile_Image.png" alt="Avatar">
+                <img src="${pageContext.request.contextPath}/img/Null_Profile_Image.png"
+                     alt="Avatar">
                 <p>${follower.getUserName()}</p>
             </div>
         </c:forEach>

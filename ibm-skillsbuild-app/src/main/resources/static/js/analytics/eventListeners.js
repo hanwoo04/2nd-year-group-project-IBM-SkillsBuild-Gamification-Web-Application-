@@ -6,7 +6,7 @@
 import fetchData from './fetchData.js';
 import createChart from './chart.js';
 import sortData from './sortData.js';
-import {searchCourse, displayMatchingCourses} from './search.js';
+import {displayMatchingCourses, searchCourse} from './search.js';
 
 /**
  * Adds event listeners to the DOM elements.

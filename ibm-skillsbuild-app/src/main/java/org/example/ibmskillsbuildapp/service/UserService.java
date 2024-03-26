@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Service class for managing {@link UserService} entities. This service provides methods for common
- * operations such as creating users, setting roles, friends, learning paths and courses and adds them to the repository
- * /database.
+ * operations such as creating users, setting roles, friends, learning paths and courses and adds
+ * them to the repository /database.
  */
 
 @Service
@@ -42,10 +42,10 @@ public class UserService {
     private LearningPathRepository learningPathRepository;
 
     /**
-    * Checks if the user repository is empty.
-    *
-    * @return `true` if the repository is empty, otherwise `false`.
-    */
+     * Checks if the user repository is empty.
+     *
+     * @return `true` if the repository is empty, otherwise `false`.
+     */
     public boolean isEmpty() {
         return userRepository.count() == 0;
     }

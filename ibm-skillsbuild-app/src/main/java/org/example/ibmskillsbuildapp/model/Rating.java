@@ -1,6 +1,7 @@
 package org.example.ibmskillsbuildapp.model;
 
 public class Rating {
+
     private int value;
 
     public Rating() {

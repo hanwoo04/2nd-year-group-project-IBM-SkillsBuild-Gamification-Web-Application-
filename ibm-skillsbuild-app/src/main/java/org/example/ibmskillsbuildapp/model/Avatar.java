@@ -1,9 +1,18 @@
 package org.example.ibmskillsbuildapp.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Avatar {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,7 +49,8 @@ public class Avatar {
     public Avatar() {
     }
 
-    public Avatar(String avatarDataURL, String skinColor, String eyeColor, String hairType, String hairColor, String noseSize, String mouthSize, boolean glasses) {
+    public Avatar(String avatarDataURL, String skinColor, String eyeColor, String hairType,
+        String hairColor, String noseSize, String mouthSize, boolean glasses) {
         this.avatarDataURL = avatarDataURL;
         this.skinColor = skinColor;
         this.eyeColor = eyeColor;
@@ -132,15 +142,15 @@ public class Avatar {
     @Override
     public String toString() {
         return "Avatar{" +
-                "id=" + id +
-                ", avatarDataURL='" + avatarDataURL + '\'' +
-                ", skinColor='" + skinColor + '\'' +
-                ", eyeColor='" + eyeColor + '\'' +
-                ", hairType='" + hairType + '\'' +
-                ", hairColor='" + hairColor + '\'' +
-                ", noseSize='" + noseSize + '\'' +
-                ", mouthSize='" + mouthSize + '\'' +
-                ", glasses=" + glasses +
-                '}';
+            "id=" + id +
+            ", avatarDataURL='" + avatarDataURL + '\'' +
+            ", skinColor='" + skinColor + '\'' +
+            ", eyeColor='" + eyeColor + '\'' +
+            ", hairType='" + hairType + '\'' +
+            ", hairColor='" + hairColor + '\'' +
+            ", noseSize='" + noseSize + '\'' +
+            ", mouthSize='" + mouthSize + '\'' +
+            ", glasses=" + glasses +
+            '}';
     }
 }
