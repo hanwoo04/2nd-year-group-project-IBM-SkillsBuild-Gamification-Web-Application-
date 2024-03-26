@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.text.DecimalFormat;
 import java.util.*;
-
 import static org.example.ibmskillsbuildapp.model.LearningStatus.COMPLETED;
 
 @Controller
@@ -38,7 +37,7 @@ public class ProgressBarController {
         List<Course> CC = new ArrayList<>();
         List<Course> DT = new ArrayList<>();
         Iterable<LearningPath> learningPaths = learningPathRepository.findAll();
-        List<UserCourse> completedCourses = userCourseRepository.findAllByStatus(COMPLETED);
+        List<UserCourse> completedCourses = userCourseRepository.findAllByUserAndStatus(user,COMPLETED);
 
         for (LearningPath path : learningPaths) {
             for (Course course : path.getCourses()) {
@@ -78,7 +77,6 @@ public class ProgressBarController {
         String CCPercentage = df.format(CCPercent);
         double DTPercent = !DT.isEmpty() ? (double) DTCount / DT.size() * 100 : 0;
         String DTPercentage = df.format(DTPercent);
-
 
         model.addAttribute("AI", AI);
         model.addAttribute("CC", CC);

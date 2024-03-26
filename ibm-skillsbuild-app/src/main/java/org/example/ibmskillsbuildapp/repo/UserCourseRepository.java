@@ -23,5 +23,5 @@ public interface UserCourseRepository extends CrudRepository<UserCourse, Long> {
      */
     UserCourse findByUserAndCourse(User user, Course course);
 
-    List<UserCourse> findAllByStatus(LearningStatus status);
+    List<UserCourse> findAllByUserAndStatus(User user, LearningStatus status);
 }

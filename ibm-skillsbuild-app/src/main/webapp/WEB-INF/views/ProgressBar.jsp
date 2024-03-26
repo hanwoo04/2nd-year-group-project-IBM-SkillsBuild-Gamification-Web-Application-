@@ -37,6 +37,7 @@
 
             <div class="percentage">
                 <span>${AIPercentage}%</span>
+
             </div>
                 <c:forEach var="course" items="${AI}">
                     <p class="lighthover"><a href="${course.url}"
