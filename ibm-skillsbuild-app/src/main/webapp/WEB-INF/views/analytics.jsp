@@ -44,6 +44,7 @@
     <div id="infoContainer"></div>
 </div>
 <script type="module" src="${pageContext.request.contextPath}/js/analytics/main.js"></script>
-<script type="module" src="${pageContext.request.contextPath}/js/analytics/eventListeners.js"></script>
+<script type="module" src="${pageContext.request.contextPath}/js/analytics/eventListeners.js">
+</script><script src="${pageContext.request.contextPath}/js/scrollbar.js"></script>
 </body>
 </html>
