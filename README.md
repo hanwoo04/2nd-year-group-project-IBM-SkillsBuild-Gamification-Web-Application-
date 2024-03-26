@@ -11,8 +11,6 @@
 
 This project is a gamification web application of IBM's SkillsBuild, a free skills-based learning program.
 
-It features a secure login system, a dashboard to view your progress, and a leaderboard to compare yourself with others.
-
 For more information on IBM SkillsBuild, please visit [IBM SkillsBuild](https://skillsbuild.org/).
 
 The website is not suitable for mobile viewing.
