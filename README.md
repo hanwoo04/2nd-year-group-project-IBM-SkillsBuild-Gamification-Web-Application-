@@ -131,6 +131,7 @@ How to run the program on your local machine.
 - [Gradle](https://gradle.org/)
 - [MySQL](https://www.mysql.com/)
 - [Bootstrap](https://getbootstrap.com/)
+- [jQuery](https://jquery.com/)
 - [Chart.js](https://www.chartjs.org/)
 
 ## Contact
