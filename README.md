@@ -34,19 +34,19 @@ You will need:
 
 1. **Clone the repository**
 
-   ```bash
+   ```console
    git clone https://campus.cs.le.ac.uk/gitlab/co2201-2024/group-01
    ```
 
 2. **Navigate to the project directory**
 
-   ```bash
+   ```console
    cd .\group-01\ibm-skillsbuild-app\
    ```
 
 3. **Install dependencies**
 
-   ```bash
+   ```console
    ./gradlew build
    ```
 
@@ -115,7 +115,7 @@ How to run the program on your local machine.
 
 1. **Start the application**
 
-   ```bash
+   ```console
    ./gradlew bootRun
    ```
 
