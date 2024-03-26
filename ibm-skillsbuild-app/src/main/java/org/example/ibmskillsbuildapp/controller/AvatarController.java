@@ -1,11 +1,17 @@
 package org.example.ibmskillsbuildapp.controller;
+import org.example.ibmskillsbuildapp.model.User;
+import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.example.ibmskillsbuildapp.service.UserService;
+import org.springframework.security.core.Authentication;
 
 import jakarta.servlet.http.HttpSession;
+
 import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.service.AvatarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,29 +26,37 @@ import java.util.List;
 public class AvatarController {
 
     private final AvatarService avatarService;
+    private final UserService userService;
+    private final UserRepository userRepository;
+
 
     @Autowired
-    public AvatarController(AvatarService avatarService) {
+    public AvatarController(AvatarService avatarService, UserService userService, UserRepository userRepository) {
         this.avatarService = avatarService;
+        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @RequestMapping("/avatar")
-    public String avatarPage(Model model) {
-        // Retrieve the latest avatar data or set default values if no avatars are found
-        List<Avatar> avatars = avatarService.getAllAvatars();
-        Avatar latestAvatar = avatars.isEmpty() ? null : avatars.get(avatars.size() - 1);
+    public String avatarPage(Model model, Principal principal) {
+        // Retrieve the authenticated user
+        String username = principal.getName();
+        User user = userRepository.findByUserName(username);
 
-        // Pass the latest avatar data to the avatar customization page
-        if (latestAvatar != null) {
-            model.addAttribute("skinColor", latestAvatar.getSkinColor());
-            model.addAttribute("eyeColor", latestAvatar.getEyeColor());
-            model.addAttribute("hairType", latestAvatar.getHairType());
-            model.addAttribute("hairColor", latestAvatar.getHairColor());
-            model.addAttribute("noseSize", latestAvatar.getNoseSize());
-            model.addAttribute("mouthSize", latestAvatar.getMouthSize());
-            model.addAttribute("glasses", latestAvatar.isGlasses());
+        // Retrieve the associated avatar
+        Avatar avatar = user.getAvatar();
+
+        if (avatar != null) {
+            // Pass the avatar data to the avatar customization page
+            model.addAttribute("skinColor", avatar.getSkinColor());
+            model.addAttribute("eyeColor", avatar.getEyeColor());
+            model.addAttribute("hairType", avatar.getHairType());
+            model.addAttribute("hairColor", avatar.getHairColor());
+            model.addAttribute("noseSize", avatar.getNoseSize());
+            model.addAttribute("mouthSize", avatar.getMouthSize());
+            model.addAttribute("glasses", avatar.isGlasses());
         } else {
-            // Set default values if no avatars are found
+            // No avatar found, set default data or handle as needed
             model.addAttribute("skinColor", "#ffddb3"); // Default to light skin color
             model.addAttribute("eyeColor", "#66533d"); // Default to brown eye color
             model.addAttribute("hairType", "curly"); // Default to curly hair type
@@ -55,6 +69,7 @@ public class AvatarController {
         return "avatar";
     }
 
+
     @PostMapping("/saveAvatar")
     public ResponseEntity<String> saveAvatar(@RequestParam("avatar") MultipartFile avatarFile,
                                              @RequestParam("skinColor") String skinColor,
@@ -63,19 +78,27 @@ public class AvatarController {
                                              @RequestParam("hairColor") String hairColor,
                                              @RequestParam("noseSize") String noseSize,
                                              @RequestParam("mouthSize") String mouthSize,
-                                             @RequestParam(value = "glasses", required = false, defaultValue = "false") boolean glasses) {
+                                             @RequestParam(value = "glasses", required = false, defaultValue = "false") boolean glasses,
+                                             HttpSession session) {
         try {
-            if (avatarFile.isEmpty() || skinColor.isEmpty() || eyeColor.isEmpty() || hairType.isEmpty() ||
-                    hairColor.isEmpty() || noseSize.isEmpty() || mouthSize.isEmpty()) {
-                return ResponseEntity.badRequest().body("Missing avatar data in the request");
-            }
-
             // Process the avatarFile (MultipartFile)
             byte[] avatarData = avatarFile.getBytes();
             String avatarDataURL = "data:" + avatarFile.getContentType() + ";base64," + Base64.getEncoder().encodeToString(avatarData);
 
-            // Save the avatar to the database
-            Avatar avatar = new Avatar();
+            // Get the authenticated user
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String username = auth.getName();
+
+            // Retrieve the user
+            User user = userRepository.findByUserName(username);
+
+            // Create or update the avatar
+            Avatar avatar = user.getAvatar(); // Get the user's existing avatar if any, or create a new one
+            if (avatar == null) {
+                avatar = new Avatar();
+            }
+
+            // Set avatar properties
             avatar.setAvatarDataURL(avatarDataURL);
             avatar.setSkinColor(skinColor);
             avatar.setEyeColor(eyeColor);
@@ -85,6 +108,10 @@ public class AvatarController {
             avatar.setMouthSize(mouthSize);
             avatar.setGlasses(glasses);
 
+            // Set the avatar's user
+            avatar.setUser(user);
+
+            // Save the avatar
             avatarService.saveAvatar(avatar);
 
             return ResponseEntity.ok("Avatar saved successfully!");
@@ -95,23 +122,26 @@ public class AvatarController {
         }
     }
 
+
+
+
     @RequestMapping("/profile")
     public String profilePage(Model model, HttpSession session, Principal principal) {
-        List<Avatar> avatars = avatarService.getAllAvatars();
-
-        // Retrieve the username
+        // Retrieve the authenticated user
         String username = principal.getName();
+        User user = userRepository.findByUserName(username);
 
-        if (!avatars.isEmpty()) {
-            // Pass the latest avatar data to the profile page
-            Avatar latestAvatar = avatars.get(avatars.size() - 1);
-            session.setAttribute("avatarDataURL", latestAvatar.getAvatarDataURL());
+        // Retrieve the associated avatar
+        Avatar avatar = user.getAvatar();
+
+        if (avatar != null) {
+            // Pass the avatar data to the profile page
+            session.setAttribute("avatarDataURL", avatar.getAvatarDataURL());
         } else {
-            // No avatars found, set default data or handle as needed
+            // No avatar found, set default data or handle as needed
             session.setAttribute("avatarDataURL", "/img/Null_Profile_Image.png");
         }
 
-        model.addAttribute("avatars", avatars); // Pass all avatars to the profile page
         model.addAttribute("username", username); // Pass the username to the profile page
 
         // Also add the avatarDataURL to the model for use in the nav bar
@@ -119,6 +149,7 @@ public class AvatarController {
 
         return "profile"; // Assuming your profile page JSP file is named profile.jsp
     }
+
 
 
 

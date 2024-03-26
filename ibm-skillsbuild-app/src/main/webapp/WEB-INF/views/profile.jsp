@@ -34,8 +34,12 @@
 
     <!-- Add an Edit Avatar button/link with parameters -->
     <div class="edit-avatar">
-        <a href="/avatar?avatarDataURL=${sessionScope.avatarDataURL}&skinColor=${sessionScope.skinColor}&eyeColor=${sessionScope.eyeColor}&hairType=${sessionScope.hairType}&hairColor=${sessionScope.hairColor}&noseSize=${sessionScope.noseSize}&mouthSize=${sessionScope.mouthSize}&glasses=${sessionScope.glasses}">Edit Avatar</a>
+        <a href="/avatar?avatarDataURL=${avatarDataURL}&skinColor=${currentUserAvatarURL}&eyeColor=${currentUser.getAvatar().getEyeColor()}&hairType=${currentUser.getAvatar().getHairType()}&hairColor=${currentUser.getAvatar().getHairColor()}&noseSize=${currentUser.getAvatar().getNoseSize()}&mouthSize=${currentUser.getAvatar().getMouthSize()}&glasses=${currentUser.getAvatar().isGlasses()}">Edit Avatar</a>
     </div>
+
+
+
+
 
     <!-- Display streak message and streak count -->
     <div class="streak-message">

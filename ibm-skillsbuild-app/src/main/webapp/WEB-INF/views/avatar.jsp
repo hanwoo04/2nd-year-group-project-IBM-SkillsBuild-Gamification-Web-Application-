@@ -65,6 +65,10 @@
         <button onclick="saveAvatar()">Save Avatar</button>
     </div>
 </div>
+
+
+
+
 <script src="/js/avatar/avatar.js"></script>
 </body>
 </html>

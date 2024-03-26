@@ -313,8 +313,9 @@ function saveAvatar() {
     formData.append('hairType', hairType); // Append the selected hair type
     formData.append('hairColor', hairColor); // Append the selected hair color
     formData.append('noseSize', noseSize); // Append the selected nose size
-    formData.append('mouthSize', mouthSize); // Append the selected nose size
-    formData.append('glasses', glasses); // Append the glasses information
+    formData.append('mouthSize', mouthSize); // Append the selected mouth size
+    formData.append('glasses', glasses ? 'true' : 'false'); // Append the glasses information as string 'true' or 'false'
+
 
     // Obtain the CSRF token from the page's meta tag
     const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");

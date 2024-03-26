@@ -19,11 +19,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String userName;
     private String password;
     private int score;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Avatar avatar;
 
     @ManyToMany
@@ -76,8 +77,8 @@ public class User {
 
     public void setAvatar(Avatar avatar) {
         this.avatar = avatar;
+        avatar.setUser(this); // Set the user for the avatar
     }
-
     public List<User> getFriends() {
         return friends;
     }
@@ -105,6 +106,8 @@ public class User {
     public List<UserLearningPath> getUserLearningPaths() {
         return userLearningPaths;
     }
+
+
 
     public void setUserLearningPaths(List<UserLearningPath> userLearningPaths) {
         this.userLearningPaths = userLearningPaths;

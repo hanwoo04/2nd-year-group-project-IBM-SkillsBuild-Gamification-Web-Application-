@@ -1,16 +1,16 @@
 package org.example.ibmskillsbuildapp.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Avatar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id") // Assuming "user_id" is the correct column name
+    private User user;
 
     @Column(columnDefinition = "TEXT")
     private String avatarDataURL;
@@ -58,6 +58,10 @@ public class Avatar {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAvatarDataURL() {

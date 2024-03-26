@@ -1,8 +1,6 @@
 package org.example.ibmskillsbuildapp.controller;
 
-import org.example.ibmskillsbuildapp.model.Avatar;
 import org.example.ibmskillsbuildapp.service.AvatarService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +8,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -28,12 +28,8 @@ public class AvatarControllerTest {
     @Autowired
     private AvatarService avatarService;
 
-    @BeforeEach
-    public void setUp() {
-        // Setup any necessary data before each test
-    }
-
     @Test
+    @WithMockUser
     public void testSaveAvatarEndpoint() throws Exception {
         // Create a mock MultipartFile
         MockMultipartFile file = new MockMultipartFile("avatar", "avatar.jpg", MediaType.IMAGE_JPEG_VALUE, "avatar-data".getBytes());
@@ -47,11 +43,9 @@ public class AvatarControllerTest {
                         .param("hairColor", "#000000")
                         .param("noseSize", "medium")
                         .param("mouthSize", "small")
-                        .param("glasses", "false"))
+                        .param("glasses", "false")
+                        .with(csrf())) // Include CSRF token in the request
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Avatar saved successfully!"))
-                .andDo(print());
+                .andExpect(MockMvcResultMatchers.content().string("Avatar saved successfully!"));
     }
-
-    // Add more test methods to cover other scenarios as needed
 }
