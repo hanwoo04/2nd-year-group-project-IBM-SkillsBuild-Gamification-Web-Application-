@@ -35,10 +35,12 @@ public class ProgressBarController {
     private UserRepository userRepository;
 
     /**
-     * Handles GET requests to the /viewProgress endpoint. Retrieves all courses and completed courses for the
-     * user, sorts them into separate categories, and calculates the percentage competed in each category.
+     * Handles GET requests to the /viewProgress endpoint. Retrieves all courses and completed
+     * courses for the user, sorts them into separate categories, and calculates the percentage
+     * competed in each category.
      *
-     * @param model the Model object to which the sorted list of Courses and completed percentage is added
+     * @param model the Model object to which the sorted list of Courses and completed percentage is
+     *              added
      * @return the name of the view to be rendered, in this case "ProgressBar"
      */
 
