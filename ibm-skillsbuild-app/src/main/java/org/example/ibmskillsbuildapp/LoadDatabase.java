@@ -29,7 +29,8 @@ public class LoadDatabase {
      * @param courseService       the service for managing courses.
      * @param learningPathService the service for managing learning paths.
      */
-    public LoadDatabase(UserRolesService userRolesService, UserService userService, CourseService courseService,
+    public LoadDatabase(UserRolesService userRolesService, UserService userService,
+        CourseService courseService,
         LearningPathService learningPathService) {
         this.userRolesService = userRolesService;
         this.userService = userService;
@@ -38,8 +39,8 @@ public class LoadDatabase {
     }
 
     /**
-     * Initializes the database with user roles, users, courses, and learning paths if their respective
-     * repositories are empty.
+     * Initializes the database with user roles, users, courses, and learning paths if their
+     * respective repositories are empty.
      *
      * @return a CommandLineRunner that runs the initialization logic.
      */

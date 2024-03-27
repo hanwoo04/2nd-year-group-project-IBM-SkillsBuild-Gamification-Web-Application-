@@ -4,11 +4,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.lang.reflect.Field;
-import org.example.ibmskillsbuildapp.model.UserRoles;
-import org.example.ibmskillsbuildapp.repo.CourseRepository;
-import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
-import org.example.ibmskillsbuildapp.repo.UserRepository;
 import org.example.ibmskillsbuildapp.service.CourseService;
 import org.example.ibmskillsbuildapp.service.LearningPathService;
 import org.example.ibmskillsbuildapp.service.UserRolesService;
@@ -17,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 class LoadDatabaseTest {
 
@@ -34,7 +28,8 @@ class LoadDatabaseTest {
     @BeforeEach
     public void setup() throws Exception {
         MockitoAnnotations.openMocks(this);
-        loadDatabase = new LoadDatabase(userRolesService, userService, courseService, learningPathService);
+        loadDatabase = new LoadDatabase(userRolesService, userService, courseService,
+            learningPathService);
     }
 
     @Test

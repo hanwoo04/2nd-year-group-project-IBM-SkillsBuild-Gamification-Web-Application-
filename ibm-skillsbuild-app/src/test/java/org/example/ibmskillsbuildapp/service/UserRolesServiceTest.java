@@ -1,5 +1,12 @@
 package org.example.ibmskillsbuildapp.service;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.example.ibmskillsbuildapp.model.UserRoles;
 import org.example.ibmskillsbuildapp.repo.UserRolesRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,9 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class UserRolesServiceTest {
 

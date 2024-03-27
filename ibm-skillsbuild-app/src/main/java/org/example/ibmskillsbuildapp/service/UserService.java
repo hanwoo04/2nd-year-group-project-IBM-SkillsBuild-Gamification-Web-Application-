@@ -30,25 +30,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    private final Random random = new Random();
     @Autowired
     private UserRolesRepository userRolesRepository;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Autowired
     private UserCourseRepository userCourseRepository;
-
     @Autowired
     private CourseRepository courseRepository;
-
     @Autowired
     private LearningPathRepository learningPathRepository;
-
-    private final Random random = new Random();
 
     /**
      * Checks if the user repository is empty.
