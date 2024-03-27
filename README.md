@@ -11,8 +11,6 @@
 
 This project is a gamification web application of IBM's SkillsBuild, a free skills-based learning program.
 
-It features a secure login system, a dashboard to view your progress, and a leaderboard to compare yourself with others.
-
 For more information on IBM SkillsBuild, please visit [IBM SkillsBuild](https://skillsbuild.org/).
 
 The website is not suitable for mobile viewing.
@@ -36,25 +34,80 @@ You will need:
 
 1. **Clone the repository**
 
-   ```bash
+   ```console
    git clone https://campus.cs.le.ac.uk/gitlab/co2201-2024/group-01
    ```
 
 2. **Navigate to the project directory**
 
-   ```bash
+   ```console
    cd .\group-01\ibm-skillsbuild-app\
    ```
 
 3. **Install dependencies**
 
-   ```bash
+   ```console
    ./gradlew build
    ```
 
 4. **Set up MySQL connection**
 
-   Edit `application.properties`, replacing the placeholder values to include your MySQL connection and user.
+    To setup a MySQL connection, you will need a MySQL server installed and running on your machine, and some way to create a schema and user. For this guide, we will be using the MySQL Windows Installer (8.0.36) for the MySQL server and MySQL Workbench, available at [SQL Installer](https://dev.mysql.com/downloads/installer/).
+
+    After installing your MySQL server and MySQL Workbench:
+
+    - Open Workbench and create a new connection.
+
+      ![SQL_Page1](../README_images/SQL_Page1.png "SQL workbench")
+
+    - Name your connection (something recognisable) and set a user to connect with (here we use root user). Click ‘Test Connection’ and login with the user to make sure the connection is working, then click ‘OK’.
+
+      ![SQL_Page2](../README_images/SQL_Page2.png "SQL connection")
+
+      If the connection is not working, you can click ‘Configure Server Management...’ for more thorough testing.
+
+    - You should see the following popup after clicking ‘OK’
+
+      ![SQL_Page3](../README_images/SQL_Page3.png "SQL success")
+
+    - Connect to your server by clicking on the connection and logging in.
+
+      ![SQL_Page4](../README_images/SQL_Page4.png "SQL main")
+
+    - Create a new schema with the following statement:
+
+      - `CREATE SCHEMA schemaname;`
+        where schemaname is your chosen name for the schema. Here we use `skillsbuilddb`.
+      - Next, execute the statement, either by pressing Ctrl + Enter, or by clicking the lightning button above the statement. When the statement is executed, it will show at the bottom to say if it was successful or unsuccessful.
+
+      ![SQL_Page5](../README_images/SQL_Page5.png "SQL schema")
+
+    - Next, we create a new user for the schema. Click ‘Users and Privileges’ in the left-hand side ‘Administration’ menu.
+      ![SQL_Page6](../README_images/SQL_Page6.png "SQL Admin")
+
+    - From here, click ‘Add Account’ to create a new user.
+      Give it a name, here we use `skillsbuilduser`, and a password.
+      Then navigate to ‘Schema Privileges’.
+
+      ![SQL_Page7](../README_images/SQL_Page7.png "SQL privs")
+
+    - Here, click ‘Add Entry...’ to create a new privilege entry.
+
+      ![SQL_Page8](../README_images/SQL_Page8.png "SQL entry")
+
+    - Select your schema from the drop-down list under ‘Selected schema:’, and click ‘OK’.
+
+      ![SQL_Page9](../README_images/SQL_Page9.png "SQL select_schema")
+
+    - Now you have created an entry, click ‘Select “ALL”’ to grant your user schema privileges, then click ‘Apply’.
+
+      ![SQL_Page10](../README_images/SQL_Page10.png "SQL apply")
+
+    - Now you have successfully setup your MySQL connection and user!
+      Open up the `application.properties` (located in `./ibm-skillsbuild-app/src/main/resources`) file in your preferred file editor.
+      In this file, edit the shown 3 lines `spring.datasource.url`, `spring.datasource.username`, and `spring.datasource.password` with your schema name, user username and password.
+
+      ![SQL_Page11](../README_images/SQL_Page11.png "applicationProperties")
 
 ### Running the Program
 
@@ -62,7 +115,7 @@ How to run the program on your local machine.
 
 1. **Start the application**
 
-   ```bash
+   ```console
    ./gradlew bootRun
    ```
 
@@ -75,6 +128,9 @@ How to run the program on your local machine.
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Gradle](https://gradle.org/)
 - [MySQL](https://www.mysql.com/)
+- [Bootstrap](https://getbootstrap.com/)
+- [jQuery](https://jquery.com/)
+- [Chart.js](https://www.chartjs.org/)
 
 ## Contact
 

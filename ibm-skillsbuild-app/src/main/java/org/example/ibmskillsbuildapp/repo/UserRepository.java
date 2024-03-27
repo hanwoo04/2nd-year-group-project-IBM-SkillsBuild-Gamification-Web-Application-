@@ -12,4 +12,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findAllByOrderByScoreDesc();//Global Leaderboard
 
+    List<User> findByUserNameStartingWith(String username);//To search users
 }

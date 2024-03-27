@@ -73,7 +73,7 @@ class AuthenticationControllerTest {
     void testAccessDenied() {
         String result = authenticationController.accessDenied();
 
-        assertEquals("denied", result);
+        assertEquals("accessDenied", result);
     }
 
     @Test
@@ -86,4 +86,3 @@ class AuthenticationControllerTest {
         verify(model).addAttribute(eq("user"), any(User.class));
     }
 }
-

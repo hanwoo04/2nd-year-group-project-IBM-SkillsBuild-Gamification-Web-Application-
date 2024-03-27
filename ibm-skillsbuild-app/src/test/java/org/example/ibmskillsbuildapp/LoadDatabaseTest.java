@@ -6,44 +6,42 @@ import static org.mockito.Mockito.when;
 
 import org.example.ibmskillsbuildapp.service.CourseService;
 import org.example.ibmskillsbuildapp.service.LearningPathService;
+import org.example.ibmskillsbuildapp.service.UserRolesService;
 import org.example.ibmskillsbuildapp.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.CommandLineRunner;
-
 
 class LoadDatabaseTest {
 
-    @InjectMocks
-    private LoadDatabase loadDatabase;
-
+    @Mock
+    private UserRolesService userRolesService;
     @Mock
     private UserService userService;
-
     @Mock
     private CourseService courseService;
-
     @Mock
     private LearningPathService learningPathService;
+    private LoadDatabase loadDatabase;
+
+    @BeforeEach
+    public void setup() throws Exception {
+        MockitoAnnotations.openMocks(this);
+        loadDatabase = new LoadDatabase(userRolesService, userService, courseService,
+            learningPathService);
+    }
 
     @Test
     void testInitDatabase() throws Exception {
-        MockitoAnnotations.openMocks(this);
-
-        when(userService.isEmpty()).thenReturn(true);
-        when(courseService.isEmpty()).thenReturn(true);
         when(learningPathService.isEmpty()).thenReturn(true);
+        when(courseService.isEmpty()).thenReturn(true);
+        when(userService.isEmpty()).thenReturn(true);
 
-        CommandLineRunner runner = loadDatabase.initDatabase();
-        runner.run();
+        loadDatabase.initDatabase().run();
 
-        verify(userService, times(1)).isEmpty();
-        verify(userService, times(1)).createUsers();
-        verify(courseService, times(1)).isEmpty();
-        verify(courseService, times(1)).createCourses();
-        verify(learningPathService, times(1)).isEmpty();
         verify(learningPathService, times(1)).createLearningPaths();
+        verify(courseService, times(1)).createCourses();
+        verify(userService, times(1)).createUsers();
     }
 }

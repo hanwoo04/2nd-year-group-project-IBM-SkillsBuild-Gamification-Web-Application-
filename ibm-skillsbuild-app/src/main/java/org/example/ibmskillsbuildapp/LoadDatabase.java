@@ -2,6 +2,7 @@ package org.example.ibmskillsbuildapp;
 
 import org.example.ibmskillsbuildapp.service.CourseService;
 import org.example.ibmskillsbuildapp.service.LearningPathService;
+import org.example.ibmskillsbuildapp.service.UserRolesService;
 import org.example.ibmskillsbuildapp.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -9,12 +10,13 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Configuration class for loading initial data into the database. This class checks if the
- * repositories for users, courses, and learning paths are empty, and if so, creates and saves new
- * entities.
+ * repositories for users, user roles, courses, and learning paths are empty, and if so, creates and
+ * saves new entities.
  */
 @Configuration
 public class LoadDatabase {
 
+    private final UserRolesService userRolesService;
     private final UserService userService;
     private final CourseService courseService;
     private final LearningPathService learningPathService;
@@ -27,16 +29,18 @@ public class LoadDatabase {
      * @param courseService       the service for managing courses.
      * @param learningPathService the service for managing learning paths.
      */
-    public LoadDatabase(UserService userService, CourseService courseService,
+    public LoadDatabase(UserRolesService userRolesService, UserService userService,
+        CourseService courseService,
         LearningPathService learningPathService) {
+        this.userRolesService = userRolesService;
         this.userService = userService;
         this.courseService = courseService;
         this.learningPathService = learningPathService;
     }
 
     /**
-     * Initializes the database with users, courses, and learning paths if their respective
-     * repositories are empty.
+     * Initializes the database with user roles, users, courses, and learning paths if their
+     * respective repositories are empty.
      *
      * @return a CommandLineRunner that runs the initialization logic.
      */
@@ -51,8 +55,13 @@ public class LoadDatabase {
                 courseService.createCourses();
             }
 
+            if (userRolesService.isEmpty()) {
+                userRolesService.createRoles();
+            }
+
             if (userService.isEmpty()) {
                 userService.createUsers();
+                userService.createDemoData();
             }
         };
     }

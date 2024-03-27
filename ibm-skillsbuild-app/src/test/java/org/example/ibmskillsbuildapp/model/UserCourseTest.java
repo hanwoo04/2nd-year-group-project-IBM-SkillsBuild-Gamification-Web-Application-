@@ -3,6 +3,7 @@ package org.example.ibmskillsbuildapp.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +42,27 @@ class UserCourseTest {
         LearningStatus status = LearningStatus.COMPLETED;
         userCourse.setStatus(status);
         assertEquals(status, userCourse.getStatus());
+    }
+
+    @Test
+    void testStartDate() {
+        Date startDate = new Date();
+        userCourse.setStartDate(startDate);
+        assertEquals(startDate, userCourse.getStartDate());
+    }
+
+    @Test
+    void testCompletionDate() {
+        Date completionDate = new Date();
+        userCourse.setCompletionDate(completionDate);
+        assertEquals(completionDate, userCourse.getCompletionDate());
+    }
+
+    @Test
+    void testRating() {
+        Integer rating = 5;
+        userCourse.setRating(rating);
+        assertEquals(rating, userCourse.getRating());
     }
 
     @Test

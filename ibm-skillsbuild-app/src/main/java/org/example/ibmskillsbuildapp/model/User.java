@@ -8,12 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Model to represent Users. has relationships with other model classes to allow other features to be implemented.
- */
 
 @Entity
 public class User {
@@ -21,16 +18,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String userName;
-
     private String password;
+    private int score;
 
-    private int score;//Leaderboard
-    // TODO: Implement way to view/add friends
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Avatar avatar;
+
     @ManyToMany
-    private List<User> friends = new ArrayList<>();//Leaderboard
+    private List<User> friends = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<UserRoles> userRoles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
@@ -63,6 +62,31 @@ public class User {
         this.password = password;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+        avatar.setUser(this); // Set the user for the avatar
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
+    }
+
     public List<UserRoles> getUserRoles() {
         return userRoles;
     }
@@ -83,24 +107,8 @@ public class User {
         return userLearningPaths;
     }
 
-    public void setUserLearningPaths(
-        List<UserLearningPath> userLearningPaths) {
+    public void setUserLearningPaths(List<UserLearningPath> userLearningPaths) {
         this.userLearningPaths = userLearningPaths;
     }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public List<User> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<User> friends) {
-        this.friends = friends;
-    }
 }
+

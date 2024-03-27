@@ -1,4 +1,13 @@
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ page import="org.example.ibmskillsbuildapp.model.Avatar" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+    String currentUserAvatarURL = (String) request.getAttribute("currentUserAvatarURL");
+    currentUserAvatarURL = (currentUserAvatarURL == null || currentUserAvatarURL.isEmpty()
+            || currentUserAvatarURL.equals("avatar")) ? request.getContextPath()
+            + "/img/Null_Profile_Image.png" : currentUserAvatarURL;
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,33 +30,71 @@
 <div class="container">
     <table id="global" class="leaderBoardHead">
         <tr>
-            <th colspan="2" class="head">Leaderboard(Global)</th>
+            <th colspan="2" class="head">Leaderboard (Global)</th>
         </tr>
         <tr>
             <th>Player</th>
             <th>Score</th>
         </tr>
-        <c:forEach items="${players}" var="user">
+        <!-- Display other players in the global leaderboard -->
+        <c:forEach items="${allPlayers}" var="player">
             <tr>
-                <td> ${user.getUserName()}</td>
-                <td> ${user.getScore()}</td>
+                <td>
+                    <div class="friend">
+                        <img src="${player.avatar.avatarDataURL}" alt="Avatar" width="50"
+                             height="50">
+                            ${player.userName}
+                    </div>
+                </td>
+                <td>${player.score}</td>
             </tr>
         </c:forEach>
+        <!-- Display the current user in the global leaderboard -->
+        <c:if test="${empty allPlayers}">
+            <tr>
+                <td>
+                    <div class="friend">
+                        <img src="${currentUserAvatarURL}" alt="Avatar" width="50" height="50">
+                            ${currentUser.userName}
+                    </div>
+                </td>
+                <td>${currentUser.score}</td>
+            </tr>
+        </c:if>
     </table>
     <table id="friend" class="leaderBoardHead">
         <tr>
-            <th colspan="2" class="head">Leaderboard(Friends)</th>
+            <th colspan="2" class="head">Leaderboard (Friends)</th>
         </tr>
         <tr>
             <th>Player</th>
             <th>Score</th>
         </tr>
+        <!-- Display other friends in the friends leaderboard -->
         <c:forEach items="${friends}" var="friend">
             <tr>
-                <td> ${friend.getUserName()}</td>
-                <td> ${friend.getScore()}</td>
+                <td>
+                    <div class="friend">
+                        <img src="${friend.avatar.avatarDataURL}" alt="Avatar" width="50"
+                             height="50">
+                            ${friend.userName}
+                    </div>
+                </td>
+                <td>${friend.score}</td>
             </tr>
         </c:forEach>
+        <!-- Display the current user in the friends leaderboard -->
+        <c:if test="${empty friends}">
+            <tr>
+                <td>
+                    <div class="friend">
+                        <img src="${currentUserAvatarURL}" alt="Avatar" width="50" height="50">
+                            ${currentUser.userName}
+                    </div>
+                </td>
+                <td>${currentUser.score}</td>
+            </tr>
+        </c:if>
     </table>
 </div>
 </body>
