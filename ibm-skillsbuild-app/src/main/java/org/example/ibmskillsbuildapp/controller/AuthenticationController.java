@@ -1,6 +1,7 @@
 package org.example.ibmskillsbuildapp.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.StreamSupport;
 import org.example.ibmskillsbuildapp.model.Course;
@@ -124,6 +125,8 @@ public class AuthenticationController {
 
         UserRoles roleUser = userRolesRepository.findByRoleName("USER");
         user.getUserRoles().add(roleUser);
+
+        user.setFriends(new ArrayList<>());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repo.save(user);
