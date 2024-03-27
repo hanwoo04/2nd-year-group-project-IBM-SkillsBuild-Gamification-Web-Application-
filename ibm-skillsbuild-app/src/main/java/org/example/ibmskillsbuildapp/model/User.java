@@ -29,7 +29,7 @@ public class User {
     @ManyToMany
     private List<User> friends = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<UserRoles> userRoles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")

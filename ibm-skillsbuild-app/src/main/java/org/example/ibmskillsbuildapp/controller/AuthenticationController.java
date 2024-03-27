@@ -13,6 +13,7 @@ import org.example.ibmskillsbuildapp.repo.CourseRepository;
 import org.example.ibmskillsbuildapp.repo.LearningPathRepository;
 import org.example.ibmskillsbuildapp.repo.UserCourseRepository;
 import org.example.ibmskillsbuildapp.repo.UserRepository;
+import org.example.ibmskillsbuildapp.repo.UserRolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,9 @@ public class AuthenticationController {
 
     @Autowired
     private LearningPathRepository learningPathRepository;
+
+    @Autowired
+    private UserRolesRepository userRolesRepository;
 
     /**
      * Handles GET requests to the /success-login endpoint. Retrieves user by username and if
@@ -118,9 +122,8 @@ public class AuthenticationController {
             return "register";
         }
 
-        UserRoles role = new UserRoles();
-        role.setRoleName("default");
-        user.getUserRoles().add(role);
+        UserRoles roleUser = userRolesRepository.findByRoleName("USER");
+        user.getUserRoles().add(roleUser);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         repo.save(user);
@@ -141,5 +144,4 @@ public class AuthenticationController {
 
         return "redirect:/login";
     }
-
 }
