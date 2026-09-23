@@ -62,7 +62,7 @@ You will need:
 
     - Name your connection (something recognisable) and set a user to connect with (here we use root user). Click ‘Test Connection’ and login with the user to make sure the connection is working, then click ‘OK’.
 
-      ![SQL_Page2](../README_images/SQL_Page2.png "SQL connection")
+      ![SQL_Page2](README_images/SQL_Page2.png "SQL connection")
 
       If the connection is not working, you can click ‘Configure Server Management...’ for more thorough testing.
 
